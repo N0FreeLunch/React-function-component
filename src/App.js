@@ -1,12 +1,25 @@
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 // import MyComponent from './MyComponent';
 // import Counter from './Counter';
-import Say from './Say';
+import Component01 from './component/01-JSX/HelloReact.jsx';
+import Component02 from './component/02-FragmentWithModule/Fragment.jsx';
+import Component03 from './component/03-FragmentWithoutModule/Fragment.jsx';
+// import Component04
+// import Counter from './Counter-copy';
+// import Say from './Say';
 
 function App() {
+  // const [componentNumber, setComponentNumber] = useState();
 
-  return <Say />
+  return (
+    <div>
+      <Component03 />
+    </div>
+  );
+  // return <Counter />
+  // return <Say />
   // let name = "babo";
   // return (
   //   <div>
