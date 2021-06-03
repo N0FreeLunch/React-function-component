@@ -1,7 +1,7 @@
 import React from 'react';
 
-function ReactCondition () {
-  const name = "React";
+function ConditionTrue () {
+  const name = "Redux";
 
   return (
     <div>
@@ -15,4 +15,4 @@ function ReactCondition () {
 }
 
 
-export default ReactCondition;
+export default ConditionTrue;
