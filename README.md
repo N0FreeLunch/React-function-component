@@ -1,4 +1,5 @@
 # Function Component React
+関数コンポネントでReactプログラミングを練習しています。
 
 ### development mode
 ```

@@ -1,7 +1,6 @@
 import React, { useState, Fragment } from 'react';
 import logo from './logo.svg';
 import './App.css';
-// import MyComponent from './MyComponent';
 // import Counter from './Counter';
 import Component01 from './component/01-JSX/HelloReact.jsx';
 import Component02 from './component/02-FragmentWithModule/Fragment.jsx';
@@ -17,10 +16,18 @@ import Component11 from './component/11-styleAtrributeInJSX/StyleAttributeInJSX.
 import Component12 from './component/12-classInJSX/ClassInJSX.jsx';
 import Component13 from './component/13-inputJSX/InputJSx.jsx';
 import Component14 from './component/14-comment/Comment.jsx';
+import Component15 from './component/15-classComponent/ClassComponent.jsx';
+import Component16 from './component/16-arrowFunctionComponent/ArrowFunctionComponent.jsx'
+import Component17 from './component/17-props/ParentComponent.jsx';
+import Component18 from './component/18-defaultProps/ParentComponent.jsx';
+import Component19 from './component/19-childrenProps/ParentComponent.jsx';
+import Component20 from './component/20-AllInOne/ParentComponent.jsx';
+import Component21 from './component/21-DestructuringAssignment/ParentComponent.jsx';
+import Component22 from './component/22-DestructuringAssignmentParam/ParentComponent.jsx';
+import Component23 from './component/23-propTypes/ParentComponent.jsx';
+import Component24 from './component/24-isRequired/ParentComponent.jsx';
 
 
-// import Counter from './Counter-copy';
-// import Say from './Say';
 
 function App() {
   const componentList = [
@@ -36,7 +43,17 @@ function App() {
     <Component10/>,
     <Component11/>,
     <Component13/>,
-    <Component14/>
+    <Component14/>,
+    <Component15/>,
+    <Component16/>,
+    <Component17/>,
+    <Component18/>,
+    <Component19/>,
+    <Component20/>,
+    <Component21/>,
+    <Component22/>,
+    <Component23/>,
+    <Component24/>
   ];
 
   const [componentNumber, setComponentNumber] = useState(componentList.length);
