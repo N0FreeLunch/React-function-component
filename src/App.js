@@ -26,6 +26,8 @@ import Component21 from './component/21-DestructuringAssignment/ParentComponent.
 import Component22 from './component/22-DestructuringAssignmentParam/ParentComponent.jsx';
 import Component23 from './component/23-propTypes/ParentComponent.jsx';
 import Component24 from './component/24-isRequired/ParentComponent.jsx';
+import Component25 from './component/25-classComponentProps/ParentComponent.jsx';
+
 
 
 
@@ -42,6 +44,7 @@ function App() {
     <Component09/>,
     <Component10/>,
     <Component11/>,
+    <Component12/>,
     <Component13/>,
     <Component14/>,
     <Component15/>,
@@ -53,7 +56,8 @@ function App() {
     <Component21/>,
     <Component22/>,
     <Component23/>,
-    <Component24/>
+    <Component24/>,
+    <Component25/>
   ];
 
   const [componentNumber, setComponentNumber] = useState(componentList.length);
