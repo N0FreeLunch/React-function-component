@@ -27,6 +27,9 @@ import Component22 from './component/22-DestructuringAssignmentParam/ParentCompo
 import Component23 from './component/23-propTypes/ParentComponent.jsx';
 import Component24 from './component/24-isRequired/ParentComponent.jsx';
 import Component25 from './component/25-classComponentProps/ParentComponent.jsx';
+import Component26 from './component/26-nestedPropsMiddleware/ParentComponent.jsx';
+import Component27 from './component/27-classComponentState/Counter.jsx';
+import Component28 from './component/28-multiPropertyState/Counter.jsx';
 
 
 
@@ -57,7 +60,10 @@ function App() {
     <Component22/>,
     <Component23/>,
     <Component24/>,
-    <Component25/>
+    <Component25/>,
+    <Component26/>,
+    <Component27/>,
+    <Component28/>
   ];
 
   const [componentNumber, setComponentNumber] = useState(componentList.length);
