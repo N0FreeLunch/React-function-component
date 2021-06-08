@@ -30,6 +30,9 @@ import Component25 from './component/25-classComponentProps/ParentComponent.jsx'
 import Component26 from './component/26-nestedPropsMiddleware/ParentComponent.jsx';
 import Component27 from './component/27-classComponentState/Counter.jsx';
 import Component28 from './component/28-multiPropertyState/Counter.jsx';
+import Component29 from './component/29-multiSetStateArgumentUpdateOnce/Counter.jsx';
+import Component30 from './component/30-setStateFunctionArgument/Counter.jsx';
+import Component31 from './component/31-doAfterSetState/Counter.jsx';
 
 
 
@@ -63,7 +66,10 @@ function App() {
     <Component25/>,
     <Component26/>,
     <Component27/>,
-    <Component28/>
+    <Component28/>,
+    <Component29/>,
+    <Component30/>,
+    <Component31/>
   ];
 
   const [componentNumber, setComponentNumber] = useState(componentList.length);
