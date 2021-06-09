@@ -33,6 +33,11 @@ import Component28 from './component/28-multiPropertyState/Counter.jsx';
 import Component29 from './component/29-multiSetStateArgumentUpdateOnce/Counter.jsx';
 import Component30 from './component/30-setStateFunctionArgument/Counter.jsx';
 import Component31 from './component/31-doAfterSetState/Counter.jsx';
+import Component32 from './component/32-arrayDestructuringAssignment/useState.jsx';
+import Component33 from './component/33-multiUseState/MultiUseState.jsx';
+import Component34 from './component/34-onChange/OnChange.jsx';
+import Component35 from './component/35-eventHandler/EventHandler.jsx';
+
 
 
 
@@ -69,7 +74,11 @@ function App() {
     <Component28/>,
     <Component29/>,
     <Component30/>,
-    <Component31/>
+    <Component31/>,
+    <Component32/>,
+    <Component33/>,
+    <Component34/>,
+    <Component35/>
   ];
 
   const [componentNumber, setComponentNumber] = useState(componentList.length);
