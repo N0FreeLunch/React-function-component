@@ -27,7 +27,7 @@ class Handler extends Component {
   render() {
     return (
       <div>
-        <h1>이벤트 연습</h1>
+        <h1>event practice</h1>
         <input
           type="text"
           name="message"
@@ -35,7 +35,7 @@ class Handler extends Component {
           value={this.state.message}
           onChange={this.handleChange}
         />
-        <button onClick={this.handleClick}>확인</button>
+        <button onClick={this.handleClick}>check</button>
       </div>
     )
   }
