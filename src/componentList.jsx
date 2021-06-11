@@ -37,6 +37,10 @@ import Component34 from './component/34-onChange/OnChange.jsx';
 import Component35 from './component/35-eventHandler/EventHandler.jsx';
 import Component36 from './component/36-withoutBindInConstruct/WithoutBindInConstruct.jsx';
 import Component37 from './component/37-multiInput/MultiInput.jsx';
+import Component38 from './component/38-onKeyPress/OnkeyPress.jsx';
+import Component39 from './component/39-funcitonComponentEvent/FunctionComponentEvent.jsx';
+import Component40 from './component/40-useStateObjectArgument/UseStateObjectArgument.jsx';
+
 
 const componentList = [
   <Component01/>,
@@ -75,7 +79,10 @@ const componentList = [
   <Component34/>,
   <Component35/>,
   <Component36/>,
-  <Component37/>
+  <Component37/>,
+  <Component38/>,
+  <Component39/>,
+  <Component40/>
 ];
 
 export default componentList;
