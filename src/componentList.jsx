@@ -40,7 +40,7 @@ import Component37 from './component/37-multiInput/MultiInput.jsx';
 import Component38 from './component/38-onKeyPress/OnkeyPress.jsx';
 import Component39 from './component/39-funcitonComponentEvent/FunctionComponentEvent.jsx';
 import Component40 from './component/40-useStateObjectArgument/UseStateObjectArgument.jsx';
-
+import Component41 from './component/41-validationSample/ValidationSample.jsx';
 
 const componentList = [
   <Component01/>,
@@ -82,7 +82,8 @@ const componentList = [
   <Component37/>,
   <Component38/>,
   <Component39/>,
-  <Component40/>
+  <Component40/>,
+  <Component41/>
 ];
 
 export default componentList;
