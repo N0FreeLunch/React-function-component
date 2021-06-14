@@ -41,6 +41,9 @@ import Component38 from './component/38-onKeyPress/OnkeyPress.jsx';
 import Component39 from './component/39-funcitonComponentEvent/FunctionComponentEvent.jsx';
 import Component40 from './component/40-useStateObjectArgument/UseStateObjectArgument.jsx';
 import Component41 from './component/41-validationSample/ValidationSample.jsx';
+import Component42 from './component/42-classComponentRef/ClassComponentRef.jsx';
+// import Component43 from './component/43-attributeCallbackRef/AttributeCallbackRef.jsx';
+import Component43 from './component/43-validationUseRef/ValidationUseRef.jsx';
 
 const componentList = [
   <Component01/>,
@@ -83,7 +86,10 @@ const componentList = [
   <Component38/>,
   <Component39/>,
   <Component40/>,
-  <Component41/>
+  <Component41/>,
+  <Component42/>,
+  <Component43/>,
+  // <Component44/>,
 ];
 
 export default componentList;

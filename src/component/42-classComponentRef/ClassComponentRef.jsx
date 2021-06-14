@@ -10,6 +10,8 @@ class ClassComponentRef extends Component {
   render () {
     return (
       <div>
+        <div onClick={this.handleFocus}>focus</div>
+        <br/>
         <input ref={this.input} />
       </div>
     );
