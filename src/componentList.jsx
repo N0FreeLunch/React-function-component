@@ -42,8 +42,8 @@ import Component39 from './component/39-funcitonComponentEvent/FunctionComponent
 import Component40 from './component/40-useStateObjectArgument/UseStateObjectArgument.jsx';
 import Component41 from './component/41-validationSample/ValidationSample.jsx';
 import Component42 from './component/42-classComponentRef/ClassComponentRef.jsx';
-// import Component43 from './component/43-attributeCallbackRef/AttributeCallbackRef.jsx';
 import Component43 from './component/43-validationUseRef/ValidationUseRef.jsx';
+import Component44 from './component/44-ScrollBox/Wrapper.jsx';
 
 const componentList = [
   <Component01/>,
@@ -89,7 +89,7 @@ const componentList = [
   <Component41/>,
   <Component42/>,
   <Component43/>,
-  // <Component44/>,
+  <Component44/>,
 ];
 
 export default componentList;

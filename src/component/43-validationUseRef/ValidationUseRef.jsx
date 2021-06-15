@@ -34,7 +34,10 @@ class ValidationSample extends Component {
           value={this.state.password}
           onChange={this.handleChange}
           className={this.state.clicked ? (this.state.validated ? 'success' : 'failure') : ''}
-          ref={ref => this.input=ref}
+          ref={ref => {
+            console.log("ref", ref)
+            this.input=ref}
+          }
         />
         <button onClick={this.handleButtonClick}>validate</button>
       </div>
