@@ -44,6 +44,11 @@ import Component41 from './component/41-validationSample/ValidationSample.jsx';
 import Component42 from './component/42-classComponentRef/ClassComponentRef.jsx';
 import Component43 from './component/43-validationUseRef/ValidationUseRef.jsx';
 import Component44 from './component/44-ScrollBox/Wrapper.jsx';
+import Component45 from './component/45-iterator/Iterator.jsx';
+import Component46 from './component/46-map/JSXwithMap.jsx';
+import Component47 from './component/47-key/MapWithKey.jsx';
+import Component48 from './component/48-literalObjectIterator/LiteralObjectIterator.jsx';
+import Component49 from './component/49-objectStateUpdate/ObjectStateUpdate.jsx';
 
 const componentList = [
   <Component01/>,
@@ -90,6 +95,11 @@ const componentList = [
   <Component42/>,
   <Component43/>,
   <Component44/>,
+  <Component45/>,
+  <Component46/>,
+  <Component47/>,
+  <Component48/>,
+  <Component49/>
 ];
 
 export default componentList;
