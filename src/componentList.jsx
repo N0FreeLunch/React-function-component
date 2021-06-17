@@ -49,6 +49,9 @@ import Component46 from './component/46-map/JSXwithMap.jsx';
 import Component47 from './component/47-key/MapWithKey.jsx';
 import Component48 from './component/48-literalObjectIterator/LiteralObjectIterator.jsx';
 import Component49 from './component/49-objectStateUpdate/ObjectStateUpdate.jsx';
+import Component50 from './component/50-stateUpdateWithNewArray/StateUpdateWithNewArray.jsx';
+import Component51 from './component/51-lifeCycleSample/ParentComponent.jsx';
+
 
 const componentList = [
   <Component01/>,
@@ -99,7 +102,9 @@ const componentList = [
   <Component46/>,
   <Component47/>,
   <Component48/>,
-  <Component49/>
+  <Component49/>,
+  <Component50/>,
+  <Component51/>
 ];
 
 export default componentList;
