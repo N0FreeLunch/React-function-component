@@ -51,7 +51,12 @@ import Component48 from './component/48-literalObjectIterator/LiteralObjectItera
 import Component49 from './component/49-objectStateUpdate/ObjectStateUpdate.jsx';
 import Component50 from './component/50-stateUpdateWithNewArray/StateUpdateWithNewArray.jsx';
 import Component51 from './component/51-lifeCycleSample/ParentComponent.jsx';
-
+import Component52 from './component/52-useState/UseStateHook.jsx';
+import Component53 from './component/53-multiUseState/MultiUseState.jsx';
+import Component54 from './component/54-useEffect/UseEffectHook.jsx';
+import Component55 from './component/55-inserMiddleComponent/InsertMiddleComponent.jsx';
+import Component56 from './component/56-useReduce/UseReducerHook.jsx';
+import Component57 from './component/57-simpleReducer/SimpleReducer.jsx';
 
 const componentList = [
   <Component01/>,
@@ -104,7 +109,13 @@ const componentList = [
   <Component48/>,
   <Component49/>,
   <Component50/>,
-  <Component51/>
+  <Component51/>,
+  <Component52/>,
+  <Component53/>,
+  <Component54/>,
+  <Component55/>,
+  <Component56/>,
+  <Component57/>
 ];
 
 export default componentList;
