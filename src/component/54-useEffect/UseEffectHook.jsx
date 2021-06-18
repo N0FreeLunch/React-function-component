@@ -5,16 +5,46 @@ const UseEffectHook = () => {
   const [nickname, setNickname] = useState('');
 
   useEffect(() => {
-    console.log('rendering completed!');
+    console.log("when component mounted");
     console.log({
       name,
       nickname
     });
+    console.log("----------------------");
     return () => {
-      console.log('cleanup');
+      console.log('before component unmounted');
       console.log(name);
+      console.log("----------------------");
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log('rendering');
+    console.log({
+      name,
+      nickname
+    });
+    console.log("----------------------");
+    return () => {
+      console.log('berfore next rendering');
+      console.log(name);
+      console.log("----------------------");
     }
   });
+
+  useEffect(() => {
+    console.log('rendering by updating name variable');
+    console.log({
+      name,
+      nickname
+    });
+    console.log("----------------------");
+    return () => {
+      console.log('before next rendering occured by changing name variable');
+      console.log(name);
+      console.log("----------------------");
+    }
+  },[name]);
 
   const onChangeName = e => {
     setName(e.target.value);

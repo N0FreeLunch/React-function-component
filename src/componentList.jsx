@@ -57,6 +57,7 @@ import Component54 from './component/54-useEffect/UseEffectHook.jsx';
 import Component55 from './component/55-inserMiddleComponent/InsertMiddleComponent.jsx';
 import Component56 from './component/56-useReduce/UseReducerHook.jsx';
 import Component57 from './component/57-simpleReducer/SimpleReducer.jsx';
+import Component58 from './component/58-useMemo/UseMemoHook.jsx';
 
 const componentList = [
   <Component01/>,
@@ -115,7 +116,8 @@ const componentList = [
   <Component54/>,
   <Component55/>,
   <Component56/>,
-  <Component57/>
+  <Component57/>,
+  <Component58/>
 ];
 
 export default componentList;

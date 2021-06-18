@@ -1,6 +1,5 @@
 import React, {useReducer} from 'react';
 
-
 function reducer(state, action) {
   return {
     ...state,
@@ -16,6 +15,7 @@ const SimpleReducer = () => {
   });
 
   const {name, nickname} = state;
+
   const onChange = e => {
     dispatch(e.target);
   }
