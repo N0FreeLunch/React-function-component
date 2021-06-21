@@ -41,3 +41,8 @@ const getAverage = () => {
 - 따라서 평균을 낼 때는 모든 수를 저장한 후 이를 모아서 평균을 내야 한다.
 
 ### useMemo 사용
+```
+const avg = useMemo(() => getAverage(list), [list]);
+```
+- 클릭하면 list에 입력한 값이 들어간다.
+- list 값이 변경되면 avg에 값이 할당된다.
