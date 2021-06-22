@@ -59,6 +59,8 @@ import Component56 from './component/56-useReduce/UseReducerHook.jsx';
 import Component57 from './component/57-simpleReducer/SimpleReducer.jsx';
 import Component58 from './component/58-useMemo/SwichingUseMemo.jsx';
 import Component59 from './component/59-useCallback/UseCallbackHook.jsx';
+import Component60 from './component/60-useRef/UseRefHook.jsx';
+import Component61 from './component/61-localVariableWithUseRef/ParentComponent.jsx';
 
 const componentList = [
   <Component01/>,
@@ -119,7 +121,9 @@ const componentList = [
   <Component56/>,
   <Component57/>,
   <Component58/>,
-  <Component59/>
+  <Component59/>,
+  <Component60/>,
+  <Component61/>
 ];
 
 export default componentList;

@@ -17,7 +17,7 @@ const UseRefHook = () => {
   },[]);
 
   const onInsert = useCallback( () => {
-    const nextList = list.concat(parseint(number));
+    const nextList = list.concat(parseInt(number));
     setList(nextList);
     setNumber('');
     inputEl.current.focus();
