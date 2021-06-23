@@ -61,6 +61,7 @@ import Component58 from './component/58-useMemo/SwichingUseMemo.jsx';
 import Component59 from './component/59-useCallback/UseCallbackHook.jsx';
 import Component60 from './component/60-useRef/UseRefHook.jsx';
 import Component61 from './component/61-localVariableWithUseRef/ParentComponent.jsx';
+import Component62 from './component/62-customHook/Info.jsx';
 
 const componentList = [
   <Component01/>,
@@ -123,7 +124,8 @@ const componentList = [
   <Component58/>,
   <Component59/>,
   <Component60/>,
-  <Component61/>
+  <Component61/>,
+  <Component62/>
 ];
 
 export default componentList;
