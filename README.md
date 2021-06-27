@@ -1,6 +1,12 @@
 # Function Component React
 関数コンポネントでReactプログラミングを練習しています。
 
+## Install
+NodeJS version 14
+```
+npm install
+```
+
 ### development mode
 ```
 npm start
@@ -23,4 +29,3 @@ npm run build
 
 ### reference
 \[book\] 리액트를 다루는 기술 \[개정판\]
-https://thebook.io/080203/

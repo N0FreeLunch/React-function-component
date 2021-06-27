@@ -64,6 +64,8 @@ import Component61 from './component/61-localVariableWithUseRef/ParentComponent.
 import Component62 from './component/62-customHook/Info.jsx';
 import Component63 from './component/63-insertCssIntoComponent/InsertCssIntoComponent.jsx';
 import Component64 from './component/64-structuredCss/StructuredCss.jsx';
+import Component65 from './component/65-nodeSass/SassComponent.jsx';
+
 
 const componentList = [
   <Component01/>,
@@ -129,7 +131,8 @@ const componentList = [
   <Component61/>,
   <Component62/>,
   <Component63/>,
-  <Component64/>
+  <Component64/>,
+  <Component65/>
 ];
 
 export default componentList;
