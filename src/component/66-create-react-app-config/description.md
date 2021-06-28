@@ -24,8 +24,8 @@ yarn eject
   |-start.js
   |-test.js
 ```
-
-
+## make absolute path
+webpack.config.js file
 ```
 test: sassRegex,
 exclude: sassModuleRegex,
@@ -78,3 +78,15 @@ includePaths: [paths.appSrc + '/component/65-nodeSass/styles'],
 @import 'utils.scss';
 ```
 바꾸면 `'utils.scss'` 이 경로에 `/component/65-nodeSass/styles'` 경로가 추가된 경로를 읽는다.
+
+## 디폴트 포함 scss 설정
+```
+options : {
+  sassOptions: {
+    includePaths: [paths.appSrc + '/component/65-nodeSass/styles'],
+    sourceMap: isEnvProduction && shouldUseSourceMap
+  },
+  prependData : `@import 'utils.scss';`
+}
+```
+프로젝트 경로에서 `/component/65-nodeSass/styles/utils.scss`를 항상 포함하여 실행하도록 설정한다. (레이아웃 같은 거 설정할 때 사용)

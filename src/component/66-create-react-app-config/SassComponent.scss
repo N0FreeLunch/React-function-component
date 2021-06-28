@@ -1,6 +1,7 @@
-@import './styles/utils';
+// @import 'utils.scss';
+@import 'component/65-nodeSass/styles/utils.scss';
 
-.SassComponent1 {
+.SassComponent2 {
   display : flex;
   .box {
     background: red;
