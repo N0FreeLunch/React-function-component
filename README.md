@@ -1,8 +1,8 @@
 # Function Component React
-関数コンポネントでReactプログラミングを練習しています。
+- 関数コンポネントでReactプログラミングを練習しています。
 
 ## Install
-NodeJS version 14
+- NodeJS version 14
 ```
 npm install
 ```

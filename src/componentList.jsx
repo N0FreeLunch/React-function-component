@@ -67,8 +67,9 @@ import Component64 from './component/64-structuredCss/StructuredCss.jsx';
 import Component65 from './component/65-nodeSass/SassComponent.jsx';
 import Component66 from './component/66-create-react-app-config/SassComponent.jsx';
 import Component67 from './component/67-path_node_modules_lib/SassComponent.jsx';
-import Component68 from './component/68-cssModule/CSSModule.js'
-
+import Component68 from './component/68-cssModule/CSSModule.js';
+import Component69 from './component/69-conditionalCSSClass/ParentComponent.jsx';
+import Component70 from './component/70-classnameCssModule/ClassnameCssModule.jsx';
 
 const componentList = [
   <Component01/>,
@@ -138,7 +139,9 @@ const componentList = [
   <Component65/>,
   <Component66/>,
   <Component67/>,
-  <Component68/>
+  <Component68/>,
+  <Component69/>,
+  <Component70/>
 ];
 
 export default componentList;
