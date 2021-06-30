@@ -1,0 +1,19 @@
+:local .wrapper {
+  background: brown;
+  padding: 1rem;
+  color: white;
+  font-size: 2rem;
+}
+
+:local(.inverted) {
+    color: black;
+    background: skyblue;
+    border: 1px solid black;
+}
+
+:local {
+  .something {
+    font-weight: 800;
+    color: blue;
+  }
+}

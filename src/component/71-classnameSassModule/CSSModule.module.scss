@@ -1,4 +1,4 @@
-:local .wrapper {
+.wrapper {
   background: black;
   padding: 1rem;
   color: white;
@@ -10,7 +10,7 @@
   }
 }
 
-:local .something {
+:global .something {
   font-weight: 800;
   color: aqua;
 }
