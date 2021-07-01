@@ -26,6 +26,11 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 npm run build
 ```
 
+## solve push issue
+```
+git remote remove origin
+git remote add origin Personal_access_token@github.com/N0FreeLunch/Repository_name.git
+```
 
 ### reference
 \[book\] 리액트를 다루는 기술 \[개정판\]
