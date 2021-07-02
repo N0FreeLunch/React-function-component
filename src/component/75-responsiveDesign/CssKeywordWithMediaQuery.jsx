@@ -1,9 +1,34 @@
-import styled, {css} from 'styled-components';
+import React from 'react';
+import styled, { css } from 'styled-components';
+
+const sizes = {
+  desktop : 1024,
+  tablet : 768
+};
+
+console.log("test : ", Object.keys(sizes))
+
+const media = Object.keys(sizes).reduce((acc, label) => {
+  console.log()
+  acc[label] = (...args) => css`
+    @media (max-width : ${sizes[label] / 16}em) {
+      ${css(...args)};
+    }
+  `;
+
+  return acc;
+}, {});
+
+console.log("media", media);
 
 const Box = styled.div`
   background : ${props => props.color || 'blue'};
   padding : 1rem;
   display : flex;
+  width : 1024px;
+  margin : 0 auto;
+  ${media.desktop`width : 768px;`}
+  ${media.tablet`width : 100%;`};
 `;
 
 const Button = styled.button`
@@ -24,7 +49,7 @@ const Button = styled.button`
 
   ${props =>
     props.inverted &&
-    css`
+    `
       background : none;
       border : 2px solid white;
       color : white;
@@ -39,11 +64,11 @@ const Button = styled.button`
 `;
 
 
-const ConditionalStyledComponent = () => (
+const CssKeywordWithMediaQuery = () => (
   <Box color="black">
     <Button>Hello</Button>
     <Button inverted={true}>only edge</Button>
   </Box>
 );
 
-export default ConditionalStyledComponent;
+export default CssKeywordWithMediaQuery;

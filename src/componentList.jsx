@@ -73,6 +73,8 @@ import Component70 from './component/70-classnameCssModule/ClassnameCssModule.js
 import Component71 from './component/71-classnameSassModule/ClassnameSassModule.jsx';
 import Component72 from './component/72-localCss/LocalCSSModule.js';
 import Component73 from './component/73-styledComponent/StyledComponent.jsx';
+import Component74 from './component/74-conditionalStyledComponent/ParentComponent.jsx';
+import Component75 from './component/75-responsiveDesign/ParentComponent.jsx';
 
 const componentList = [
   <Component01/>,
@@ -147,7 +149,9 @@ const componentList = [
   <Component70/>,
   <Component71/>,
   <Component72/>,
-  <Component73/>
+  <Component73/>,
+  <Component74/>,
+  <Component75/>
 ];
 
 export default componentList;

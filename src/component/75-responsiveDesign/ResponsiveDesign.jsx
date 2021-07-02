@@ -1,9 +1,18 @@
-import styled, {css} from 'styled-components';
+import React from 'react';
+import styled from 'styled-components';
 
 const Box = styled.div`
   background : ${props => props.color || 'blue'};
   padding : 1rem;
   display : flex;
+  width : 1024px;
+  margin : 0 auto;
+  @media (max-width : 1024px) {
+    width : 768px;
+  }
+  @media (max-width : 768px) {
+    width : 100%;
+  }
 `;
 
 const Button = styled.button`
@@ -24,7 +33,7 @@ const Button = styled.button`
 
   ${props =>
     props.inverted &&
-    css`
+    `
       background : none;
       border : 2px solid white;
       color : white;
@@ -39,11 +48,11 @@ const Button = styled.button`
 `;
 
 
-const ConditionalStyledComponent = () => (
+const ResponsiveDesign = () => (
   <Box color="black">
     <Button>Hello</Button>
     <Button inverted={true}>only edge</Button>
   </Box>
 );
 
-export default ConditionalStyledComponent;
+export default ResponsiveDesign;
