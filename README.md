@@ -1,8 +1,8 @@
 # Function Component React
-- 関数コンポネントでReactプログラミングを練習しています。
+- 함수형 컴포넌트를 사용한 리액트 코드 연습
 
 ## Install
-- NodeJS version 14
+- NodeJS 버전 16을 사용한다.
 ```
 npm install
 ```
@@ -11,7 +11,6 @@ npm install
 ```
 npm start
 ```
-
 
 ### test mode
 ```
@@ -26,11 +25,6 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 npm run build
 ```
 
-## solve push issue
-```
-git remote remove origin
-git remote add origin Personal_access_token@github.com/N0FreeLunch/Repository_name.git
-```
-
 ### reference
-\[book\] 리액트를 다루는 기술 \[개정판\]
+- \[book\] 리액트를 다루는 기술 \[개정판\] (ISBN : 9791160509328)
+- https://github.com/gilbutITbook/080203
