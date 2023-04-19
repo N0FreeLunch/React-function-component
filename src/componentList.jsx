@@ -50,7 +50,7 @@ import Component47 from './component/47-key/MapWithKey.jsx';
 import Component48 from './component/48-literalObjectIterator/LiteralObjectIterator.jsx';
 import Component49 from './component/49-objectStateUpdate/ObjectStateUpdate.jsx';
 import Component50 from './component/50-stateUpdateWithNewArray/StateUpdateWithNewArray.jsx';
-import Component51 from './component/51-lifeCycleSample/ParentComponent.jsx';
+// import Component51 from './component/51-lifeCycleSample/ParentComponent.jsx';
 import Component52 from './component/52-useState/UseStateHook.jsx';
 import Component53 from './component/53-multiUseState/MultiUseState.jsx';
 import Component54 from './component/54-useEffect/UseEffectHook.jsx';
@@ -127,7 +127,7 @@ const componentList = [
   <Component48/>,
   <Component49/>,
   <Component50/>,
-  <Component51/>,
+  // <Component51/>,
   <Component52/>,
   <Component53/>,
   <Component54/>,
