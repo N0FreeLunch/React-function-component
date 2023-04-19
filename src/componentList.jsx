@@ -64,7 +64,7 @@ import Component61 from './component/61-localVariableWithUseRef/ParentComponent.
 import Component62 from './component/62-customHook/Info.jsx';
 import Component63 from './component/63-insertCssIntoComponent/InsertCssIntoComponent.jsx';
 import Component64 from './component/64-structuredCss/StructuredCss.jsx';
-import Component65 from './component/65-nodeSass/SassComponent.jsx';
+// import Component65 from './component/65-nodeSass/SassComponent.jsx';
 import Component66 from './component/66-create-react-app-config/SassComponent.jsx';
 import Component67 from './component/67-path_node_modules_lib/SassComponent.jsx';
 import Component68 from './component/68-cssModule/CSSModule.js';
@@ -141,7 +141,7 @@ const componentList = [
   <Component62/>,
   <Component63/>,
   <Component64/>,
-  <Component65/>,
+  // <Component65/>,
   <Component66/>,
   <Component67/>,
   <Component68/>,
