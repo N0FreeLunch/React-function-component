@@ -135,7 +135,15 @@ render(view())
 <div>${modelVelue.split(':')[0]}</div>
 <div>${modelVelue.split(':')[1]}</div>
 ```
-- 
+- 위의 코드는 첫 번째 `<div>` 태그와 두 번째 `<div>` 태그 사이에 어떤 데이터가 들어갔는지 한 눈에 봐서 알수 없다.
+```js
+const data = [
+    '모델: 데이터와 비즈니스 로직을 관리합니다.',
+    '뷰: 레이아웃과 화면을 처리합니다.',
+    '컨트롤러: 명령을 모델과 뷰 부분으로 라우팅합니다.'
+];
+```
+- 위와 같은 배열의 구조를 알아야 어떤 데이터가 들어가 있는지 알 수 있게 된다.
 ```js
 <div>${modelDescription.title}</div>
 <div>${modelDescription.contents}</div>
