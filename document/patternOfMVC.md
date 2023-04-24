@@ -153,14 +153,15 @@ const data = [
 
 ## 모델 만들어 보기
 - 프로젝트 최상위 경로의 `examples` 폴더 하위의 `patterOfMVC`라는 폴더에서 `withoutController`라는 폴더를 만들고 `data.js`, `model.js`, `view.js`, `index.html` 파일을 만들자.
+- `data.js`는 이전 파일 그대로 사용한다.
 
-data.js
-```js
-const data = [
-    '모델: 데이터와 비즈니스 로직을 관리합니다.',
-    '뷰: 레이아웃과 화면을 처리합니다.',
-    '컨트롤러: 명령을 모델과 뷰 부분으로 라우팅합니다.'
-];
+index.html
+```html
+<body>
+    <script src="./data.js"></script>
+    <script src="./model.js"></script>
+    <script src="./view.js"></script>
+</body>
 ```
 
 model.js
