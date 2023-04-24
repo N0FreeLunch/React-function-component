@@ -1,8 +1,7 @@
 const view = function () {
-    const modelObj = new Model(data);
-    const modelValue = modelObj.modelData;
-    const viewValue = modelObj.viewData;
-    const controllerValue = modelObj.controllerData;
+    const modelValue = data[0];
+    const viewValue = data[1];
+    const controllerValue = data[2];
 
     const modelDescription = {
         title : modelValue.split(':')[0],

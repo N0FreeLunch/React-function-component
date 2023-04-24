@@ -83,7 +83,69 @@ render(view())
 - `'키워드 : 설명'`이라는 데이터의 구조를 알아야 위의 코드를 이해할 수 있다.
 - HTML 태그에 들어간 자바스크립트 코드 때문에 위의 태그 구조가 정확히 무엇을 의미하는지 한 눈에 알기 어렵다.
 
+## 이해할 수 있는 뷰 만들기
+- 프로젝트 최상위 경로의 `examples` 폴더에 `patterOfMVC`라는 폴더에서 `onlyView` 폴더를 복사하여 `clearView`라는 폴더를 만들고 `data.js`, `view.js`, `index.html` 파일을 만들자.
+- 나머지 코드는 그대로이며 `view.js`의 코드만 다음과 같이 바꾸자.
+```js
+const view = function () {
+    const modelValue = data[0];
+    const viewValue = data[1];
+    const controllerValue = data[2];
+
+    const modelDescription = {
+        title : modelValue.split(':')[0],
+        contents : modelValue.split(':')[1]
+    };
+
+    const viewDescription = {
+        title : viewValue.split(':')[0],
+        contents : viewValue.split(':')[1]
+    };
+
+    const controllerDescription = {
+        title : controllerValue.split(':')[0],
+        contents : controllerValue.split(':')[1]
+    };
+    
+    return `
+        <div>
+            <div>${modelDescription.title}</div>
+            <div>${modelDescription.contents}</div>
+        </div>
+        <div>
+            <div>${viewDescription.title}</div>
+            <div>${viewDescription.contents}</div>
+        </div>
+        <div>
+            <div>${controllerDescription.title}</div>
+            <div>${controllerDescription.contents}</div>
+        </div>
+    `;
+}
+
+const render = function (htmlTag) {
+    document.querySelector('body').innerHTML = htmlTag;
+}
+
+render(view())
+```
+- `modelDescription`, `viewDescription`, `controllerDescription`라는 리터럴 오브젝트 3개를 만들었다.
+- HTML 태그 구조에 있던 `modelValue.split(':')[0]`, `modelValue.split(':')[1]` 코드가 리터럴 오브젝트 쪽으로 이동하였다.
+```js
+<div>${modelVelue.split(':')[0]}</div>
+<div>${modelVelue.split(':')[1]}</div>
+```
+- 
+```js
+<div>${modelDescription.title}</div>
+<div>${modelDescription.contents}</div>
+```
+- `<div>` 태그 안에 어떤 값이 들어가는지 알 수 없었지만, 위와 같은 방식을 이용해서 어떤 값이 들어갈지 좀 더 짐작하기 쉬운 코드를 쓸 수 있다.
+- 의미적으로 알기 쉽게 코드를 쓰는 것을 프로그래밍 언어에서는 가독성을 높인다고 한다.
+
 ## 모델 만들어 보기
+- 프로젝트 최상위 경로의 `examples` 폴더 하위의 `patterOfMVC`라는 폴더에서 `withoutController`라는 폴더를 만들고 `data.js`, `model.js`, `view.js`, `index.html` 파일을 만들자.
+
 data.js
 ```js
 const data = [
@@ -124,21 +186,37 @@ view.js
 ```js
 const view = function () {
     const modelObj = new Model(data);
-    const modelVelue = modelObj.modelData;
+    const modelValue = modelObj.modelData;
     const viewValue = modelObj.viewData;
     const controllerValue = modelObj.controllerData;
+
+    const modelDescription = {
+        title : modelValue.split(':')[0],
+        contents : modelValue.split(':')[1]
+    };
+
+    const viewDescription = {
+        title : viewValue.split(':')[0],
+        contents : viewValue.split(':')[1]
+    };
+
+    const controllerDescription = {
+        title : controllerValue.split(':')[0],
+        contents : controllerValue.split(':')[1]
+    };
+    
     return `
         <div>
-            <div>${modelVelue.split(':')[0]}</div>
-            <div>${modelVelue.split(':')[1]}</div>
+            <div>${modelDescription.title}</div>
+            <div>${modelDescription.contents}</div>
         </div>
         <div>
-            <div>${viewValue.split(':')[0]}</div>
-            <div>${viewValue.split(':')[1]}</div>
+            <div>${viewDescription.title}</div>
+            <div>${viewDescription.contents}</div>
         </div>
         <div>
-            <div>${controllerValue.split(':')[0]}</div>
-            <div>${controllerValue.split(':')[1]}</div>
+            <div>${controllerDescription.title}</div>
+            <div>${controllerDescription.contents}</div>
         </div>
     `;
 }
@@ -147,7 +225,7 @@ const render = function (htmlTag) {
     document.querySelector('body').innerHTML = htmlTag;
 }
 
-render(view())
+render(view());
 ```
 - `new Model(data)`는 클래스로 객체를 생성하는 문법이다.
 - `modelObj.modelData`는 `data` 배열에서 모델 부분에 해당한는 데이터인 `'모델: 데이터와 비즈니스 로직을 관리합니다.'` 값이다.
@@ -162,19 +240,18 @@ render(view())
     const controllerValue = data[2];
 ```
 - `data` 배열에서 몇 번째에 위치하는 모델에 해당하는 데이터는 몇 번째 데이터인지, 뷰에 해당하는 데이터는 몇 번째인지, 컨트롤러에 해당하는 데이터는 몇 번째인지 일일이 확인해서 데이터를 넣었다.
-
 ```js
     const modelObj = new Model(data);
     const modelVelue = modelObj.modelData;
     const viewValue = modelObj.viewData;
     const controllerValue = modelObj.controllerData;
 ```
-- 하지만, 모델을 사용하면 모델의 메소드를 호출하는 것으로 어떤 데이터를 가져오는지 알 수 있게 된다.
+- 그에 반해 모델이 어떤 데이터를 가져 오는지 알려주기 때문에 데이터의 순서와 구조에 의존하지 않고 모델 데이터를 가져오고 싶을 때는 `data[0]`가 아닌 `modelObj.modelData`를 쓰면 되고, 뷰 데이터를 가져오고 싶을 때는 `data[1]`가 아닌 `modelObj.viewData`를 쓰면 되고, 컨트롤러 데이터를 가져오고 싶을 때는 `modelObj.controllerData`를 쓰면된다.
 
 #### 모델이 없을 때의 단점 개선
 - 데이터 순서의 변경에 따라서 뷰의 데이터도 변경이 되는 문제점이 있었지만, 모델을 사용하면 데이터의 순서에 상관 없이 모델에 해당하는 데이터, 뷰에 해당하는 데이터, 컨트롤러에 해당하는 데이터를 원하는 대로 뽑아낼 수 있기 때문에 데이터의 나열 순서가 변경이 되어도 뷰에 표시되는 순서에 영향을 주지 않는다.
 
 ### 위 코드의 나쁜점
 - `'키워드 : 설명'`이라는 데이터의 구조를 알아야 위의 코드를 이해할 수 있다.
-- HTML 태그에 들어간 자바스크립트 코드 때문에 위의 태그 구조가 정확히 무엇을 의미하는지 한 눈에 알기 어렵다.
-- 여전히 위 두가지의 문제는 해결되지 않았다.
+- `'키워드 : 설명'` 문자열 데이터 구조를 `오브젝트.타이틀`, `오브젝트.내용` 이런 식으로 만드는 과정이 있는데 뷰에서 만들다 보니까 뷰의 코드가 길어져 버리는 문제가 생긴다.
+- `view()` 함수에서는 화면에 보여주는 구조에 대한 것만 최대한 보고 싶은데, 데이터를 가공하는 코드까지 보게 된다.
