@@ -1,9 +1,8 @@
-const view = function () {
-    const arrayArguments = Array.from(arguments);
-    return arrayArguments.map(e => `
+const view = function (dataList) {
+    return dataList.map(e => `
         <div>
-            <div>${e.key}</div>
-            <div>${e.description}</div>
+            <div>${e.title}</div>
+            <div>${e.contents}</div>
         </div>
     `).join('<br>');
 }

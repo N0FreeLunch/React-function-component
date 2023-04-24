@@ -2,8 +2,8 @@ const view = function (dataList) {
     const contents = dataList.map(e => {
         return `
         <tr>
-            <td style='border: 1px solid black'>${e[0]}</td>
-            <td style='border: 1px solid black'>${e[1]}</td>
+            <td style='border: 1px solid black'>${e.title}</td>
+            <td style='border: 1px solid black'>${e.contents}</td>
         </tr>
         `;
     }).join('');

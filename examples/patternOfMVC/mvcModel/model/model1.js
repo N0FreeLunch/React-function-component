@@ -1,7 +1,17 @@
-const model = function () {
-    return [
-        '모델: 데이터와 비즈니스 로직을 관리합니다.',
-        '뷰: 레이아웃과 화면을 처리합니다.',
-        '컨트롤러: 명령을 모델과 뷰 부분으로 라우팅합니다.'
-    ];
+class Model {
+    constructor(data) {
+        this.data = data;
+    }
+
+    get modelData() {
+        return this.data.find(e => e.includes('모델'));
+    }
+
+    get controllerData() {
+        return this.data.find(e => e.includes('뷰'));
+    }
+
+    get viewData() {
+        return this.data.find(e => e.includes('컨트롤러'));
+    }
 }
