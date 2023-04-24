@@ -263,3 +263,93 @@ render(view());
 - `'키워드 : 설명'`이라는 데이터의 구조를 알아야 위의 코드를 이해할 수 있다.
 - `'키워드 : 설명'` 문자열 데이터 구조를 `오브젝트.타이틀`, `오브젝트.내용` 이런 식으로 만드는 과정이 있는데 뷰에서 만들다 보니까 뷰의 코드가 길어져 버리는 문제가 생긴다.
 - `view()` 함수에서는 화면에 보여주는 구조에 대한 것만 최대한 보고 싶은데, 데이터를 가공하는 코드까지 보게 된다.
+
+## 컨트롤러 추가하기
+- 데이터를 가공하는 부분을 뷰에서 떼어서 컨트롤러로 옮겨보도록 하자.
+- 컨트롤러는 컨트롤 하는 역할을 한다. 모델과 뷰를 사용하는 부분에 해당한다.
+- 프로젝트 최상위 경로의 `examples` 폴더 하위의 `patterOfMVC`라는 폴더에서 `withController`라는 폴더를 만들고 `data.js`, `model.js`, `view.js`, `controller.js`, `index.html` 파일을 만들자.
+- `data.js`, `model.js`은 `withoutController` 폴더의 것과 동일한 것을 사용한다.
+
+index.html
+```html
+<body>
+    <script src="./data.js"></script>
+    <script src="./model.js"></script>
+    <script src="./view.js"></script>
+    <script src="./controller.js"></script>
+</body>
+```
+
+controller.js
+```js
+class Controller {
+    constructor (model) {
+        this.model = model;
+    }
+
+    get modelDescription () {
+        const modelDataArray = this.model.modelData.split(':');
+        return {
+            title :modelDataArray[0],
+            contents : modelDataArray[1]
+        }
+    };
+
+    get viewDescription () {
+        const viewDataArray = this.model.viewData.split(':');
+        return {
+            title : viewDataArray[0],
+            contents : viewDataArray[1]
+        }
+    };
+
+    get controllerDescription () {
+        const controllerDataArray = this.model.controllerData.split(':');
+        return {
+            title : controllerDataArray[0],
+            contents : controllerDataArray[1]
+        }
+    };
+}
+
+const controllerObj = new Controller(new Model(data));
+
+render(
+    view(
+        controllerObj.modelDescription,
+        controllerObj.viewDescription,
+        controllerObj.controllerDescription
+    )
+);
+```
+- `Controller` 클래스를 만든다. 컨트롤러 클래스는 컨트롤러 객체를 생성(`new Controller(new Model(data))`) 할 때 `model` 객체(`new Model(data)`)를 전달 받아서 뷰에서 사용할 수 있는 형태로 바꿔주는 역할을 한다.
+- 컨트롤러 객체(`controllerObj`)는 전달 받은 모델 객체를 가공한다. 예를 들어 `controllerObj.modelDescription` 부분은 `this.model` 모델을 전달 받아서 모델 안에 있는 `modelData`를 `this.model.modelData`으로 호출하고 `'모델: 데이터와 비즈니스 로직을 관리합니다.'` 데이터를 들고와서 `.split(':')`으로 `:` 문자를 기준으로 데이터를 나누어 `:` 앞의 문자열은 `{}` 리터럴 오브젝트의 `title` 값으로, `:` 뒤의 문자열은 `{}` 리터럴 오브젝트의 `contents` 값으로 할당한다.
+- 뷰에는 생성한 리터럴 오브젝트를 뷰 함수의 인자로 `controllerObj.modelDescription`, `controllerObj.viewDescription`, `controllerObj.controllerDescription`으로 전달한다.
+
+view.js
+```js
+const view = function (modelDescription, viewDescription, controllerDescription) {
+    return `
+        <div>
+            <div>${modelDescription.title}</div>
+            <div>${modelDescription.contents}</div>
+        </div>
+        <div>
+            <div>${viewDescription.title}</div>
+            <div>${viewDescription.contents}</div>
+        </div>
+        <div>
+            <div>${controllerDescription.title}</div>
+            <div>${controllerDescription.contents}</div>
+        </div>
+    `;
+}
+
+const render = function (htmlTag) {
+    document.querySelector('body').innerHTML = htmlTag;
+}
+```
+- 컨트롤러에서 가공한 데이터를 전달 받을 수 있는 형태로 만들기 위해서 함수의 인자 부분을 가공된 데이터를 받을 수 있는 형식으로 만들었다. 데이터를 함수의 인자로 받기 위해 `function (modelDescription, viewDescription, controllerDescription)` 코드가 된 것
+
+### 위 코드의 장점
+- 뷰에서 데이터를 가공하는 부분이 날라가서 뷰 코드는 뷰라는 역할에 맞게 HTML 태그 구조만 보여줄 수 있는 형태가 되었다.
