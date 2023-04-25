@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
 import componentList from './componentList.jsx';
 
+const componentLength = Object.keys(componentList).length;
+const notFoundComponent = () => {
+  const style = {
+    color: 'red',
+    fontSize: '2.3em'
+  };
+  return (<div style={style}>Not found component</div>)
+};
+
 function App() {
-  const [componentNumber, setComponentNumber] = useState(componentList.length);
+  const [componentNumber, setComponentNumber] = useState(componentLength);
   const [inputNumber, setInputNumber] = useState();
 
   const next = () => {
-    if(componentNumber < componentList.length) {
+    if(componentNumber < componentLength) {
       setComponentNumber(componentNumber+1);
     }
   }
@@ -18,7 +27,7 @@ function App() {
   }
 
   const move = () => {
-    if(1 <= inputNumber && inputNumber <= componentList.length) {
+    if(1 <= inputNumber && inputNumber <= componentLength) {
       setComponentNumber(inputNumber)
     }
   }
@@ -60,7 +69,10 @@ function App() {
       </div>
       <br/><br/><br/>
       <div>
-        {componentList[componentNumber-1]}
+        {componentList[componentNumber-1] !== undefined
+          ? componentList[componentNumber-1]
+          : notFoundComponent()
+        }
       </div>
     </div>
   );
