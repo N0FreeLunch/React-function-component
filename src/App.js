@@ -69,8 +69,8 @@ function App() {
       </div>
       <br/><br/><br/>
       <div>
-        {componentList[componentNumber-1] !== undefined
-          ? componentList[componentNumber-1]
+        {componentList[componentNumber] !== undefined
+          ? componentList[componentNumber]
           : notFoundComponent()
         }
       </div>
