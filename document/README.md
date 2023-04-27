@@ -4,3 +4,4 @@
 3. 컴포넌트 로드 영역 만들기
     - [컴포넌트와 JSX](./componentLoadArea/cmponentAndJSX.md)
     - [태그 스켈레톤](./componentLoadArea/tagSkeleton.md)
+    - [스타일 추가](./componentLoadArea/styleInJSX.md)
