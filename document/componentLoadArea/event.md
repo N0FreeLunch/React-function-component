@@ -176,3 +176,4 @@ prevTag.onclick = prev;
 nextTag.onclick = prev;
 ```
 - 태그가 자바스크립트 객체로 선택되는 경우에는 자바스크립트 객체 `prevTag`, `nextTag`에 소문자의 `onclick` 이벤트를 추가해야할 필요가 있다.
+- `prevTag`, `nextTag` 변수를 만든 복잡한 로직에 대한 설명은 생략한다. 단순히 `onclick`에 대한 설명을 하기 위해 추가한 것일 뿐이다.
