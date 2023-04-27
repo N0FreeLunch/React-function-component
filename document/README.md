@@ -5,3 +5,4 @@
     - [컴포넌트와 JSX](./componentLoadArea/cmponentAndJSX.md)
     - [태그 스켈레톤](./componentLoadArea/tagSkeleton.md)
     - [스타일 추가](./componentLoadArea/styleInJSX.md)
+    - [클릭 이밴트](./componentLoadArea/event.md)
