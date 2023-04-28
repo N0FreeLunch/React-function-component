@@ -73,3 +73,132 @@ function App() {
 - 상태 변경 함수에 의해서 변경된 값을 상태 변수가 받기 위해서는 컴포넌트 함수가 다시 실행될 필요가 있으며, `useState()`에 의해 할당되는 상태 변수가 변경된 값을 갖는다.
 - 만약 컴포넌트 함수 외부 스코프에 `useState()`를 사용했다면 상태 함수를 실행해도 컴포넌트 함수 외부 스코프에 있기 때문에 `useState()`가 다시 실행되지 않고, 변경된 상태 변수 값을 받을 수 없다.
 - 다시 말해, `setComponentNumber(500)`을 사용한다고 하더라도 컴포넌트 함수 내부에 있어야 `const [componentNumber, setComponentNumber] = useState(10);`가 실행이 될 때 `componentNumber` 값으로 500을 할당 받을 수 있는 것이며, 컴포넌트 함수 바깥에서 `useState`를 사용하게 되면 `componentNumber`는 변경된 상태 값을 할당 받지 못하기 때문에 계속 10 그대로의 값을 갖게 된다.
+
+## 코드 작성해 보기
+- App.js 파일에 다음과 같이 코드를 추가하자.
+```js
+import { useState } from 'react';
+
+// ...
+
+function App() {
+  const [componentNumber, setComponentNumber] = useState(10);
+  // ...
+}
+
+// ...
+```
+
+### 만들려는 것
+- prev 버튼을 누르면 컴포넌트 번호가 1 감소하고 next 버튼을 누르면 컴포넌트 번호가 1 증가한다.
+- 컴포넌트 번호는 `current compoenent number : ` 부분에 표시할 것이다.
+
+### 어떻게 만들 것인가?
+- 변수를 변경하고 변경된 변수를 화면에 다시 출력해야 한다. 화면에 다시 출력하기 위해서는 컴포넌트 함수를 재실행해야 하고 컴포넌트 함수를 재실행하기 위해서는 상태를 변경해야 한다.
+- `componentNumber`를 화면에 표시한다.
+- prev 버튼을 누르면 `componentNumber`의 값을 -1 하기 위해서 상태변경 함수를  사용해서 상태 값을 -1 하도록 만든다. `setComponentNumber(componentNumber - 1)`.
+- next 버튼을 누르면 `componentNumber`의 값을 +1 하기 위해서 상태변경 함수를 사용해서 상태 값을 +1 하도록 만든다. `setComponentNumber(componentNumber + 1)`.
+- 이렇게 상태 함수에 바꿀 상태 값을 지정하면, 컴포넌트 함수인 `App` 함수가 재실행되고 `componentNumber`는 상태 변경 함수에 지정한 값으로 바뀐다.
+- 변경된 상태 변수가 JSX로 전달되고 JSX가 그리는 화면은 변경된 상태 값이 나타나게 된다.
+
+### 코드 짜기
+#### 이벤트 함수 옮기기
+```js
+const prev = (e) => {
+  console.log(e);
+  alert('previous button');
+}
+
+const next = (e) => {
+  console.log(e);
+  alert('next button');
+}
+```
+- 현재 이 함수들은 컨포넌트 함수인 App 함수 스코프의 외부에 위치해 있다.
+- 리액트의 상태 변수는 컴포넌트 함수 안에서 정의되기 때문에 이 함수들이 상태 변수를 사용하기 위해서는 컴포넌트 함수 내부로 옮길 필요가 있다.
+
+#### 컴포넌트 번호 표시하기 
+```js
+<h3 style={style.numberDisplay}>current compoenent number : {componentNumber}</h3>
+```
+- 상태 함수를 통해 상태 변수를 변경하면 컴포넌트 함수가 다시 실행되고 JSX 부분이 브라우저에 다시 그려진다.
+- 브라우저에 그러지는 태그에 변경된 상태 변수를 표시하기 위해서 위와 같이 변경 해 준다.
+
+#### 전체코드
+```js
+import { useState } from 'react';
+
+const loadComponent = (<h1>로딩되는 리액트 컴포넌트</h1>);
+
+const move = (e) => {
+  console.log(e);
+  alert('move button');
+}
+
+const style = {
+  numberDisplay : {
+    marginLeft: '10px'
+  },
+  prevNextBtn : {
+    marginLeft: '10px'
+  },
+  inputTitle : {
+    marginLeft: '10px'
+  },
+  input : {
+    width: '80px',
+    marginRight: '20px',
+    marginLeft: '10px'
+  },
+  componentLoadArea : {
+    border: '1px solid black'
+  }
+};
+
+function App() {
+  const [componentNumber, setComponentNumber] = useState(10);
+
+  const prev = () => {
+    setComponentNumber(componentNumber-1);
+    alert('previous button');
+  }
+  
+  const next = () => {
+    setComponentNumber(componentNumber+1);
+    alert('next button');
+  }
+
+  return (
+    <div>
+      <h3 style={style.numberDisplay}>current compoenent number : {componentNumber}</h3>
+      <div style={style.prevNextBtn}>
+        <button onClick={prev}>prev</button>
+        <button onClick={next}>next</button>
+      </div>
+      <br/><br/>
+      <div style={style.inputTitle}>
+        <div>input component number</div>
+        <input type='number' style={style.input}></input>
+        <button type='button' onClick={move}>move</button>
+      </div>
+      <br/><br/><br/>
+      <div style={style.componentLoadArea}>
+        {loadComponent}
+      </div>
+    </div>
+  );
+}
+
+export default App;
+```
+- 브라우저에서 prev 버튼을 누르면 `previous button`이라는 alert가 나오고 그 다음 `current compoenent number : ` 부분의 수치가 감소하는 것을 확인할 수 있다. next 버튼을 누르면 `next button`이라는 alert가 나오고 그 다음 `current compoenent number : ` 부분의 수치가 증가하는 것을 확인할 수 있다.
+- 편의를 위해서 `alert()` 코드는 삭제해 주자.
+```js
+  const prev = () => {
+    setComponentNumber(componentNumber-1);
+  }
+  
+  const next = () => {
+    setComponentNumber(componentNumber+1);
+  }
+```
