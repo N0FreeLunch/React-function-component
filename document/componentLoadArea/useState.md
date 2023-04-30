@@ -130,11 +130,6 @@ import { useState } from 'react';
 
 const loadComponent = (<h1>로딩되는 리액트 컴포넌트</h1>);
 
-const move = (e) => {
-  console.log(e);
-  alert('move button');
-}
-
 const style = {
   numberDisplay : {
     marginLeft: '10px'
@@ -166,6 +161,10 @@ function App() {
   const next = () => {
     setComponentNumber(componentNumber+1);
     alert('next button');
+  }
+
+  const move = (e) => {
+    setComponentNumber();
   }
 
   return (
