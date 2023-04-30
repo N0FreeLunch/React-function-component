@@ -7,3 +7,4 @@
     - [스타일 추가](./componentLoadArea/styleInJSX.md)
     - [클릭 이밴트](./componentLoadArea/event.md)
     - [상태를 사용한 화면 출력 변경하기](./componentLoadArea/useState.md)
+    - [input 값을 리액트 내부에 저장하기](./componentLoadArea/input.md)
