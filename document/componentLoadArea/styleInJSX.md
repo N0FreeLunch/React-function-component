@@ -25,7 +25,7 @@ const style = {
 function App() {
   return (
     <div>
-      <h3 style={style.numberDisplay}>current compoenent number : {(() => 10)()}</h3>
+      <h3 style={style.numberDisplay}>current component number : {(() => 10)()}</h3>
       <div style={style.prevNextBtn}>
         <button>prev</button>
         <button>next</button>
@@ -87,7 +87,7 @@ obj.key2;
 ```html
 <h3 style=`
   margin-left: '10px'
-`>current compoenent number : 컴포넌트_번호</h3>
+`>current component number : 컴포넌트_번호</h3>
 ```
 
 #### 자바스크립트에서 백틱 안에서 백틱 안에서 백틱을 사용하기
@@ -96,7 +96,7 @@ obj.key2;
 document.querySelector('body').innerHTML = `
 <h3 style="${`
   margin-left: '10px';
-`}">current compoenent number : 컴포넌트_번호</h3>
+`}">current component number : 컴포넌트_번호</h3>
 `;
 ```
 
@@ -106,7 +106,7 @@ const style = `
   margin-left: '10px';
 `;
 document.querySelector('body').innerHTML = `
-<h3 style="${style}">current compoenent number : 컴포넌트_번호</h3>
+<h3 style="${style}">current component number : 컴포넌트_번호</h3>
 `;
 ```
 
@@ -115,7 +115,7 @@ document.querySelector('body').innerHTML = `
 document.querySelector('body').innerHTML = `
 <h3 style="
   margin-left: '10px';
-">current compoenent number : 컴포넌트_번호</h3>
+">current component number : 컴포넌트_번호</h3>
 `
 ```
 - 위와 같은 스타일로 코드를 작성할 수 있다.

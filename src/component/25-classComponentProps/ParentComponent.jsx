@@ -6,7 +6,7 @@ class ParentComponent extends Component {
     const {name, favoriteNumber, children} = this.props;
     return (
       <div>
-        <ChildComponent favoriteNumber={30}>class compoenent children value</ChildComponent>
+        <ChildComponent favoriteNumber={30}>class component children value</ChildComponent>
       </div>
     )
   }

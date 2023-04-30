@@ -91,7 +91,7 @@ function App() {
 
 ### 만들려는 것
 - prev 버튼을 누르면 컴포넌트 번호가 1 감소하고 next 버튼을 누르면 컴포넌트 번호가 1 증가한다.
-- 컴포넌트 번호는 `current compoenent number : ` 부분에 표시할 것이다.
+- 컴포넌트 번호는 `current component number : ` 부분에 표시할 것이다.
 
 ### 어떻게 만들 것인가?
 - 변수를 변경하고 변경된 변수를 화면에 다시 출력해야 한다. 화면에 다시 출력하기 위해서는 컴포넌트 함수를 재실행해야 하고 컴포넌트 함수를 재실행하기 위해서는 상태를 변경해야 한다.
@@ -119,7 +119,7 @@ const next = (e) => {
 
 #### 컴포넌트 번호 표시하기 
 ```js
-<h3 style={style.numberDisplay}>current compoenent number : {componentNumber}</h3>
+<h3 style={style.numberDisplay}>current component number : {componentNumber}</h3>
 ```
 - 상태 함수를 통해 상태 변수를 변경하면 컴포넌트 함수가 다시 실행되고 JSX 부분이 브라우저에 다시 그려진다.
 - 브라우저에 그러지는 태그에 변경된 상태 변수를 표시하기 위해서 위와 같이 변경 해 준다.
@@ -170,7 +170,7 @@ function App() {
 
   return (
     <div>
-      <h3 style={style.numberDisplay}>current compoenent number : {componentNumber}</h3>
+      <h3 style={style.numberDisplay}>current component number : {componentNumber}</h3>
       <div style={style.prevNextBtn}>
         <button onClick={prev}>prev</button>
         <button onClick={next}>next</button>
@@ -191,7 +191,7 @@ function App() {
 
 export default App;
 ```
-- 브라우저에서 prev 버튼을 누르면 `previous button`이라는 alert가 나오고 그 다음 `current compoenent number : ` 부분의 수치가 감소하는 것을 확인할 수 있다. next 버튼을 누르면 `next button`이라는 alert가 나오고 그 다음 `current compoenent number : ` 부분의 수치가 증가하는 것을 확인할 수 있다.
+- 브라우저에서 prev 버튼을 누르면 `previous button`이라는 alert가 나오고 그 다음 `current component number : ` 부분의 수치가 감소하는 것을 확인할 수 있다. next 버튼을 누르면 `next button`이라는 alert가 나오고 그 다음 `current component number : ` 부분의 수치가 증가하는 것을 확인할 수 있다.
 - 편의를 위해서 `alert()` 코드는 삭제해 주자.
 ```js
   const prev = () => {

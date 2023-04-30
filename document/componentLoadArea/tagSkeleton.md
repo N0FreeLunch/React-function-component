@@ -4,7 +4,7 @@
 function App() {
   return (
     <div>
-      <h3>current compoenent number : 컴포넌트_번호</h3>
+      <h3>current component number : 컴포넌트_번호</h3>
       <div>
         <button>prev</button>
         <button>next</button>
@@ -28,7 +28,7 @@ export default App;
 - `App.js`의 코드를 위와 같은 방식으로 바꾸자.
 - 그럼 브라우저에서 다음과 같은 화면 구성을 확인할 수 있다.
 ```
-current compoenent number : 컴포넌트_번호
+current component number : 컴포넌트_번호
 [prev] [next]
 
 input component number
@@ -49,7 +49,7 @@ const loadComponent = (<h1>로딩되는 리액트 컴포넌트</h1>);
 function App() {
   return (
     <div>
-      <h3>current compoenent number : {componentNumber}</h3>
+      <h3>current component number : {componentNumber}</h3>
       <div>
         <button>prev</button>
         <button>next</button>
@@ -72,7 +72,7 @@ export default App;
 ```
 - `componentNumber` 변수에는 수 10을 넣었고, `loadComponent` 변수에는 JSX를 넣었다.
 - JSX를 넣기 위해서는 괄호로 감싸야 값으로 취급되기 때문에 `(<h1>로딩되는 리액트 컴포넌트</h1>)`의 방식으로 넣어 주었다.
-- `<h3>current compoenent number : {componentNumber}</h3>` 부분의 코드를 보면 JSX 내에서 변수의 값을 불러오기 위해서 중괄호(`{}`) 문법을 사용한 것을 알 수 있다.
+- `<h3>current component number : {componentNumber}</h3>` 부분의 코드를 보면 JSX 내에서 변수의 값을 불러오기 위해서 중괄호(`{}`) 문법을 사용한 것을 알 수 있다.
 
 ### JSX 내의 중괄호 안에는 값이 와야 한다.
 - `{componentNumber}` 부분을 `{(() => 10)()}`으로 바꾸어 보자. 
@@ -84,7 +84,7 @@ const loadComponent = (<h1>로딩되는 리액트 컴포넌트</h1>);
 function App() {
   return (
     <div>
-      <h3>current compoenent number : {(() => 10)()}</h3>
+      <h3>current component number : {(() => 10)()}</h3>
       <div>
         <button>prev</button>
         <button>next</button>

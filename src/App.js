@@ -55,7 +55,7 @@ function App() {
 
   return (
     <div>
-      <h3 style={style.numberDisplay}>current compoenent number : {componentNumber}</h3>
+      <h3 style={style.numberDisplay}>current component number : {componentNumber}</h3>
       <div style={style.prevNextBtn}>
         <button onClick={prev}>prev</button>
         <button onClick={next}>next</button>

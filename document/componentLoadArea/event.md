@@ -38,7 +38,7 @@ const style = {
 function App() {
   return (
     <div>
-      <h3 style={style.numberDisplay}>current compoenent number : {(() => 10)()}</h3>
+      <h3 style={style.numberDisplay}>current component number : {(() => 10)()}</h3>
       <div style={style.prevNextBtn}>
         <button onClick={prev}>prev</button>
         <button onClick={next}>next</button>
