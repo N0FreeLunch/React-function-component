@@ -41,7 +41,7 @@ React의 경우
 
 let inputValue = 0;
 
-const storeInputtNumber = (e) => {
+const storeInputNumber = (e) => {
   inputValue = e.target.value;
 }
 
@@ -59,7 +59,7 @@ function App () {
     // ...
     <div style={style.inputTitle}>
       <div>input component number</div>
-      <input type='number' style={style.input} onChange={storeInputtNumber}></input>
+      <input type='number' style={style.input} onChange={storeInputNumber}></input>
       <button type='button' onClick={move}>move</button>
     </div>
     // ...
@@ -67,10 +67,10 @@ function App () {
 }
 ```
 - 인풋 태그에 값을 입력할 때마다 실행하는 이벤트를 달 수 있다. 이벤트의 종류는 많지만 input, textarea 등의 요소에서 사용자의 입력값이 바뀔 때 마다 지정한 함수를 실행하는 이벤트는 `onChange` 이벤트이다. input 태그에 넣은 값을 자바스크립트 변수에 저장할 수 있도록 함수를 실행해야 하므로 `onChange` 이벤트를 사용한다.
-- `onChange={storeInputtNumber}`를 보면 `onChange` 이벤트로 `storeInputtNumber` 함수를 지정한 것을 확인할 수 있다.
-- `storeInputtNumber` 함수는 컴포넌트 함수 `App`의 스코프 외부에 위치하였는데, 리액트의 상태 변수의 변경과 관련이 없는 함수이며, 컴포넌트 함수를 재시작 할 때마다 로딩할 필요가 없는 함수이기 때문에 컴포넌트 함수 외부에 위치시켰다. 컴포넌트 함수 안에 있으면 리액트의 상태 변경 함수로 상태를 변경할 때 마다 컴포넌트 함수가 실행되기 때문에 컴퓨터가 사용하는 리소스(CPU나 메모리의 사용량)이 많아진다. 물론 이 차이는 무시해도 되므로 컴포넌트 함수 안에 `storeInputtNumber` 함수를 정의해도 대개의 경우 무방하다.
+- `onChange={storeInputNumber}`를 보면 `onChange` 이벤트로 `storeInputNumber` 함수를 지정한 것을 확인할 수 있다.
+- `storeInputNumber` 함수는 컴포넌트 함수 `App`의 스코프 외부에 위치하였는데, 리액트의 상태 변수의 변경과 관련이 없는 함수이며, 컴포넌트 함수를 재시작 할 때마다 로딩할 필요가 없는 함수이기 때문에 컴포넌트 함수 외부에 위치시켰다. 컴포넌트 함수 안에 있으면 리액트의 상태 변경 함수로 상태를 변경할 때 마다 컴포넌트 함수가 실행되기 때문에 컴퓨터가 사용하는 리소스(CPU나 메모리의 사용량)이 많아진다. 물론 이 차이는 무시해도 되므로 컴포넌트 함수 안에 `storeInputNumber` 함수를 정의해도 대개의 경우 무방하다.
 - 리액트의 상태 변경을 하는 이유는 화면에 태그를 새로 다시 그려야 할 때 사용한다. `input` 태그에 값을 입력하는 것은 태그를 새로 그릴 필요가 없으며, 한 번 화면에 태그가 그려졌다면 다시 태그를 그리지 않아도 값을 입력할 때 화면에 입력한 값이 나올 수 있도록 브라우저가 기능을 제공한다. 만약 브라우저가 지원하는 기능이 아니었다면 하나의 글자의 변경이 있을 때 마다 `input` 태그가 들어 있는 컴포넌트 함수를 새로 실행하기 위해서 상태 함수의 변수를 변경하는 방식으로 만들어야 할 것이다.
-- `inputValue` 변수도 컴포넌트 함수 스코프 밖에 위치해 있는데, 함수 스코프 밖에 있기 때문에 `App` 컴포넌트가 처음 로딩이 될 때 변수가 선언이 되어 특별히 조작을 하지 않는 한 브라우저를 종료하거나 새로고침을 하기 전까지 계속 존재하는 변수이다. 물론 이 변수는 컴포넌트 컴포넌트 함수를 정의한 JS 파일 범위에서만 사용할 수 있지만, 컴포넌트 함수가 반복적으로 로드되어도 초기화 되지 않고 계속 사용할 수 있기 때문에 컴포넌트 함수의 값의 저장소로 쓰기에 좋다.
+- `inputValue` 변수도 컴포넌트 함수 스코프 밖에 위치해 있는데, 함수 스코프 밖에 있기 때문에 `App` 컴포넌트가 처음 로딩이 될 때 변수가 선언이 되어 특별히 조작을 하지 않는 한 브라우저를 종료하거나 새로고침을 하기 전까지 계속 존재하는 변수이다. 물론 이 변수는 컴포넌트 컴포넌트 함수를 정의한 JS 파일 범위에서만 사용할 수 있지만, 컴포넌트 함수 스코프 외부에 정의되어 있어서 컴포넌트 함수를 반복적으로 실행해도 `inputValue` 변수는 초기화 되지 않고 계속 사용할 수 있기 때문에 컴포넌트 함수의 값의 저장소로 쓰기에 좋다.
 
 ### 전체 코드
 ```js
@@ -100,7 +100,7 @@ const style = {
   }
 };
 
-const storeInputtNumber = (e) => {
+const storeInputNumber = (e) => {
   inputValue = e.target.value;
 }
 
@@ -130,7 +130,7 @@ function App() {
       <br/><br/>
       <div style={style.inputTitle}>
         <div>input component number</div>
-        <input type='number' style={style.input} onChange={storeInputtNumber}></input>
+        <input type='number' style={style.input} onChange={storeInputNumber}></input>
         <button type='button' onClick={move}>move</button>
       </div>
       <br/><br/><br/>
@@ -143,3 +143,7 @@ function App() {
 
 export default App;
 ```
+
+### useState를 사용하기
+- input 태그의 유저의 입력 값을 `useState`를 사용해서 변경할 수도 있다.
+- 짱이네 진짜...
