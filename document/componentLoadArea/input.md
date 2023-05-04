@@ -42,7 +42,7 @@ React의 경우
 let inputValue = 0;
 
 const changeInputValue = (e) => {
-  inputValue = e.target.value;
+  inputValue = parseInt(e.target.value);
 }
 
 function App () {
@@ -110,7 +110,7 @@ const style = {
 };
 
 const changeInputValue = (e) => {
-  inputValue = e.target.value;
+  inputValue = parseInt(e.target.value);
 }
 
 function App() {
@@ -187,7 +187,7 @@ function App() {
 // ...
 
 const changeInputValue = (e) => {
-  inputValue = e.target.value;
+  inputValue = parseInt(e.target.value);
 }
 
 // ...
@@ -264,7 +264,7 @@ function App() {
   }
 
   const changeInputValue = (e) => {
-    setInputValue(e.target.value);
+    setInputValue(parseInt(e.target.value));
   }
 
   return (
@@ -353,7 +353,7 @@ function App() {
   }
 
   const changeInputValue = (e) => {
-    setInputValue(e.target.value);
+    setInputValue(parseInt(e.target.value));
   }
 
   return (
