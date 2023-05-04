@@ -203,7 +203,7 @@ function App() {
 function App() {
   // ...
   const changeInputValue = (e) => {
-    setInputValue(e.target.value);
+    setInputValue(parseInt(e.target.value));
   }
   // ...
 }
@@ -218,6 +218,7 @@ function App() {
 - `input` 태그의 `onChange`는 유저의 입력이 일어날 때마다 지정한 함수를 실행하는 이벤트를 지정할 수 있다. 여기서는 유저의 입력이 일어날 때마다 `changeInputValue` 함수를 실행하도록 지정한다.
 - `changeInputValue` 함수는 `(e) =>` 이벤트 객체를 전달 받아서 `e.target` 이벤트 객체에서 이벤트를 실행한 태그를 선택하도록 한다. 이벤트가 실행된 태그가 선택되었다면 이 태그의 `value` 속성을 통해서 유저가 `input` 태그에 입력한 값을 받을 수 있다. `e.target.value`는 유저가 `input` 태그에 입력한 값에 해당한다.
 - 유저가 `input` 태그에 입력한 값을 상태 변경 함수 `setInputValue`에 전달하면 컴포넌트 함수가 다시 실행이 되면서 상태 변수 `inputValue`가 바뀌게 된다.
+- 이 때, `e.target.value` 값은 문자열 값이다. 예를 들어 문자열 `"123" + 4`의 경우 자바스크립트에서는 `127`이 아니라 `"1234"`의 결과가 나오게 된다. 따라서 `e.target.value` 문자를 수로 바꾸어 저장할 수 있도록 `parseInt(e.target.value)`가 되어야 한다. 만약 문자를 수로 변환하지 않는다면 prev, next 버튼을 눌렀을 때 `input` 태그에 입력한 값이 `componentNumber`에 문자열로 붙게 되어 +1, -1 만큼으로 변경되지 않는다.
 
 ### 전체 코드
 ```js
