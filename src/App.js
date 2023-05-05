@@ -1,57 +1,60 @@
-import React, { useState } from 'react';
-import componentList from './componentList.jsx';
+import { useState } from 'react';
+import componentList from './componentList';
+import NotFoundComponent from './NotFoundComponent';
 
-const componentLength = Object.keys(componentList).length;
-const notFoundComponent = () => {
-  const style = {
-    color: 'red',
-    fontSize: '2.3em'
-  };
-  return (<div style={style}>Not found component</div>)
+const style = {
+  numberDisplay : {
+    marginLeft: '10px'
+  },
+  prevNextBtn : {
+    marginLeft: '10px'
+  },
+  inputTitle : {
+    marginLeft: '10px'
+  },
+  input : {
+    width: '80px',
+    marginRight: '20px',
+    marginLeft: '10px'
+  },
+  componentLoadArea : {
+    border: '1px solid black'
+  }
 };
 
-function App() {
-  const [componentNumber, setComponentNumber] = useState(componentLength);
-  const [inputNumber, setInputNumber] = useState();
+const getLastestKeyFromOrderedKeyObject = (literalObject) => {
+  return Object.keys(literalObject).sort().pop();
+}
 
+const lastComponentNumber = getLastestKeyFromOrderedKeyObject(componentList);
+
+function App() {
+  const [componentNumber, setComponentNumber] = useState(lastComponentNumber);
+  const [inputValue, setInputValue] = useState();
+
+  const prev = () => {
+    if(1 < componentNumber) {
+      setComponentNumber(componentNumber-1);
+    }
+  }
+  
   const next = () => {
-    if(componentNumber < componentLength) {
+    if(componentNumber < lastComponentNumber) {
       setComponentNumber(componentNumber+1);
     }
   }
 
-  const prev = () => {
-    if(1 < componentNumber){
-      setComponentNumber(componentNumber-1);
-    }
-  }
-
   const move = () => {
-    if(1 <= inputNumber && inputNumber <= componentLength) {
-      setComponentNumber(inputNumber)
+    if(1 < inputValue && inputValue < lastComponentNumber) {
+      setComponentNumber(inputValue);
+    } else {
+      alert('컴포넌트 번호가 정의된 범위 밖입니다.');
     }
   }
 
-  const storeInputtNumber = (inputEvent) => {
-    setInputNumber(parseInt(inputEvent.target.value));
+  const changeInputValue = (e) => {
+    setInputValue(parseInt(e.target.value));
   }
-
-  const style = {
-    numberDisplay : {
-      marginLeft: '10px'
-    },
-    prevNextBtn : {
-      marginLeft: '10px'
-    },
-    inputTitle : {
-      marginLeft: '10px'
-    },
-    input : {
-      width: '80px',
-      marginRight: '20px',
-      marginLeft: '10px'
-    }
-  };
 
   return (
     <div>
@@ -60,23 +63,18 @@ function App() {
         <button onClick={prev}>prev</button>
         <button onClick={next}>next</button>
       </div>
-      <br></br>
-      <br></br>
-      <div>
-        <div style={style.inputTitle}>input component number</div>
-        <input type='number' min='1' max={componentList.length} onChange={storeInputtNumber} style={style.input}></input>
+      <br/><br/>
+      <div style={style.inputTitle}>
+        <div>input component number</div>
+        <input type='number' style={style.input} onChange={changeInputValue}></input>
         <button type='button' onClick={move}>move</button>
       </div>
       <br/><br/><br/>
-      <div>
-        {componentList[componentNumber] !== undefined
-          ? componentList[componentNumber]
-          : notFoundComponent()
-        }
+      <div style={style.componentLoadArea}>
+        {componentList[componentNumber] ?? NotFoundComponent()}
       </div>
     </div>
   );
 }
-
 
 export default App;
