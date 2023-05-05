@@ -11,3 +11,4 @@
     - [useState로 input 값 다루기](./componentLoadArea/inputWithUseState.md)
     - [컴포넌트 로딩하기](./componentLoadArea/loadComponent.md)
     - [컴포넌트 리스트 및 not found component 컴포넌트 분리하기](./componentLoadArea/codeSeparation.md)
+    - [유저 인터페이스를 고려하기](./componentLoadArea/consideringUserInterface.md)
