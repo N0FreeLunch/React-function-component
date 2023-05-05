@@ -235,3 +235,96 @@ function App() {
 ```
 - `??`를 기준으로 왼쪽의 값 아니면 오른쪽의 값을 반환한다는 의미를 가지고 있으므로 언제든 왼쪽 값 아니면 오른쪽 값을 반환한다.
 - `??` 문법은 결국 값을 반환하는 문법이기 때문에 값으로 여긴다는 괄호(`()`)를 씌워주지 않아도 자바스크립트는 값을 반환할 것이라고 기대한다.
+
+---
+---
+
+## 전체 코드
+```js
+import { useState } from 'react';
+import Component01 from './components/01-JSX/HelloReact';
+
+const notFoundComponent = () => {
+  const style = {
+    color: 'red',
+    fontSize: '2.3em'
+  };
+  return (<div style={style}>Not found component</div>)
+};
+
+const LoadComponent2 = () => <h1>로딩되는 리액트 컴포넌트 2</h1>;
+const LoadComponent3 = () => <h1>로딩되는 리액트 컴포넌트 3</h1>;
+const LoadComponent4 = () => <h1>로딩되는 리액트 컴포넌트 4</h1>;
+const LoadComponent5 = () => <h1>로딩되는 리액트 컴포넌트 5</h1>;
+
+const componentList = {
+  1: <Component01/>,
+  2: <LoadComponent2/>,
+  3: <LoadComponent3/>,
+  4: <LoadComponent4/>,
+  5: <LoadComponent5/>,
+};
+
+const style = {
+  numberDisplay : {
+    marginLeft: '10px'
+  },
+  prevNextBtn : {
+    marginLeft: '10px'
+  },
+  inputTitle : {
+    marginLeft: '10px'
+  },
+  input : {
+    width: '80px',
+    marginRight: '20px',
+    marginLeft: '10px'
+  },
+  componentLoadArea : {
+    border: '1px solid black'
+  }
+};
+
+function App() {
+  const [componentNumber, setComponentNumber] = useState(1);
+  const [inputValue, setInputValue] = useState();
+
+  const prev = () => {
+    setComponentNumber(componentNumber-1);
+  }
+  
+  const next = () => {
+    setComponentNumber(componentNumber+1);
+  }
+
+  const move = (e) => {
+    setComponentNumber(inputValue);
+  }
+
+  const changeInputValue = (e) => {
+    setInputValue(parseInt(e.target.value));
+  }
+
+  return (
+    <div>
+      <h3 style={style.numberDisplay}>current component number : {componentNumber}</h3>
+      <div style={style.prevNextBtn}>
+        <button onClick={prev}>prev</button>
+        <button onClick={next}>next</button>
+      </div>
+      <br/><br/>
+      <div style={style.inputTitle}>
+        <div>input component number</div>
+        <input type='number' style={style.input} onChange={changeInputValue}></input>
+        <button type='button' onClick={move}>move</button>
+      </div>
+      <br/><br/><br/>
+      <div style={style.componentLoadArea}>
+        {componentList[componentNumber] ?? notFoundComponent()}
+      </div>
+    </div>
+  );
+}
+
+export default App;
+```
