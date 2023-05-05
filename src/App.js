@@ -45,7 +45,7 @@ function App() {
   }
 
   const move = () => {
-    if(1 < inputValue && inputValue < lastComponentNumber) {
+    if(0 < inputValue && inputValue <= lastComponentNumber) {
       setComponentNumber(inputValue);
     } else {
       alert('컴포넌트 번호가 정의된 범위 밖입니다.');
