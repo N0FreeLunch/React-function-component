@@ -150,6 +150,7 @@ function HelloReact() {
 
 export default HelloReact;
 ```
+- 컴포넌트 함수를 만들 때 함수명의 첫 글자는 대문자로 만들어 준다.
 
 ### 컴포넌트 가져와서 사용하기
 App.js
