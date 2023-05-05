@@ -65,14 +65,14 @@ const next = () => {
 
 ```js
 const move = () => {
-  if(1 < inputValue && inputValue < lastComponentNumber) {
+  if(0 < inputValue && inputValue <= lastComponentNumber) {
     setComponentNumber(inputValue);
   } else {
     alert('컴포넌트 번호가 정의된 범위 밖입니다.');
   }
 }
 ```
-- `inputValue`는 input 태그에 값을 입력할 때마다 변경되는 상태　변수이다. input 태그에 적힌 유저의 입력 값이 1 보다 크거나, 컴포넌트 리스트의 최대 키 값 보다 작은 경우에만 `setComponentNumber`를 변경할 수 있도록 조건을 주었다. 컴포넌트 번호가 범위 밖이라면 alert를 표시하도록 하였다.
+- `inputValue`는 input 태그에 값을 입력할 때마다 변경되는 상태　변수이다. input 태그에 적힌 유저의 입력 값이 0 보다 크거나, 컴포넌트 리스트의 최대 키 값 이하인 경우에만 `setComponentNumber`를 변경할 수 있도록 조건을 주었다. 컴포넌트 번호가 범위 밖이라면 alert를 표시하도록 하였다.
 
 ## 전체 코드
 ```js
@@ -123,7 +123,7 @@ function App() {
   }
 
   const move = () => {
-    if(1 < inputValue && inputValue < lastComponentNumber) {
+    if(0 < inputValue && inputValue <= lastComponentNumber) {
       setComponentNumber(inputValue);
     } else {
       alert('컴포넌트 번호가 정의된 범위 밖입니다.');
