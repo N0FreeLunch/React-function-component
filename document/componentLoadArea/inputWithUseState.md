@@ -122,7 +122,7 @@ function App() {
       <br/><br/>
       <div style={style.inputTitle}>
         <div>input component number</div>
-        <input type='number' style={style.input} onChange={changeInputValue} value={inputValue}></input>
+        <input type='number' style={style.input} onChange={changeInputValue}></input>
         <button type='button' onClick={move}>move</button>
       </div>
       <br/><br/><br/>
@@ -211,7 +211,7 @@ function App() {
       <br/><br/>
       <div style={style.inputTitle}>
         <div>input component number</div>
-        <input type='number' style={style.input} onChange={changeInputValue} value={inputValue}></input>
+        <input type='number' style={style.input} onChange={changeInputValue}></input>
         <button type='button' onClick={move}>move</button>
       </div>
       <br/><br/><br/>
