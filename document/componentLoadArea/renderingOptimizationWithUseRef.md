@@ -249,3 +249,120 @@ export default App;
 
 ---
 ---
+
+## `useRef`를 사용한 값 저장
+
+### 값을 저장하는 용도로 사용하기
+```js
+// ...
+
+function App() {
+  // ...
+  const inputValueRef = useRef();
+  console.log(inputValueRef);
+
+  // ...
+
+  const move = () => {
+    if(0 < inputValueRef.current && inputValueRef.current <= lastComponentNumber) {
+      setComponentNumber(inputValueRef.current);
+    } else {
+      alert('컴포넌트 번호가 정의된 범위 밖입니다.');
+    }
+  }
+
+  const changeInputValue = (e) => {
+    inputValueRef.current = parseInt(e.target.value);
+  }
+  // ...
+}
+
+// ...
+```
+
+### 코드 변경점
+
+#### 데이터 저장 코드 변경
+```js
+const [inputValueState, setInputValueState] = useState(0);
+let inputValue = inputValueState;
+console.log(inputValue);
+```
+- 지역 변수를 사용할 때는 지역변수와 지역 변수를 다음 컴포넌트로 전달하기 위한 상태를 만들어 줘야 했다.
+```js
+let inputValueRef = useRef();
+console.log(inputValueRef);
+```
+- `useRef` 함수를 사용하여 반환된 값을 어떤 변수에 저장하자. 위 예제에서 변수는 `inputValueRef`이다.
+
+#### 이벤트 발생에 따른 input 값 저장 함수 변경
+```js
+const changeInputValue = (e) => {
+  inputValue = parseInt(e.target.value);
+}
+```
+위 코드를 다음으로 바꾼다.
+```js
+const changeInputValue = (e) => {
+  inputValueRef.current = parseInt(e.target.value);
+}
+```
+- `changeInputValue` 함수의 내부의 코드를 `inputValueRef.current = parseInt(e.target.value);`로 코드를 변경한다.
+
+#### move 함수 변경
+```js
+const move = () => {
+  if(0 < inputValue && inputValue <= lastComponentNumber) {
+    setComponentNumber(inputValue);
+    setInputValueState(inputValue);
+  } else {
+    alert('컴포넌트 번호가 정의된 범위 밖입니다.');
+  }
+}
+```
+위 코드를 다음으로 바꾼다.
+```js
+const move = () => {
+  if(0 < inputValueRef.current && inputValueRef.current <= lastComponentNumber) {
+    setComponentNumber(inputValueRef.current);
+  } else {
+    alert('컴포넌트 번호가 정의된 범위 밖입니다.');
+  }
+}
+```
+- move 함수 부분은 `inputValue`로 값의 범위를 확인 했는데, `inputValueRef.current`으로 `inputValueRef`의 값을 확인할 수 있으므로 바꾸어준다.
+
+#### 지역 변수를 사용할 때 모든 상태 변경 코드에 추가한 코드 지우기
+```js
+const prev = () => {
+  if(1 < componentNumber) {
+    setComponentNumber(componentNumber-1);
+    setInputValueState(inputValue);
+  }
+}
+  
+const next = () => {
+  if(componentNumber < lastComponentNumber) {
+    setComponentNumber(componentNumber+1);
+    setInputValueState(inputValue);
+  }
+}
+```
+위 코드를 다음 코드로 바꾼다.
+```js
+const prev = () => {
+  if(1 < componentNumber) {
+    setComponentNumber(componentNumber-1);
+  }
+}
+  
+const next = () => {
+  if(componentNumber < lastComponentNumber) {
+    setComponentNumber(componentNumber+1);
+  }
+}
+```
+- 지역 변수에 저장한 다음 컴포넌트 함수가 재실행 될 때 지역 변수의 초기 값으로 세팅하기 위해 상태 변경 함수를 사용한 코드 `setInputValueState(inputValue)`를 지워준다.
+
+#### 코드 변경의 특이사항
+- 상태를 변경할 때는 상태 변경 함수를 사용해서 `setInputValue(parseInt(e.target.value))`와 같이 상태를 변경하였다. 하지만 `useRef`를 사용하는 경우에는 함수의 인자로 변경될 값을 전달하지 않고 `useRef를_사용한_변수명.current`와 같은 방식으로 접근을 한다.
