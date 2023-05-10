@@ -129,6 +129,16 @@ const next = () => {
   }
 }
 ```
+```js
+const move = () => {
+  if(0 < inputValue && inputValue <= lastComponentNumber) {
+    setComponentNumber(inputValue);
+    setInputValueState(inputValue);
+  } else {
+    alert('컴포넌트 번호가 정의된 범위 밖입니다.');
+  }
+}
+```
 - 모든 상태 변경을 할 때 마다 `inputValue`의 값도 다음 컴포넌트 함수에 전달하기 위해 상태 변경 함수를 통해 전달한다.
 - 이렇게 코드를 만들면 상태 변경으로 컴포넌트 함수가 재실행 될 때마다 지역 변수 `inputValue`의 값을 다음 컴포넌트 함수 지역 변수의 초기 값으로 설정할 수 있다.
 
@@ -147,3 +157,95 @@ const next = () => {
 - 지역 변수를 사용하게 되면 지역 변수에 저장된 값을 날리지 않기 위해 모든 상태 변경이 일어날 때 이전 지역 변수 값을 다음 컴포넌트 함수가 실행될 때 전달하여 지역 변수의 값을 보존하는 방법을 사용해야 하는데 이는 코드를 작성하고 관리하기 어렵게 만든다는 단점이 있다.
 - `useRef`를 사용하면 모든 상태 변경 로직에 따로 코드를 추가할 필요가 없기 때문에 훨씬 깔끔한 코드를 만든다.
 - 따라서 컴포넌트 함수 내에서 지역 변수를 사용하지 않는 것이 좋은 방식의 스타일이며, 코드를 불필요하게 복잡하게 만들고 관리하기 어렵게 만드므로 안티패턴에 해당한다. 그러므로 지역 변수를 사용하지 않도록 하자.
+
+## 지역변수 전체 코드
+```js
+import { useState } from 'react';
+import componentList from './componentList';
+import NotFoundComponent from './NotFoundComponent';
+
+const style = {
+  numberDisplay : {
+    marginLeft: '10px'
+  },
+  prevNextBtn : {
+    marginLeft: '10px'
+  },
+  inputTitle : {
+    marginLeft: '10px'
+  },
+  input : {
+    width: '80px',
+    marginRight: '20px',
+    marginLeft: '10px'
+  },
+  componentLoadArea : {
+    border: '1px solid black'
+  }
+};
+
+const getLastestKeyFromOrderedKeyObject = (literalObject) => {
+  return Object.keys(literalObject).sort().pop();
+}
+
+const lastComponentNumber = getLastestKeyFromOrderedKeyObject(componentList);
+
+function App() {
+  const [componentNumber, setComponentNumber] = useState(lastComponentNumber);
+  const [inputValueState, setInputValueState] = useState(0);
+  let inputValue = inputValueState;
+  console.log(inputValue);
+
+  const prev = () => {
+    if(1 < componentNumber) {
+      setComponentNumber(componentNumber-1);
+      setInputValueState(inputValue);
+    }
+  }
+
+  const next = () => {
+    if(componentNumber < lastComponentNumber) {
+      setComponentNumber(componentNumber+1);
+      setInputValueState(inputValue);
+    }
+  }
+
+  const move = () => {
+    if(0 < inputValue && inputValue <= lastComponentNumber) {
+      setComponentNumber(inputValue);
+      setInputValueState(inputValue);
+    } else {
+      alert('컴포넌트 번호가 정의된 범위 밖입니다.');
+    }
+  }
+
+  const changeInputValue = (e) => {
+    inputValue = parseInt(e.target.value);
+  }
+
+  return (
+    <div>
+      <h3 style={style.numberDisplay}>current component number : {componentNumber}</h3>
+      <div style={style.prevNextBtn}>
+        <button onClick={prev}>prev</button>
+        <button onClick={next}>next</button>
+      </div>
+      <br/><br/>
+      <div style={style.inputTitle}>
+        <div>input component number</div>
+        <input type='number' style={style.input} onChange={changeInputValue}></input>
+        <button type='button' onClick={move}>move</button>
+      </div>
+      <br/><br/><br/>
+      <div style={style.componentLoadArea}>
+        {componentList[componentNumber] ?? NotFoundComponent()}
+      </div>
+    </div>
+  );
+}
+
+export default App;
+```
+
+---
+---
