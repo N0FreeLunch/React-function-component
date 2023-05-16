@@ -115,6 +115,12 @@ const next = () => {
 #### 코드 변경의 특이사항
 - 상태를 변경할 때는 상태 변경 함수를 사용해서 `setInputValue(parseInt(e.target.value))`와 같이 상태를 변경하였다. 하지만 `useRef`를 사용하는 경우에는 함수의 인자로 변경될 값을 전달하지 않고 `useRef를_사용한_변수명.current`와 같은 방식으로 접근을 한다.
 
+#### 코드 변경의 결과
+- 브라우저의 콘솔 창에서 확인 했을 때, input 태그에 입력을 하여도 `console.log(inputValueRef)` 부분에 대한 결과 값이 나오지 않는 것을 알 수 있다. `useRef`를 사용한 변수는 변경을 해도 상태를 사용한 것과 달리 컴포넌트 함수가 실행되지 않는다는 것을 알 수 있다.
+- 하지만 유효한 범위의 입력값 1~5의 값을 input 태그에 입력을 하고 move 버튼을 누르게 되면 `console.log(inputValueRef)` 부분의 값이 콘솔창에 출력 되는 것을 확인할 수 있다. `move` 함수는 저장된 `inputValueRef.current`의 값으로 상태 변경을 하기 때문에 컴포넌트 함수가 다시 실행되면서 `console.log(inputValueRef)` 부분의 코드가 실행되기 때문이다.
+- 이를 통해서 `useRef`를 사용하면 **1. "변수에 값을 저장할 때 컴포넌트 함수를 실행하지 않으면서"**, **2. "컴포넌트 함수가 다시 실행될 때는 저장한 변수 값을 컴포넌트 함수에서 초기값으로 갖는"** 조건을 만족하는 결과를 얻을 수 있게 되었다.
+- `useRef`를 통해서 `useState`와 달리 input 태그에 값을 입력을 해도 컴포넌트 함수가 다시 실행되지 않기 때문에 시스템의 CPU나 메모리의 자원 낭비를 줄일 수 있게 되었다.
+
 ### `useRef`가 `.current` 방식으로 사용되는 이유
 #### 복사와 참조
 - `useRef` 함수를 사용하면 객체를 반환한다. 자바스크립트에서 객체는 참조라는 방식으로 사용된다. 일반적으로 `변수 = 값`을 하면 오른쪽의 값은 복사되어 왼쪽의 변수에 할당된다. 오른쪽의 값과 별도로 변수는 `값`을 가지게 된다. `변수`를 사용할 때의 값과 `변수 = 값` 오른쪽의 값은 서로 다른 대상이지만 자바스크립트에서는 둘을 구분할 수 없다. 하지만 `변수 = 오브젝트`인 경우에는 `변수`에는 왼쪽 오브젝트의 주소가 저장이 된다. 주소가 저장된다는 말의 의미는 `변수`를 사용했을 때 변수에 할당된 주소를 따라서 `변수 = 오브젝트` 코드를 실행했을 때 오른쪽의 오브젝트를 사용한다는 의미를 가지고 있다. 오브젝트가 아닌 값을 변수에 할당했을 때는 복제 되었지만 오브젝트를 변수에 할당했을 때는 복제되지 않고 원본을 직접 사용하도록 한다. 변수를 사용했을 때 원본을 직접 사용하게 하는 방식을 '참조'라고 부른다.
@@ -165,3 +171,101 @@ const inputValueRef = JSON.parse(JSON.stringify(useRef()));
 - 위와 같은 방법이 존재한다. `inputValueRef`는 원본을 참조하는 것이 아니라 오브젝트를 복사하는 방식의 코드를 통해서 컴포넌트 함수 내에서 복사된 값이기 때문에 원본을 직접 참조하지 않는 방식으로 만들 수도 있다.
 - 따라서 원본을 참조하는 `useRef`만 있다면 원본을 참조하는 방식으로 만들 수도 있고 원본을 참조하지 않는 방식으로 만들 수도 있다.
 
+#### `.current` 방식으로 사용
+- `useRef`를 사용할 때 `const inputValueRef = useRef()` 코드를 브라우저의 콘솔 창에서 `conosle.log(inputValueRef)` 코드로 확인하면 반환 값은 객체이고 `{current: undefined}`가 표시가 된다. 이때, `{current : undefined}` 객체는 `current`라는 프로퍼티를 가지고 있고, 프로퍼티의 값은 `undefined` 타입의 값을 갖는다. 프로퍼티는 키 또는 속성이라고도 부른다.
+- 일반적으로 `useRef`의 값을 변경할 때는 컴포넌트 함수를 처음 선언할 때 `useRef()`의 코드에서 반환되는 객체에 존재하는 프로퍼티인 `current` 프로퍼티의 값을 변경한다. 물론 이 때 `current` 프로퍼티가 아니라 다른 프로퍼티를 추가해서 사용해도 된다.
+- 하지만 위 코드에서 `.current`의 부분을 `.value`로 모두 변경해서 사용해도 아무런 문제가 없다. 하지만 프로퍼티를 추가해서 사용하게 되면 `{current: undefined, value: 저장된_값}`이 되어버리므로 불필요한 `current` 프로퍼티가 남게 되므로 다른 프로퍼티를 지정하지 않고, 처음 정의되는 값인 `inputValueRef.current` 방식으로 보통 사용한다.
+
+#### `useRef`에는 `const`만 사용
+- `useRef()` 함수의 반환 값을 변수에 담을 때는 `let`, `var`를 쓰지 않고 `const`를 사용한다.
+- `let`, `var`으로 선언된 변수는 언제든 다른 값을 변수에 할당해서 바꿀 수 있지만, `const`로 선언된 변수는 값의 재할당이 불가능하다.
+- 하지만 `const` 변수에 객체가 할당되면 객체의 프로퍼티를 추가할 수도 있고 프로퍼티의 값을 변경할 수도 있다. 하지만 다른 값으로 재할당은 불가능하다.
+- 예를 들어 `inputValueRef` 변수가 `const`로 선언되어 있다면 `inputValueRef = 재할당할_값`으로 `inputValueRef` 안에는 `useRef()`의 결과값인 객체가 이미 들어 있기 때문에 재할당이 불가능하다. 하지만, 이미 객체가 할당되어 있기 때문에 객체 내부의 값을 변경하는 것은 가능하다. 왜냐하면 객체 내부의 값을 변경하는 것은 재할당이 아니라 이미 들어 있는 값을 변경하는 것이기 때문이다.
+- 간단히 말해서 `inputValueRef =`를 사용해서 변수에 다른 값을 넣는 것은 불가능하지만, 기존에 변수에 들어 있는 객체에 `inputValueRef.프로퍼티_명 = 프로퍼티에_할당할_값`으로 새로운 프로퍼티를 추가할 수 있으며, `inputValueRef.current = 새로운_값`으로 기존 프로퍼티의 값을 변경시키는 것은 가능하다.
+- `useRef`는 원본을 참조하는 방식이며 원본을 참조하기 위해서는 객체로 사용되어야 한다. 따라서 항상 객체인 채로 유지되고 다른 타입의 값으로 바뀌지 않게 하기 위한 목적과 원본이 바뀌지 않도록 하기 위한 목적으로 재할당이 불가능한 `const`로 변수를 선언한다.
+- 만약 `let`, `var`으로 선언되어 `inputValueRef = 저장되는_값`의 방식으로 사용하게 되면 `저장되는_값`이 원본이 아니라 다른 값이 되며, 컴포넌트 함수가 다시 갱신이 될 때도 원본을 참조하는 것이 아니게 된다. 또한 객체가 아닐 경우에는 `useRef()`의 값이 변수에 할당이 될 때 참조가 아닌 복사가 되어 버린다. 따라서 `inputValueRef`가 원본을 참조하는 게 아니게 되어버린다. 이런 문제를 방지하기 위해서 `useRef`를 사용할 때는 항상 `const`로 사용하도록 하자.
+
+## 전체 코드
+```js
+import { useState, useRef } from 'react';
+import componentList from './componentList';
+import NotFoundComponent from './NotFoundComponent';
+
+const style = {
+  numberDisplay : {
+    marginLeft: '10px'
+  },
+  prevNextBtn : {
+    marginLeft: '10px'
+  },
+  inputTitle : {
+    marginLeft: '10px'
+  },
+  input : {
+    width: '80px',
+    marginRight: '20px',
+    marginLeft: '10px'
+  },
+  componentLoadArea : {
+    border: '1px solid black'
+  }
+};
+
+const getLastestKeyFromOrderedKeyObject = (literalObject) => {
+  return Object.keys(literalObject).sort().pop();
+}
+
+const lastComponentNumber = getLastestKeyFromOrderedKeyObject(componentList);
+
+function App() {
+  const [componentNumber, setComponentNumber] = useState(lastComponentNumber);
+  const inputValueRef = useRef();
+  console.log(inputValueRef);
+
+  const prev = () => {
+    if(1 < componentNumber) {
+      setComponentNumber(componentNumber-1);
+    }
+  }
+  
+  const next = () => {
+    if(componentNumber < lastComponentNumber) {
+      setComponentNumber(componentNumber+1);
+    }
+  }
+
+  const move = () => {
+    if(0 < inputValueRef.current && inputValueRef.current <= lastComponentNumber) {
+      setComponentNumber(inputValueRef.current);
+    } else {
+      alert('컴포넌트 번호가 정의된 범위 밖입니다.');
+    }
+  }
+
+  const changeInputValue = (e) => {
+    inputValueRef.current = parseInt(e.target.value);
+  }
+
+  return (
+    <div>
+      <h3 style={style.numberDisplay}>current component number : {componentNumber}</h3>
+      <div style={style.prevNextBtn}>
+        <button onClick={prev}>prev</button>
+        <button onClick={next}>next</button>
+      </div>
+      <br/><br/>
+      <div style={style.inputTitle}>
+        <div>input component number</div>
+        <input type='number' style={style.input} onChange={changeInputValue} ref={inputValueRef}></input>
+        <button type='button' onClick={move}>move</button>
+      </div>
+      <br/><br/><br/>
+      <div style={style.componentLoadArea}>
+        {componentList[componentNumber] ?? NotFoundComponent()}
+      </div>
+    </div>
+  );
+}
+
+export default App;
+```
