@@ -256,7 +256,7 @@ function App() {
       <br/><br/>
       <div style={style.inputTitle}>
         <div>input component number</div>
-        <input type='number' style={style.input} onChange={changeInputValue} ref={inputValueRef}></input>
+        <input type='number' style={style.input} onChange={changeInputValue}></input>
         <button type='button' onClick={move}>move</button>
       </div>
       <br/><br/><br/>
