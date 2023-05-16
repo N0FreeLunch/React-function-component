@@ -2,6 +2,7 @@
 
 ### 값을 저장하는 용도로 사용하기
 ```js
+import { useState, useRef } from 'react';
 // ...
 
 function App() {
@@ -29,6 +30,11 @@ function App() {
 ```
 
 ### 코드 변경점
+
+#### `useRef` 함수를 라이브러리에서 불러오기
+- `import { useState } from 'react';`는 리액트 라이브러리에서 함수를 가져오는 기능이다.
+- `useState`만 불러와서 사용한 코드와 달리, `useRef`를 추가하여 `import { useState } from 'react';`
+가 되었다.
 
 #### 데이터 저장 코드 변경
 ```js
