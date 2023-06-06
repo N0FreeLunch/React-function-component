@@ -218,7 +218,7 @@ const style = {
 };
 
 const getLastestKeyFromOrderedKeyObject = (literalObject) => {
-  return Object.keys(literalObject).sort().pop();
+  return Object.keys(literalObject).pop();
 }
 
 const lastComponentNumber = getLastestKeyFromOrderedKeyObject(componentList);

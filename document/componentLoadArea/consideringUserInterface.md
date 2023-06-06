@@ -21,12 +21,12 @@ const componentList = {
 - 컴포넌트의 마지막 번호를 찾기 위해서는 컴포넌트 리스트의 컴포넌트 번호 중에서 가장 값이 높은 번호를 선택하면 된다.
 ```js
 const getLastestKeyFromOrderedKeyObject = (literalObject) => {
-  return Object.keys(literalObject).sort().pop();
+  return Object.keys(literalObject).pop();
 }
 ```
 - 컴포넌트 키 외부 영역에 위와 같은 코드를 만든다.
 - `getLastestKeyFromOrderedKeyObject` 함수는 리터럴 오브젝트를 넣었을 때, 키를 순서대로 나열하고 가장 마지막의 키를 반환하는 함수이다.
-- `componentList`를 `getLastestKeyFromOrderedKeyObject(componentList)`와 같이 인자로 전달하게 되면, `Object.keys(literalObject)`에 의해 키를 나열한 배열 `[1,2,3,4,5]`을 반환하게 된다. `.sort()`에 의해서 작은 것 부터 순서대로 나열하며, `.pop()`에 의해 마지막의 값을 가져온다.
+- `componentList`를 `getLastestKeyFromOrderedKeyObject(componentList)`와 같이 인자로 전달하게 되면, `Object.keys(literalObject)`에 의해 키를 나열한 배열 `["1","2","3","4","5"]`을 반환하게 된다. 현재 `componentList`는 작은 것 부터 순서대로 나열하고 있으므로 `.pop()`에 의해 마지막의 값을 가져온다.
 ```js
 const [componentNumber, setComponentNumber] = useState(getLastestKeyFromOrderedKeyObject(componentList));
 ```
@@ -101,7 +101,7 @@ const style = {
 };
 
 const getLastestKeyFromOrderedKeyObject = (literalObject) => {
-  return Object.keys(literalObject).sort().pop();
+  return Object.keys(literalObject).pop();
 }
 
 const lastComponentNumber = getLastestKeyFromOrderedKeyObject(componentList);
