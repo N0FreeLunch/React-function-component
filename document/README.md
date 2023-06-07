@@ -14,3 +14,4 @@
     - [유저 인터페이스를 고려하기](./componentLoadArea/consideringUserInterface.md)
     - [useRef가 필요한 이유](./componentLoadArea/whyNeedUseRef.md)
     - [useRef로 랜더링 리소스 최적화하기](./componentLoadArea/renderingOptimizationWithUseRef.md)
+    - [useRef로 태그 다루기](./componentLoadArea/inputWithoutSaving.md)
