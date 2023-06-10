@@ -26,6 +26,13 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 ```
 npm run build
 ```
+- build 폴더에 빌드된 파일들이 만들어진다. 이 때 이 파일들을 브라우저에 띄우기 위해서는 서버가 필요하다.
+- 기본적으로 맥북에는 python2.7 버전이 깔려져 있고, 이를 그대로 이용하면
+```
+cd build
+python -m SimpleHTTPServer 3000
+```
+- 위와 같은 방식으로 서버를 열 수 있고, 빌드된 리액트 페이지를 태스트 해 볼 수 있다.
 
 ### reference
 - \[book\] 리액트를 다루는 기술 \[개정판\] (ISBN : 9791160509328)
