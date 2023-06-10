@@ -17,7 +17,7 @@
 - 실제 제품을 만들 때는 물론 이것을 지킬 수 없는 경우가 있지만 가능하면 위의 사상을 지켜나가면서 스테이트의 변화로써 UI가 달라지도록 만들면, 상태가 아닌 다른 요인에 이해서 UI가 변경되는 경우를 최대한 줄일 수 있으므로 UI의 변화를 상태를 통해서 최대한 통제할 수 있다.
 - `useRef`는 리액트로 만들어진 태그를 선택하는 옵션이 제공되기 때문에, 태그를 리액트의 상태가 아닌 방식으로 변경할 수 있는 기능을 제공한다. 리액트에서 반환되는 JSX로 만들어지는 태그는 리액트의 상태에 따라서 결정이 되어야 하는데 리액트의 상태가 아닌 다른 방식으로 변경이 될 가능성이 생기고 실제로 리액트에 사상을 잘 모르면 리액트의 상태가 아닌 다른 방식으로 태그를 변경하게 되면서, 리액트의 상태 변화로 UI를 통제하지 못하여 기능 추가나 변경 등에서 통제하기 어려운 상활을 만들게 되고 UI가 뜻대로 움직이지 않는 버그를 만들 가능성을 높이게 된다.
 - 이런 문제점 때문에 `useRef`를 사용하는 것을 리액트에서는 최소한으로 하고, 리액트의 스테이트를 중심으로 코딩하는 방식을 권장한다. 하지만 불필요한 컴포넌트 함수의 재실행을 줄이는 최적화 하기 위해서는 `useRef`를 사용해야 한다. 이런 경우 UI에 영향을 주지 않는 방식인 `useRef`로 반환되는 값에 input 태그에서 받은 값만을 넣는 방식으로 사용하고, 태그를 직접 참조하도록 만드는 방식을 피하여 리얼돔을 직접 변경할 가능성을 최대한 줄이는 코딩을 하는 편이 좋다.
-- `useRef`에 JSX의 `Ref` 속성으로 태그를 지정할 경우, `useRef()`에서 반환 되는 객체안의 태그는 값을 변경하는 방식으로 사용하는 것을 최대한 배제하고 태그 객체가 제공하는 값만을 사용하는 방식으로 읽기 전용의 방식으로 사용하는 것을 추천한다.
+- `useRef`에 JSX의 `ref` 속성으로 태그를 지정할 경우, `useRef()`에서 반환 되는 객체안의 태그는 값을 변경하는 방식으로 사용하는 것을 최대한 배제하고 태그 객체가 제공하는 값만을 사용하는 방식으로 읽기 전용의 방식으로 사용하는 것을 추천한다.
 - 물론 자바스크립트의 문법으로 계속 적으로 내부 값이 변경되는 객체 내부에서 참조되는 값을 읽기 전용으로 강제할 수 있는 기능은 없기 때문에 문법적인 제약을 넣지는 못하고 코딩을 통해서 주의를 해 주어야 한다.
 
 ### useRef에 태그 담기
@@ -59,3 +59,134 @@ const move = () => {
 <input type='number' style={style.input} ref={inputTagRef}></input>
 ```
 - `onChange`으로 입력된 값을 저장하는 방식을 쓰지 않고, 위 JSX 태그를 `inputTagRef`에서 참조해서 사용하는 방식으로 바뀌었기 때문에 유저의 입력 값을 `inputTagRef.current.value` 방식으로 얻을 수 있게 되므로 `onChange`를 지워주고 JSX 태그를 `useRef`에서 가져다 쓸 수 있도록 만들어주는 `ref={inputTagRef}`를 사용하였다.
+
+#### 코드 개선
+```js
+  const move = () => {
+    if(0 < parseInt(inputTagRef.current.value) && parseInt(inputTagRef.current.value) <= lastComponentNumber) {
+      setComponentNumber(parseInt(inputTagRef.current.value));
+    } else {
+      alert('컴포넌트 번호가 정의된 범위 밖입니다.');
+    }
+  }
+```
+- 위 부분을 보면 `parseInt(inputTagRef.current.value)`는 반복된다. 또한 `inputTagRef.current.value`의 값을 사용할 때는 `value`의 값이 문자열로 반환되는 것을 깜빡하고 쓸 때가 많이 있다. 따라서 이 코드를 함수로 객체 내의 값을 가져와서 수로 변환하는 작업을 처리하게 하면 함수를 사용하는 패턴으로 적게 되고, 이 코드를 이어 개발하는 다른 사람도 이와 비슷한 방식으로 코드를 작성할 가능성이 높게 되어 실수할 가능성이 줄어든다.
+```js
+  const getCurrentInputValue = () => {
+    return parseInt(inputTagRef.current.value);
+  }
+```
+```js
+  const move = () => {
+    if(0 < getCurrentInputValue() && getCurrentInputValue() <= lastComponentNumber) {
+      setComponentNumber(getCurrentInputValue());
+    } else {
+      alert('컴포넌트 번호가 정의된 범위 밖입니다.');
+    }
+  }
+```
+
+### 전체 동작 설명
+
+#### `useRef()`
+```js
+const inputTagRef = useRef();
+console.log(inputTagRef);
+```
+- 처음 컴포넌트 함수가 실행 될 때는 `{current: undefined}`로 `current` 키만 존재하고 값이 할당되지 않는 객체가 반환된다.
+- 컴포넌트 함수가 초기 실행이 된 이후 랜더링이 되면 JSX 태그의 `ref` 속성에 부여한 `useRef`와 같은 `{current: undefined}` 부분의 `undefined` 부분에 태그 객체가 할당된다.
+- `{current: undefined}`는 객체이므로 참조가 되고 있다. 따라서 브라우저의 콘솔 창에 `{current: undefined}`라고 찍혔더라도 내부를 열어보면 `current` 키에 `input` 태그가 할당된 것을 볼 수 있다. 위의 코드에서 `console.log(inputTagRef)` 부분은 컴포넌트 함수를 실행한 시점에서 JSX를 반환하지 않은 상태에서의 값이 찍힌 것이다. 하지만, JSX의 값이 반환된 이후에는 `{current: undefined}` 객체의 `current` 키에 지정한 input 태그인 `<input type='number' style={style.input} ref={inputTagRef}></input>`의 리얼돔 상의 태그 값이 할당되어 있기 때문에 랜더링 이후 다시 컴포넌트 함수가 실행될 때는 `{current: input}`으로 input 태그가 할당된 것을 확인할 수 있다. 컴포넌트 함수 내의 상태변화를 일으키는 버튼을 하나 눌러 보면 다음 컴포넌트 함수가 실행 될 때는 `input` 태그가 할당되는 것을 볼 수 있다.
+- `npm start`로 개발하는 환경에서는 초기 컴포넌트 함수가 두 번 실행되는 경우가 있다. 이는 유저의 편의를 돕기 위해 값이 어떻게 할당되는지 보여 주는 것으로 `installHook.js`라는 리액트 내부에서 랜더링이 끝난 후에 뭐가 달라지는 경우가 있을 때 참고 용으로 한 번 더 실행해서 보여준다. 이 경우 `{current: input}`으로 랜더링 된 이후에는 값이 세팅이 되는 것을 확인할 수 있다.
+
+#### `ref={inputTagRef}`
+```js
+<input type='number' style={style.input} ref={inputTagref}></input>
+```
+- 위 JSX 태그가 반환이 되면서 리액트는 태그를 해석하고 브라우저에 태그를 랜더링한다. 브라우저에 JSX 태그를 랜더링 하기 위해서는 태그를 해석해서 앞서 랜더링 된 가상돔의 태그 구조와 반환되는 JSX의 태그 구조를 비교한다. 이 때 태그를 해석하는 과정에서 JSX 태그의 `ref` 속성에 객체를 지정해 준다면 해당 객체에 이 객체를 지정 `ref` 속성으로 지정하고 있는 JSX 태그의 리얼돔에서의 자바스크립트 객체를 할당한다.
+- `ref` 속성에는 어느 객체나 할당을 해도 해당 객체는 랜더링 후에 태그 객체를 가지고 있게 된다. 하지만 컴포넌트 함수가 다시 실행되면서 컴포넌트 함수가 실행되기 전 단계에서 만들어진 객체를 다시 컴포넌트 함수 내에 가져오기 위해서는 `useRef`를 통해서 가져와야 하기 때문에 `useRef` 함수를 실행하여 반환된 객체를 `ref` 속성에 할당해야 한다.
+
+---
+## 전체 코드
+```js
+import { useState, useRef } from 'react';
+import componentList from './componentList';
+import NotFoundComponent from './NotFoundComponent';
+
+const style = {
+  numberDisplay : {
+    marginLeft: '10px'
+  },
+  prevNextBtn : {
+    marginLeft: '10px'
+  },
+  inputTitle : {
+    marginLeft: '10px'
+  },
+  input : {
+    width: '80px',
+    marginRight: '20px',
+    marginLeft: '10px'
+  },
+  componentLoadArea : {
+    border: '1px solid black'
+  }
+};
+
+const getLastestKeyFromOrderedKeyObject = (literalObject) => {
+  return Object.keys(literalObject).pop();
+}
+
+const lastComponentNumber = getLastestKeyFromOrderedKeyObject(componentList);
+
+function App() {
+  console.log(lastComponentNumber);
+  const [componentNumber, setComponentNumber] = useState(lastComponentNumber);
+  const inputTagRef = useRef();
+  console.log(inputTagRef);
+  const getCurrentInputValue = () => {
+    return parseInt(inputTagRef.current.value);
+  }
+
+  const prev = () => {
+    if(1 < componentNumber) {
+      setComponentNumber(componentNumber-1);
+    }
+  }
+  
+  const next = () => {
+    if(componentNumber < lastComponentNumber) {
+      setComponentNumber(componentNumber+1);
+    }
+  }
+
+  const move = () => {
+    if(0 < getCurrentInputValue() && getCurrentInputValue() <= lastComponentNumber) {
+      setComponentNumber(getCurrentInputValue());
+    } else {
+      alert('컴포넌트 번호가 정의된 범위 밖입니다.');
+    }
+  }
+
+  return (
+    <div>
+      <h3 style={style.numberDisplay}>current component number : {componentNumber}</h3>
+      <div style={style.prevNextBtn}>
+        <button onClick={prev}>prev</button>
+        <button onClick={next}>next</button>
+      </div>
+      <br/><br/>
+      <div style={style.inputTitle}>
+        <div>input component number</div>
+        <input type='number' style={style.input} ref={inputTagRef}></input>
+        <button type='button' onClick={move}>move</button>
+      </div>
+      <br/><br/><br/>
+      <div style={style.componentLoadArea}>
+        {componentList[componentNumber] ?? NotFoundComponent()}
+      </div>
+    </div>
+  );
+}
+
+export default App;
+```
