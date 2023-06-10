@@ -105,6 +105,27 @@ console.log(inputTagRef);
 - 위 JSX 태그가 반환이 되면서 리액트는 태그를 해석하고 브라우저에 태그를 랜더링한다. 브라우저에 JSX 태그를 랜더링 하기 위해서는 태그를 해석해서 앞서 랜더링 된 가상돔의 태그 구조와 반환되는 JSX의 태그 구조를 비교한다. 이 때 태그를 해석하는 과정에서 JSX 태그의 `ref` 속성에 객체를 지정해 준다면 해당 객체에 이 객체를 지정 `ref` 속성으로 지정하고 있는 JSX 태그의 리얼돔에서의 자바스크립트 객체를 할당한다.
 - `ref` 속성에는 어느 객체나 할당을 해도 해당 객체는 랜더링 후에 태그 객체를 가지고 있게 된다. 하지만 컴포넌트 함수가 다시 실행되면서 컴포넌트 함수가 실행되기 전 단계에서 만들어진 객체를 다시 컴포넌트 함수 내에 가져오기 위해서는 `useRef`를 통해서 가져와야 하기 때문에 `useRef` 함수를 실행하여 반환된 객체를 `ref` 속성에 할당해야 한다.
 
+#### `inputTagRef.current`
+```js
+  const getCurrentInputValue = () => {
+    return parseInt(inputTagRef.current.value);
+  }
+```
+- `inputTagRef`를 JSX 태그의 `ref` 속성에 지정을 하면, 이 태그는 `inputTagRef` 객체의 `current` 키에 할당이 된다. 곧, 태그 객체는 `inputTagRef.current` 부분이 태그 객체에 해당한다.
+```js
+  const move = () => {
+    if(0 < getCurrentInputValue() && getCurrentInputValue() <= lastComponentNumber) {
+      setComponentNumber(getCurrentInputValue());
+    } else {
+      alert('컴포넌트 번호가 정의된 범위 밖입니다.');
+    }
+  }
+```
+- 앞서 `inputTagRef.current`는 리얼돔의 태그 객체이기 때문에 이 객체에 속성을 부여하거나 변경하는 것을 통해서 UI를 바꿀 수 있다. 하지만 리액트에서 JSX로 랜더링시키는 태그들은 상태에 의해 관리 되어야 하며 다른 요인에 의해서 UI가 변동되면 안 된다고 하였다. 따라서 `inputTagRef.current`를 그대로 사용하는 것은 태그의 각종 속성을 쉽게 변경할 수 있도록 만들어 놓은 것이다.
+- 만약 리액트의 이런 개념에 약한 사람들이 리얼돔의 객체로 반환된 태그를 직접 건드리게 된다면 리액트 태그의 동작에 버그가 유발될 수 있다.
+- 따라서 JSX에 의해 생성된 객체를 사용할 때는 위와 같이 함수를 만들어서 `inputTagRef.current`의 값을 가져다 쓸 수만 있게 읽기 전용으로 사용하게 하며, 직접적으로 `inputTagRef.current`를 사용하여 속성을 변경하지 않도록 `inputTagRef.current`의 코드를 최대한 사용하지 않는 패턴에 익숙해지도록 만드는 것이 좋다.
+- 물론 꼭 함수의 형태로 쓰지 않아도 되며, 어쩔 수 없이 태그의 속성을 직접 변경해야 하는 경우도 있기 때문에 가능하다면 직접 태그 객체에 접근하는 코드를 사용하지 않게 한다 정도로 개념을 잡도록 한다.
+
 ---
 ## 전체 코드
 ```js
