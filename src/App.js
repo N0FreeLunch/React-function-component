@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import componentList from './componentList';
 import NotFoundComponent from './NotFoundComponent';
 
@@ -23,14 +23,17 @@ const style = {
 };
 
 const getLastestKeyFromOrderedKeyObject = (literalObject) => {
-  return Object.keys(literalObject).sort().pop();
+  return Object.keys(literalObject).pop();
 }
 
 const lastComponentNumber = getLastestKeyFromOrderedKeyObject(componentList);
 
 function App() {
   const [componentNumber, setComponentNumber] = useState(lastComponentNumber);
-  const [inputValue, setInputValue] = useState();
+  const inputTagRef = useRef();
+  const getCurrentInputValue = () => {
+    return parseInt(inputTagRef.current.value);
+  }
 
   const prev = () => {
     if(1 < componentNumber) {
@@ -45,15 +48,11 @@ function App() {
   }
 
   const move = () => {
-    if(0 < inputValue && inputValue <= lastComponentNumber) {
-      setComponentNumber(inputValue);
+    if(0 < getCurrentInputValue() && getCurrentInputValue() <= lastComponentNumber) {
+      setComponentNumber(getCurrentInputValue());
     } else {
       alert('컴포넌트 번호가 정의된 범위 밖입니다.');
     }
-  }
-
-  const changeInputValue = (e) => {
-    setInputValue(parseInt(e.target.value));
   }
 
   return (
@@ -66,7 +65,7 @@ function App() {
       <br/><br/>
       <div style={style.inputTitle}>
         <div>input component number</div>
-        <input type='number' style={style.input} onChange={changeInputValue}></input>
+        <input type='number' style={style.input} ref={inputTagRef}></input>
         <button type='button' onClick={move}>move</button>
       </div>
       <br/><br/><br/>
