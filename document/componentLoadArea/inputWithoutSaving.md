@@ -17,5 +17,45 @@
 - 실제 제품을 만들 때는 물론 이것을 지킬 수 없는 경우가 있지만 가능하면 위의 사상을 지켜나가면서 스테이트의 변화로써 UI가 달라지도록 만들면, 상태가 아닌 다른 요인에 이해서 UI가 변경되는 경우를 최대한 줄일 수 있으므로 UI의 변화를 상태를 통해서 최대한 통제할 수 있다.
 - `useRef`는 리액트로 만들어진 태그를 선택하는 옵션이 제공되기 때문에, 태그를 리액트의 상태가 아닌 방식으로 변경할 수 있는 기능을 제공한다. 리액트에서 반환되는 JSX로 만들어지는 태그는 리액트의 상태에 따라서 결정이 되어야 하는데 리액트의 상태가 아닌 다른 방식으로 변경이 될 가능성이 생기고 실제로 리액트에 사상을 잘 모르면 리액트의 상태가 아닌 다른 방식으로 태그를 변경하게 되면서, 리액트의 상태 변화로 UI를 통제하지 못하여 기능 추가나 변경 등에서 통제하기 어려운 상활을 만들게 되고 UI가 뜻대로 움직이지 않는 버그를 만들 가능성을 높이게 된다.
 - 이런 문제점 때문에 `useRef`를 사용하는 것을 리액트에서는 최소한으로 하고, 리액트의 스테이트를 중심으로 코딩하는 방식을 권장한다. 하지만 불필요한 컴포넌트 함수의 재실행을 줄이는 최적화 하기 위해서는 `useRef`를 사용해야 한다. 이런 경우 UI에 영향을 주지 않는 방식인 `useRef`로 반환되는 값에 input 태그에서 받은 값만을 넣는 방식으로 사용하고, 태그를 직접 참조하도록 만드는 방식을 피하여 리얼돔을 직접 변경할 가능성을 최대한 줄이는 코딩을 하는 편이 좋다.
-- `useRef`에 JSX의 `Ref` 속성으로 태그를 지정할 경우, `useRef`에서 반환 되는 객체안의 태그는 값을 변경하는 방식으로 사용하는 것을 최대한 배제하고 태그 객체가 제공하는 값만을 사용하는 방식으로 읽기 전용의 방식으로 사용하는 것을 추천한다.
+- `useRef`에 JSX의 `Ref` 속성으로 태그를 지정할 경우, `useRef()`에서 반환 되는 객체안의 태그는 값을 변경하는 방식으로 사용하는 것을 최대한 배제하고 태그 객체가 제공하는 값만을 사용하는 방식으로 읽기 전용의 방식으로 사용하는 것을 추천한다.
 - 물론 자바스크립트의 문법으로 계속 적으로 내부 값이 변경되는 객체 내부에서 참조되는 값을 읽기 전용으로 강제할 수 있는 기능은 없기 때문에 문법적인 제약을 넣지는 못하고 코딩을 통해서 주의를 해 주어야 한다.
+
+### useRef에 태그 담기
+#### state를 사용하지 않고 useRef를 사용하도록 변경하기
+```js
+const move = () => {
+  if(0 < inputValueRef.current && inputValueRef.current <= lastComponentNumber) {
+    setComponentNumber(inputValueRef.current);
+  } else {
+    alert('컴포넌트 번호가 정의된 범위 밖입니다.');
+  }
+}
+```
+- 위 코드를 다음과 같이 바꾼다.
+```js
+  const move = () => {
+    if(0 < parseInt(inputTagRef.current.value) && parseInt(inputTagRef.current.value) <= lastComponentNumber) {
+      setComponentNumber(parseInt(inputTagRef.current.value));
+    } else {
+      alert('컴포넌트 번호가 정의된 범위 밖입니다.');
+    }
+  }
+```
+- `useRef()` 함수로 반환되는 객체의 `current` 키의 값에 태그가 참조되기 때문에 태그의 `value` 속성의 값을 얻기 위해서는 `태그.value` 방식으로 사용해야 하고 `inputTagRef.current`가 지정한 태그를 참조하고 있으므로 `inputTagRef.current.value` 꼴로 써 준다.
+- 이 때, 태그에서 value 속성으로 반환되는 대상은 문자열이므로 수의 비교는 Number 타입으로 비교를 해야 하기 때문에 문자열 타입을 수 타입으로 바꾸어 주는 `parseInt()` 함수를 사용하였다.
+
+```js
+  const changeInputValue = (e) => {
+    inputValueRef.current = parseInt(e.target.value);
+  }
+```
+- 위 코드는 삭제한다. 왜냐하면 `onChange` 이벤트를 통해서 input 태그에 입력된 값을 저장하는 방식을 사용하지 않기 때문이다.
+
+```js
+<input type='number' style={style.input} onChange={changeInputValue}></input>
+```
+- 위 코드를 다음과 같이 바꾼다.
+```js
+<input type='number' style={style.input} ref={inputTagRef}></input>
+```
+- `onChange`으로 입력된 값을 저장하는 방식을 쓰지 않고, 위 JSX 태그를 `inputTagRef`에서 참조해서 사용하는 방식으로 바뀌었기 때문에 유저의 입력 값을 `inputTagRef.current.value` 방식으로 얻을 수 있게 되므로 `onChange`를 지워주고 JSX 태그를 `useRef`에서 가져다 쓸 수 있도록 만들어주는 `ref={inputTagRef}`를 사용하였다.
