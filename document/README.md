@@ -16,3 +16,6 @@
     - [useRef로 랜더링 리소스 최적화하기](./componentLoadArea/renderingOptimizationWithUseRef.md)
     - [리얼돔과 가상돔](./componentLoadArea/realDomAndVirtualDom.md)
     - [useRef로 태그 다루기](./componentLoadArea/inputWithoutSaving.md)
+
+4. 책에 소개된 예제 따라해 보기
+    - [JSX란 무엇인가?](./bookExamples/jsx.md)
