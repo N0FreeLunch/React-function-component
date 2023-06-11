@@ -3,7 +3,7 @@ function HelloReact() {
     <div>
       Hello <b>react</b>
     </div>
-  )
+  );
 }
 
 export default HelloReact;

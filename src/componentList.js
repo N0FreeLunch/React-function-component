@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-import Component01 from './components/01-JSX/HelloReact.jsx';
+import Component01 from './components/01-JSX/HelloReact';
 import Component02 from './components/02-FragmentWithModule/Fragment.jsx';
 import Component03 from './components/03-FragmentWithoutModule/Fragment.jsx';
 import Component04 from './components/04-variableInJSX/VariableJSX.jsx';
