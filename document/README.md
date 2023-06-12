@@ -21,3 +21,4 @@
     - [JSX란 무엇인가?](./bookExamples/jsx.md)
     - [index.js](./bookExamples/indexDotJs.md)
     - [Fragment](./bookExamples/fragment.md)
+    - [JSX 내에 변수 불러오기](./bookExamples/variableInJsx.md)
