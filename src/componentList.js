@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
 
 import Component01 from './components/01-JSX/HelloReact';
-import Component02 from './components/02-FragmentWithModule/Fragment.jsx';
-import Component03 from './components/03-FragmentWithoutModule/Fragment.jsx';
-import Component04 from './components/04-variableInJSX/VariableJSX.jsx';
+import Component02 from './components/02-FragmentWithModule/Fragment.js';
+import Component03 from './components/03-JsxReturnComponent/JsxReturnComponent.js';
+import Component04 from './components/04-FragmentWithoutModule/Fragment.jsx';
+// import Component04 from './components/04-variableInJSX/VariableJSX.jsx';
 import Component05 from './components/05-ReactConditoion/Index.jsx';
 import ErrorComponent06 from './components/06-renderUndefine/RenderUndefine.jsx';
 import Component07 from './components/07-preventUndefineRender/PreventUndefinedRender.jsx'
