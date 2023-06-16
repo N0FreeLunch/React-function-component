@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+
 const JsxReturnComponent = (jsx) => (<Fragment>{jsx}</Fragment>);
 
 function FragmentJSX() {

@@ -1,11 +1,12 @@
 ## 프레그먼트 태그
 ### 컴포넌트 파일 생성하기
-- src/components/02-FragmentWithModule/Fragment.jsx
+- src/components/02-Fragment/FragmentWithModule.js
+- src/components/02-Fragment/Index.js
 - 위 경로에 자바스크립트 파일을 생성한다.
 - src/componentList.js 파일의 코드를 다음과 같이 세팅한다.
 ```js
 // ...
-import Component02 from './components/02-FragmentWithModule/Fragment.js';
+import Component02 from './components/02-Fragment/Index;
 // ...
 
 const componentList = {
@@ -16,6 +17,25 @@ const componentList = {
 ```
 
 ### 예제 코드
+src/components/02-Fragment/Index.js
+```js
+import FragmentWithModule from './FragmentWithModule';
+
+function Index() {
+  return (
+    <div>
+      <div description="fragment_component_area">
+        Fragment JSX 태그를 사용한 경우
+        <FragmentWithModule/>
+      </div>
+    </div>
+  );
+}
+
+export default Index;
+```
+
+src/components/02-Fragment/FragmentWithModule.js
 ```js
 import { Fragment } from 'react';
 
@@ -32,12 +52,13 @@ export default FragmentJSX;
 ```
 - 브라우저에서 랜더링된 HTML 태그를 보면, 다믐과 같은 태그가 나온다.
 ```html
-<div style="border: 1px solid black;">
-    <h1>리액트 안녕!</h1>
-    <h2>잘 작동하니?</h2>
+<div description="fragment_component_area">
+  Fragment JSX 태그를 사용한 경우
+  <h1>리액트 안녕!</h1>
+  <h2>잘 작동하니?</h2>
 </div>
 ```
-- `<div style="border: 1px solid black;">` `</div>` 영역은 컴포넌트를 로딩하는 영역이었다.
+- `<div description="fragment_component_area">` `</div>` 영역은 컴포넌트를 감싸는 영역이다.
 - 따라서 `FragmentJSX` 컴포넌트에 의해 랜더링 된 태그는 다음과 같다.
 ```html
 <h1>리액트 안녕!</h1>
@@ -85,22 +106,35 @@ export default FragmentJSX;
 
 ## 컴포넌트 함수의 인자로 JSX 받아서 랜더링하기
 ### 컴포넌트 파일 생성하기
-- src/components/03-JsxReturnComponent/JsxReturnComponent.js
+- src/components/02-Fragment/JsxReturnComponent.js
 - 위 경로에 자바스크립트 파일을 생성한다.
-- src/componentList.js 파일의 코드를 다음과 같이 세팅한다.
-```js
-// ...
-import Component03 from './components/03-JsxReturnComponent/JsxReturnComponent.js';
-// ...
-
-const componentList = {
-    // ...
-    3: <Component03/>,
-    // ...
-}
-```
 
 ### 예제 코드
+src/components/02-Fragment/Index.js
+```js
+import FragmentWithModule from './FragmentWithModule';
+import JsxReturnComponent from './JsxReturnComponent';
+
+function Index() {
+  return (
+    <div>
+      <div description="fragment_component_area">
+        Fragment JSX 태그를 사용한 경우
+        <FragmentWithModule/>
+      </div>
+      <hr/>
+      <div description="jsx_return_component_area">
+        함수의 인자로 태그를 전달하여 JSX로 출력하기
+        <JsxReturnComponent/>
+      </div>
+    </div>
+  );
+}
+
+export default Index;
+```
+
+src/components/02-Fragment/JsxReturnComponent.js
 ```js
 import { Fragment } from 'react';
 const JsxReturnComponent = (jsx) => (<Fragment>{jsx}</Fragment>);
@@ -126,23 +160,41 @@ export default FragmentJSX;
 
 ## `<></>` 사용하기
 ### 컴포넌트 파일 생성하기
-- src/components/04-FragmentWithoutModule/Fragment.jsx
+- src/components/02-Fragment/FragmentWithoutModule.js
 - 위 경로에 자바스크립트 파일을 생성한다.
-- src/componentList.js 파일의 코드를 다음과 같이 세팅한다.
-```js
-// ...
-import Component04 from './components/04-FragmentWithoutModule/Fragment.jsx';
-// ...
-
-const componentList = {
-    // ...
-    4: <Component04/>,
-    // ...
-}
-```
 
 ### 예제 코드
-- `import { Fragment } from 'react';`로 `Fragment` 컴포넌트를 리액트 라이브러리에서 가져와서 쓰는 것은 불편하다. 랭더링시 가장 바깥에 감싼 태그를 사라지게 하는 것은 자주 사용하는 코드이다. 따라서 리액트에서는 라이브러리에서 꺼내 쓰지 않고도 사용할 수 있도록 `<></>`라는 축약 표기를 제공한다.
+src/components/02-Fragment/Index.js
+```js
+import FragmentWithModule from './FragmentWithModule';
+import FragmentWithoutModule from './FragmentWithoutModule';
+import JsxReturnComponent from './JsxReturnComponent';
+
+function Index() {
+  return (
+    <div>
+      <div description="fragment_component_area">
+        Fragment JSX 태그를 사용한 경우
+        <FragmentWithModule/>
+      </div>
+      <hr/>
+      <div description="abbreviation_fragment_component_area">
+      Fragment의 축약형 태그를 사용한 경우
+        <FragmentWithoutModule/>
+      </div>
+      <hr/>
+      <div description="jsx_return_component_area">
+        함수의 인자로 태그를 전달하여 JSX로 출력하기
+        <JsxReturnComponent/>
+      </div>
+    </div>
+  );
+}
+
+export default Index;
+```
+
+src/components/02-Fragment/FragmentWithoutModule.js
 ```js
 function Fragment() {
   return (
@@ -155,6 +207,7 @@ function Fragment() {
 
 export default Fragment;
 ```
+- `import { Fragment } from 'react';`로 `Fragment` 컴포넌트를 리액트 라이브러리에서 가져와서 쓰는 것은 불편하다. 랭더링시 가장 바깥에 감싼 태그를 사라지게 하는 것은 자주 사용하는 코드이다. 따라서 리액트에서는 라이브러리에서 꺼내 쓰지 않고도 사용할 수 있도록 `<></>`라는 축약 표기를 제공한다.
 - 위의 예제를 보면 `Fragment` 컴포넌트를 리액트 라이브러리에서 가져오지 않았는데도 사용할 수 있다는 것을 확인할 수 있다.
 - `<Fragment>` 태그 대신에 `<> </>`를 사용하면 간단하게 사용할 수 있다.
 - HTML에서 &lt;는 왼쪽이 뾰족한 꺽쇠 &gt;는 오른쪽이 뾰족한 꺽쇠이다. `<> </>`는 태그 기호라서 브라우저에 로드될 때는 태그로 변환이 된다. 따라서 화면에 직접 꺽쇠를 표시해야 할 때는 `&lt;` `&gt;`를 사용하여 꺽쇠 문자를 화면에 랜더링 시킬 수 있다.

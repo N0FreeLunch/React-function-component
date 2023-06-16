@@ -1,12 +1,10 @@
 import React, { Fragment } from 'react';
 
 import Component01 from './components/01-JSX/HelloReact';
-import Component02 from './components/02-FragmentWithModule/Fragment.js';
-import Component03 from './components/03-JsxReturnComponent/JsxReturnComponent.js';
-import Component04 from './components/04-FragmentWithoutModule/Fragment.jsx';
-import Component05 from './components/05-variableInJSX/VariableJSX';
-// import Component05 from './components/05-ReactConditoion/Index.jsx';
-import ErrorComponent06 from './components/06-renderUndefine/RenderUndefine.jsx';
+import Component02 from './components/02-Fragment/Index.js';
+import Component03 from './components/03-variableInJSX/VariableJSX.js';
+import Component04 from './components/04-ReactConditoion/Index.jsx';
+// import ErrorComponent06 from './components/06-renderUndefine/RenderUndefine.jsx';
 import Component07 from './components/07-preventUndefineRender/PreventUndefinedRender.jsx'
 import Component08 from './components/08-undefinedVariableInJSX/UndefinedVariableInJSX.jsx';
 import Component09 from './components/09-replaceUndefinedVariableInJSX/ReplaceUndefinedVariableInJSX.jsx';
@@ -82,7 +80,7 @@ const componentList = {
   2: <Component02/>,
   3: <Component03/>,
   4: <Component04/>,
-  5: <Component05/>,
+  // 5: <Component05/>,
   6: <Fragment>error component06</Fragment>,
   7: <Component07/>,
   8: <Component08/>,
