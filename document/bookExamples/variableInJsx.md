@@ -5,12 +5,12 @@
 - src/componentList.js 파일의 코드를 다음과 같이 세팅한다.
 ```js
 // ...
-import Component05 from './components/05-variableInJSX/VariableJSX';
+import Component04 from './components/04-variableInJSX/VariableJSX';
 // ...
 
 const componentList = {
     // ...
-    5: <Component05/>,
+    4: <Component04/>,
     // ...
 }
 ```
