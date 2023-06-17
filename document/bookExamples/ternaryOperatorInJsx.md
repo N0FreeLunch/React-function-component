@@ -160,6 +160,7 @@ export default UsingFunctionInsteadOfTernaryOperatator;
 - 복잡한 코드가 필요없다면 삼항 연산자를 쓰는 게 더 깔끔한 문법이 되기 때문에 삼항 연산자를 사용한다.
 - 그리고 위와 같이 간단한 코드의 경우는 괜찮지만 리액트에서 JSX 내부에 태그 이외의 복잡한 로직을 넣지 않는 것이 태그의 구조를 더 깔끔하게 만들기 때문에 위와 같이 즉시 실행 함수를 사용하기 보다는 JSX 밖에서 함수를 정의하여 사용한다. 
 
+### JSX 외부로 조건부 태그로직 빼기
 src/components/04-ReactConditoion/DisplayDifferentTagByCondition.js
 ```js
 import React from 'react';
@@ -185,6 +186,7 @@ function DisplayDifferentTagByCondition () {
 export default DisplayDifferentTagByCondition;
 ```
 - JSX 태그에서 다른 부분에서 가져온 태그의 내부 구조를 알 수 있도록 하는 편이 좋을까? 드러내지 않는 경우가 좋을까? 이건 외부에서 가져온 태그가 어느 정도의 복잡도를 가지고 있는지에 따라 달라진다. 간단한 구조라면 JSX 내부에 위치시켜서 어떻게 동작하는지 알 게 하는 편이 좋지만, 복잡한 경우는 위와 같이 외부로 빼서 JSX에는 이름으로만 알 수 있도록 만드는 것이 좋다.
+- `differentTagByCondition` 변수 이름의 첫 글자를 대문자로 만들어서 JSX 내에서 `{differentTagByCondition()}`가 아닌 `<DifferentTagByCondition/>`와 같은 방식으로도 사용할 수 있다.
 
 ### 삼항 연산자를 쓰면 좋은점
 - 웹 프로그래밍의 MVC 패턴에서 View를 구분한 것은 뷰에 관한 관심을 집중하겠다는 것이다. MVC 패턴으로 구성된 뷰는 화면에 보여주는 것에 관한 부분에 집중하기 때문에 HTML의 랜더링되는 태그의 구조를 한 눈에 이해할 수 있도록 구성한다. 이 때 조건문에 따라서 JSX내의 값에 다르게 세팅을 하는 경우에 외부의 로직을 가져다 쓰는 것 보다 삼항 연산자를 사용하면 내부 구조에서 어떻게 분기 되는지 알 수 있기 때문에 좀 더 알기 쉬운 코드를 만들어 낼 수 있다.
