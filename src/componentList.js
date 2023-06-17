@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import Component01 from './components/01-JSX/HelloReact';
 import Component02 from './components/02-Fragment/Index.js';
 import Component03 from './components/03-variableInJSX/VariableJSX.js';
-import Component04 from './components/04-ReactConditoion/Index.jsx';
+import Component04 from './components/04-ReactConditoion/Index';
 // import ErrorComponent06 from './components/06-renderUndefine/RenderUndefine.jsx';
 import Component07 from './components/07-preventUndefineRender/PreventUndefinedRender.jsx'
 import Component08 from './components/08-undefinedVariableInJSX/UndefinedVariableInJSX.jsx';

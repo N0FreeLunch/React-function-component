@@ -24,3 +24,4 @@
     - [JSX 내에 변수 불러오기](./bookExamples/variableInJsx.md)
     - [함수 스코프와 블록 스코프](./bookExamples/variableScope.md)
     - [let과 const](./bookExamples/letAndConst.md)
+    - [JSX내의 삼항연산자](./bookExamples/ternaryOperatorInJsx.md)

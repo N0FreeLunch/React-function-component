@@ -6,13 +6,12 @@ function ConditionTrue () {
   return (
     <div>
     {name === 'React' ? (
-      <h1>리액트입니다.</h1>
+      <h1>조건문이 참인 경우 랜더링되는 태그</h1>
     ) : (
-      <h2>리액트가 아닙니다.</h2>
+      <h2>조건문이 거짓인 경우 랜더링되는 태그</h2>
     )}
     </div>
   );
 }
-
 
 export default ConditionTrue;
