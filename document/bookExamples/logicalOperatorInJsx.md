@@ -134,4 +134,78 @@ console.log(0 || '' || '이 부분의 값이 실행된다.' || '이 부분의 �
 ```
 - 첫 번째 값은 `undefined`으로 falsy이다. 두 번째 값은 `null`으로 falsy이다. 세 번째 값은 `''`으로 falsy이다. truely에 해당하는 값이 나오지 않았으므로 계속 OR 연산자로 연결된 다음 값을 확인한다. 네 번째 값은 `false`으로 falsy이다. 조건식 전체가 실행되었으나 모두 falsy이므로 조건식의 결과는 `false`로 평가된다. 조건식의 마지막으로 실행된 값이 `false`이므로 `false`를 반환한다.
 
+### 요약
+- 자바스크립트의 AND 연산자 또는 OR 연산자를 통해 연결될 때 조건식에서 연산이 멈춘 부분의 값이 반환된다.
+- 전체 조건식이 `true`로 평가 될 때는 truely 값이 반환되며, 전체 조건식이 `false`로 평가되면 falsy 값이 반환된다.
+
+## JSX 내에서의 논리 연산자
+src/components/05-LogicalOperator/Index.js
+```js
+import React from 'react';
+import AndOperator from './AndOperator';
+import TrueFalsInJsx from './TrueFalseInJsx';
+import ZeroCondition from './ZeroCondition';
+
+function Index() {
+	return (
+		<div>
+			<AndOperator/>
+			<hr/>
+			<TrueFalsInJsx/>
+			<hr/>
+			<ZeroCondition/>
+		</div>
+	);
+};
+
+export default Index;
+```
+
+src/components/05-LogicalOperator/AndOperator.js
+```js
+function AndOperator() {
+	const name = 'React';
+	return (
+		<div>
+			{name === 'React' && <h1>조건문이 참입니다.</h1>}
+			{name === 'Vue' && <h1>조건문이 거짓입니다.</h1>}
+		</div>
+	);
+}
+
+export default AndOperator;
+```
+- `name === 'React'` 부분은 조건문이 참이다. AND 연산으로 이어져 있으므로 조건식의 참/거짓을 판단하기 위해서는 falsy인 값이 나오는지 확인해야한다. 따라서 `<h1>조건문이 참입니다.</h1>` 부분을 실행하고 이 값이 조건식에서 가장 마지막에 실행된 값이므로 이 값을 반환한다.
+- `name === 'Vue'` 부분은 조건문이 거짓이다. AND 연산으로 이어진 조건식의 경우 조건식의 참/저깃을 판단하기 위해서는 falsy인 값이 하나라도 나오면 falsy 이므로, falsy인 값이 나오는 부분에서 실행이 끝난다. `name === 'Vue'` 부분에서 이미 falsy인 값이 나왔으므로 뒤의 `<h1>조건문이 거짓입니다.</h1>` 부분은 실행되지 않는다. 반환된 값은 `name === 'Vue'`의 결과 이므로 false가 반환된다.
+- 위의 설명은 원리를 설명하는 것이며, 간단하게 다음과 같이 이해하면 된다. `{ 조건문 && 태그 }` 구문에서 조건문이 참이면 태그를 JSX 내부에서 사용하고, 조건문이 거짓이면 태그를 사용하지 않는다.
+
+#### JSX 내에서 true/false
+- 위의 코드에서 `{name === 'Vue' && <h1>조건문이 거짓입니다.</h1>}`의 경우에는 `<h1>조건문이 거짓입니다.</h1>` 부분이 실행되지 않으며 조건문에 해당하는 부분인 `name === 'Vue'`의 결과인 `false`가 실행되고 반환된다.
+
+src/components/05-LogicalOperator/TrueFalseInJsx.js
+```js
+function TrueFalsInJsx() {
+	return (
+		<div>
+			{false}
+			<hr/>
+			{true}
+		</div>
+	);
+};
+
+export default TrueFalsInJsx;
+```
+- JSX 내에서 `{false}` 또는 `{true}`를 사용하여 브라우저에 랜더링된 결과를 보면 `<div><hr></div>`으로 아무런 태그도 생성되지 않은 것을 볼 수 있다.
+- `{ 조건문 && 태그 }` 구분에서 조건문이 `false`인 경우에는 JSX로 랜더링 되는 태그에는 아무것도 나오지 않는 것을 확인할 수 있다.
+
+#### 삼항연산자로 표현해 보기
+```js
+{name === 'Vue' && <h1>조건문이 거짓입니다.</h1>}
+```
+```js
+{name === 'Vue' ? <h1>조건문이 거짓입니다.</h1> : name === 'Vue'}
+```
+- AND 연산자를 사용한 방식을 삼항연산자 방식으로 사용하면 위와 같다. 삼항연산자를 사용할 때 조건문이 거짓일 때 반환하는 부분을 `name === 'Vue'`으로 했는데 거짓일 경우 조건식의 값이 반환되고 조건문은 경우에 따라 참이 반환될지 거짓이 반환될지 알지 못하는 경우가 있기 때문에 조건식이 반환하는 값 그대로 반환하기 위해서 위와 같이 적어 주었다.
+
 
