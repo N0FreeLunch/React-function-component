@@ -1,6 +1,6 @@
 import React from 'react';
 import AndOperator from './AndOperator';
-import TrueFalsInJsx from './TrueFalseInJsx';
+import TrueFalseInJsx from './TrueFalseInJsx';
 import OrOperator from './OrOperator';
 import ZeroCondition from './ZeroCondition';
 
@@ -9,7 +9,7 @@ function Index() {
 		<div>
 			<AndOperator/>
 			<hr/>
-			<TrueFalsInJsx/>
+			<TrueFalseInJsx/>
 			<hr/>
 			<OrOperator/>
 			<hr/>

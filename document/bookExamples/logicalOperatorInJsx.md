@@ -193,14 +193,14 @@ src/components/05-LogicalOperator/Index.js
 ```js
 import React from 'react';
 import AndOperator from './AndOperator';
-import TrueFalsInJsx from './TrueFalseInJsx';
+import TrueFalseInJsx from './TrueFalseInJsx';
 
 function Index() {
 	return (
 		<div>
 			<AndOperator/>
 			<hr/>
-			<TrueFalsInJsx/>
+			<TrueFalseInJsx/>
 		</div>
 	);
 };
@@ -210,7 +210,7 @@ export default Index;
 
 src/components/05-LogicalOperator/TrueFalseInJsx.js
 ```js
-function TrueFalsInJsx() {
+function TrueFalseInJsx() {
 	return (
 		<div>
 			{false}
@@ -220,7 +220,7 @@ function TrueFalsInJsx() {
 	);
 };
 
-export default TrueFalsInJsx;
+export default TrueFalseInJsx;
 ```
 - JSX 내에서 `{false}` 또는 `{true}`를 사용하여 브라우저에 랜더링된 결과를 보면 `<div><hr></div>`으로 아무런 태그도 생성되지 않은 것을 볼 수 있다.
 - `{ 조건문 && 태그 }` 구분에서 조건문이 `false`인 경우에는 JSX로 랜더링 되는 태그에는 아무것도 나오지 않는 것을 확인할 수 있다.
@@ -239,7 +239,7 @@ src/components/05-LogicalOperator/Index.js
 ```js
 import React from 'react';
 import AndOperator from './AndOperator';
-import TrueFalsInJsx from './TrueFalseInJsx';
+import TrueFalseInJsx from './TrueFalseInJsx';
 import OrOperator from './OrOperator';
 
 function Index() {
@@ -247,7 +247,7 @@ function Index() {
 		<div>
 			<AndOperator/>
 			<hr/>
-			<TrueFalsInJsx/>
+			<TrueFalseInJsx/>
 			<hr/>
 			<OrOperator/>
 		</div>
@@ -284,7 +284,7 @@ src/components/05-LogicalOperator/Index.js
 ```js
 import React from 'react';
 import AndOperator from './AndOperator';
-import TrueFalsInJsx from './TrueFalseInJsx';
+import TrueFalseInJsx from './TrueFalseInJsx';
 import OrOperator from './OrOperator';
 import ZeroCondition from './ZeroCondition';
 
@@ -293,7 +293,7 @@ function Index() {
 		<div>
 			<AndOperator/>
 			<hr/>
-			<TrueFalsInJsx/>
+			<TrueFalseInJsx/>
 			<hr/>
 			<OrOperator/>
 			<hr/>
