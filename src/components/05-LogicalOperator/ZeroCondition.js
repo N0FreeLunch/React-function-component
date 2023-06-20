@@ -1,6 +1,10 @@
 function ZeroCondition() {
   const number = 0;
-  return number && <div>내용</div>;
+  return (
+    <div>
+      {number && <div>내용</div>}
+    </div>
+    );
 };
 
 export default ZeroCondition;

@@ -277,3 +277,46 @@ export default OrOperator;
 - 일반적으로 `조건문 || 조건문이_거짓일_때_실행되는_값`의 방식 보다는 `조건문 && 조건문이_참일_때_실행되는_값` 형식으로 많이 쓰고 리액트를 배우는 입장에서도 두 번째 방식으로 배우기 때문에 OR 연산자를 쓴 표현에 사람들이 익숙하지 않고 원리를 이해하지 못하는 경우가 있기 때문에 AND 연산자로 표기하는 방식을 쓰는 편이 좋다.
 - `{ isEvenNumber(5) || <h1>짝수가 아닙니다.</h1> }`의 코드는 `{ !isEvenNumber(5) && <h1>짝수가 아닙니다.</h1> }`와 같은 방식으로 사용하자.
 
+## JSX에서 조건문이 0인 경우
+- JSX에서 조건문이 0인 경우 특별히 조심해야 한다. `{ 조건문 && 조건문이_참일_때_반환되는_값 }`이 구문에서 조건문이 falsy인 경우 `조건문` 부분의 값이 반환된다. 이 조건문의 값은 `false`로 형변환이 되지 않고 값 그대로를 JSX에 랜더링시킨다. 자바스크립트에서 falsy에 해당하는 값은 `0`, '', `null`, `undefined`, `false`의 값이 있는데 0인 경우 JSX에 `0` 값으로 랜더링이 되며, 나머지는 랜더링 되지 않는다.
+
+src/components/05-LogicalOperator/Index.js
+```js
+import React from 'react';
+import AndOperator from './AndOperator';
+import TrueFalsInJsx from './TrueFalseInJsx';
+import OrOperator from './OrOperator';
+import ZeroCondition from './ZeroCondition';
+
+function Index() {
+	return (
+		<div>
+			<AndOperator/>
+			<hr/>
+			<TrueFalsInJsx/>
+			<hr/>
+			<OrOperator/>
+			<hr/>
+			<ZeroCondition/>
+		</div>
+	);
+};
+
+export default Index;
+```
+
+src/components/05-LogicalOperator/ZeroCondition.js
+```js
+function ZeroCondition() {
+  const number = 0;
+  return (
+    <div>
+      {number && <div>내용</div>}
+    </div>
+    );
+};
+
+export default ZeroCondition;
+```
+- `number` 부분은 `0`이므로 falsy이다. 따라서 `<div>내용</div>` 부분은 실행되지 않고 `number` 부분만 실행이 된다. 논리 연산자에 의해 연결된 조건문은 마지막에 실행된 부분의 값을 반환하므로 `number` 값을 반환하는데 이 값이 `0`이다. 그런데 다른 falsy에 해당하는 값과 달리 0의 경우 랜더링이 된다. 따라서 화면에 0이 출력 되는 것을 확인할 수 있다.
+- 조건문이 `0`일 때 `0`을 출력하지 않고 태그를 랜더링하지 않으려면, 자바스크립트에서는 `{number !== 0 && <div>내용</div>}`에서 조건문의 값이 `0`이 될 때는 조건문이 `false`가 되기 때문에 조건문이 랜더링되지 않도록 코드를 작성해 주어야 한다.
