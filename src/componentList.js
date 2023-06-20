@@ -5,10 +5,10 @@ import Component02 from './components/02-Fragment/Index.js';
 import Component03 from './components/03-variableInJSX/VariableJSX.js';
 import Component04 from './components/04-ReactConditoion/Index';
 import Component05 from './components/05-LogicalOperator/Index';
-// import ErrorComponent06 from './components/06-renderUndefine/RenderUndefine.jsx';
-import Component07 from './components/07-preventUndefineRender/PreventUndefinedRender.jsx'
-import Component08 from './components/08-undefinedVariableInJSX/UndefinedVariableInJSX.jsx';
-import Component09 from './components/09-replaceUndefinedVariableInJSX/ReplaceUndefinedVariableInJSX.jsx';
+import Component06 from './components/06-renderFalsy/Index';
+// import Component07 from './components/07-preventUndefineRender/PreventUndefinedRender.jsx'
+// import Component08 from './components/08-undefinedVariableInJSX/UndefinedVariableInJSX.jsx';
+// import Component09 from './components/09-replaceUndefinedVariableInJSX/ReplaceUndefinedVariableInJSX.jsx';
 import Component10 from './components/10-styledJSX/StyledJSX.jsx';
 import Component11 from './components/11-styleAtrributeInJSX/StyleAttributeInJSX.jsx';
 import Component12 from './components/12-classInJSX/ClassInJSX.jsx';
@@ -82,10 +82,10 @@ const componentList = {
   3: <Component03/>,
   4: <Component04/>,
   5: <Component05/>,
-  6: <Fragment>error component06</Fragment>,
-  7: <Component07/>,
-  8: <Component08/>,
-  9: <Component09/>,
+  6: <Component06/>,
+  // 7: <Component07/>,
+  // 8: <Component08/>,
+  // 9: <Component09/>,
   10: <Component10/>,
   11: <Component11/>,
   12: <Component12/>,
