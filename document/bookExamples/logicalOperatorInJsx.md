@@ -139,21 +139,28 @@ console.log(0 || '' || '이 부분의 값이 실행된다.' || '이 부분의 �
 - 전체 조건식이 `true`로 평가 될 때는 truely 값이 반환되며, 전체 조건식이 `false`로 평가되면 falsy 값이 반환된다.
 
 ## JSX 내에서의 논리 연산자
+src/componentList.js
+```js
+// ...
+import Component05 from './components/05-LogicalOperator/Index';
+// ...
+
+const componentList = {
+    // ...
+    5: <Component05/>,
+    // ...
+}
+```
+
 src/components/05-LogicalOperator/Index.js
 ```js
 import React from 'react';
 import AndOperator from './AndOperator';
-import TrueFalsInJsx from './TrueFalseInJsx';
-import ZeroCondition from './ZeroCondition';
 
 function Index() {
 	return (
 		<div>
 			<AndOperator/>
-			<hr/>
-			<TrueFalsInJsx/>
-			<hr/>
-			<ZeroCondition/>
 		</div>
 	);
 };
@@ -182,6 +189,25 @@ export default AndOperator;
 #### JSX 내에서 true/false
 - 위의 코드에서 `{name === 'Vue' && <h1>조건문이 거짓입니다.</h1>}`의 경우에는 `<h1>조건문이 거짓입니다.</h1>` 부분이 실행되지 않으며 조건문에 해당하는 부분인 `name === 'Vue'`의 결과인 `false`가 실행되고 반환된다.
 
+src/components/05-LogicalOperator/Index.js
+```js
+import React from 'react';
+import AndOperator from './AndOperator';
+import TrueFalsInJsx from './TrueFalseInJsx';
+
+function Index() {
+	return (
+		<div>
+			<AndOperator/>
+			<hr/>
+			<TrueFalsInJsx/>
+		</div>
+	);
+};
+
+export default Index;
+```
+
 src/components/05-LogicalOperator/TrueFalseInJsx.js
 ```js
 function TrueFalsInJsx() {
@@ -207,4 +233,47 @@ export default TrueFalsInJsx;
 {name === 'Vue' ? <h1>조건문이 거짓입니다.</h1> : false}
 ```
 - AND 연산자를 사용한 방식을 삼항연산자 방식으로 사용하면 위와 같다. 삼항연산자를 사용할 때 조건문이 거짓일 때 반환하는 부분을 `false`으로 했는데 `name === 'Vue'` 부분이 거짓이면 `name === 'Vue'`의 결과가 반환이 되고, 이 값이 `false`이므로 삼항연산자의 거짓일 때 반환하는 부분의 값을 `false`으로 하였다.
+
+#### OR 연산자의 경우
+src/components/05-LogicalOperator/Index.js
+```js
+import React from 'react';
+import AndOperator from './AndOperator';
+import TrueFalsInJsx from './TrueFalseInJsx';
+import OrOperator from './OrOperator';
+
+function Index() {
+	return (
+		<div>
+			<AndOperator/>
+			<hr/>
+			<TrueFalsInJsx/>
+			<hr/>
+			<OrOperator/>
+		</div>
+	);
+};
+
+export default Index;
+```
+
+document/bookExamples/logicalOperatorInJsx.md
+```js
+function OrOperator() {
+  const isEvenNumber = (num) => {
+    return num%2 === 0;
+  };
+  
+  return (
+    <div>
+        { isEvenNumber(5) || <h1>짝수가 아닙니다.</h1> }
+    </div>
+  );
+}
+
+export default OrOperator;
+```
+- OR 연산자에 의해서 뒤에 있는 JSX 태그가 실행되기 위해서는 `조건문 || 조건문이_거짓일_때_실행되는_값`에서 조건문이 거짓이어야 뒤의 `||` 뒤의 값이 반환된다.
+- 일반적으로 `조건문 || 조건문이_거짓일_때_실행되는_값`의 방식 보다는 `조건문 && 조건문이_참일_때_실행되는_값` 형식으로 많이 쓰고 리액트를 배우는 입장에서도 두 번째 방식으로 배우기 때문에 OR 연산자를 쓴 표현에 사람들이 익숙하지 않고 원리를 이해하지 못하는 경우가 있기 때문에 AND 연산자로 표기하는 방식을 쓰는 편이 좋다.
+- `{ isEvenNumber(5) || <h1>짝수가 아닙니다.</h1> }`의 코드는 `{ !isEvenNumber(5) && <h1>짝수가 아닙니다.</h1> }`와 같은 방식으로 사용하자.
 
