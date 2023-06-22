@@ -5,7 +5,7 @@ import Component02 from './components/02-Fragment/Index.js';
 import Component03 from './components/03-variableInJSX/VariableJSX.js';
 import Component04 from './components/04-ReactConditoion/Index';
 import Component05 from './components/05-LogicalOperator/Index';
-import Component06 from './components/06-renderFalsy/Index';
+import Component06 from './components/06-renderNotJSX/Index';
 // import Component07 from './components/07-preventUndefineRender/PreventUndefinedRender.jsx'
 // import Component08 from './components/08-undefinedVariableInJSX/UndefinedVariableInJSX.jsx';
 // import Component09 from './components/09-replaceUndefinedVariableInJSX/ReplaceUndefinedVariableInJSX.jsx';
