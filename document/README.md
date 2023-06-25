@@ -26,3 +26,4 @@
     - [let과 const](./bookExamples/letAndConst.md)
     - [JSX내의 삼항연산자](./bookExamples/ternaryOperatorInJsx.md)
     - [JSX내의 로직 연산자](./bookExamples/logicalOperatorInJsx.md)
+    - [JSX내에서 다양한 값 랜더링해 보기](./bookExamples/renderVariousType.md)
