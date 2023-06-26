@@ -7,7 +7,7 @@ import Component04 from './components/04-ReactConditoion/Index';
 import Component05 from './components/05-LogicalOperator/Index';
 import Component06 from './components/06-renderNotJSX/Index';
 import Component07 from './components/07-styledJSX/Index';
-import Component12 from './components/12-classInJSX/ClassInJSX.jsx';
+import Component08 from './components/08-classInJSX/Index';
 import Component13 from './components/13-inputJSX/InputJSx.jsx';
 import Component14 from './components/14-comment/Comment.jsx';
 import Component15 from './components/15-classComponent/ClassComponent.jsx';
@@ -80,11 +80,11 @@ const componentList = {
   5: <Component05/>,
   6: <Component06/>,
   7: <Component07/>,
-  // 8: <Component08/>,
+  8: <Component08/>,
   // 9: <Component09/>,
   // 10: <Component10/>,
   // 11: <Component11/>,
-  12: <Component12/>,
+  // 12: <Component12/>,
   13: <Component13/>,
   14: <Component14/>,
   15: <Component15/>,
