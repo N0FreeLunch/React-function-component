@@ -1,8 +1,8 @@
-import TagStylingWithString from "./TagStylingWithString";
+import StyledJSX from "./StyledJSX";
 function Index() {
 	return (
 		<>
-			<TagStylingWithString/>
+			<StyledJSX/>
 		</>
 	);
 };
