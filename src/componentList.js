@@ -9,7 +9,7 @@ import Component06 from './components/06-renderNotJSX/Index';
 // import Component07 from './components/07-preventUndefineRender/PreventUndefinedRender.jsx'
 // import Component08 from './components/08-undefinedVariableInJSX/UndefinedVariableInJSX.jsx';
 // import Component09 from './components/09-replaceUndefinedVariableInJSX/ReplaceUndefinedVariableInJSX.jsx';
-import Component10 from './components/10-styledJSX/StyledJSX.jsx';
+import Component07 from './components/07-styledJSX/Index';
 import Component11 from './components/11-styleAtrributeInJSX/StyleAttributeInJSX.jsx';
 import Component12 from './components/12-classInJSX/ClassInJSX.jsx';
 import Component13 from './components/13-inputJSX/InputJSx.jsx';
@@ -83,10 +83,10 @@ const componentList = {
   4: <Component04/>,
   5: <Component05/>,
   6: <Component06/>,
-  // 7: <Component07/>,
+  7: <Component07/>,
   // 8: <Component08/>,
   // 9: <Component09/>,
-  10: <Component10/>,
+  // 10: <Component10/>,
   11: <Component11/>,
   12: <Component12/>,
   13: <Component13/>,
