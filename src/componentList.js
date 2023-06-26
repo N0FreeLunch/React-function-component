@@ -6,11 +6,7 @@ import Component03 from './components/03-variableInJSX/VariableJSX.js';
 import Component04 from './components/04-ReactConditoion/Index';
 import Component05 from './components/05-LogicalOperator/Index';
 import Component06 from './components/06-renderNotJSX/Index';
-// import Component07 from './components/07-preventUndefineRender/PreventUndefinedRender.jsx'
-// import Component08 from './components/08-undefinedVariableInJSX/UndefinedVariableInJSX.jsx';
-// import Component09 from './components/09-replaceUndefinedVariableInJSX/ReplaceUndefinedVariableInJSX.jsx';
 import Component07 from './components/07-styledJSX/Index';
-import Component11 from './components/11-styleAtrributeInJSX/StyleAttributeInJSX.jsx';
 import Component12 from './components/12-classInJSX/ClassInJSX.jsx';
 import Component13 from './components/13-inputJSX/InputJSx.jsx';
 import Component14 from './components/14-comment/Comment.jsx';
@@ -87,7 +83,7 @@ const componentList = {
   // 8: <Component08/>,
   // 9: <Component09/>,
   // 10: <Component10/>,
-  11: <Component11/>,
+  // 11: <Component11/>,
   12: <Component12/>,
   13: <Component13/>,
   14: <Component14/>,
