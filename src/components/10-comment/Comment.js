@@ -3,8 +3,12 @@ function Comment () {
   return (
     <>
       {/* comment1 */}
+      {
+        // comment2
+      }
       <div
-        className="react" // comment2
+        className="react" // comment3
+        /* comment4 */
       >
       // comment3
       /*
@@ -15,6 +19,5 @@ function Comment () {
     </>
   );
 }
-
 
 export default Comment;
