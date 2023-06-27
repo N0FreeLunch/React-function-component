@@ -17,10 +17,10 @@ src/components/09-closeTag/CloseTag.js
 function CloseTag () {
   return (
     <>
-    <input></input>
-    <br></br>
-    <br/>
-    <input/>
+			<input></input>
+			<br></br>
+			<br/>
+			<input/>
     </>
   );
 }
