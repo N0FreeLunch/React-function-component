@@ -30,3 +30,4 @@
     - [JSX 태그에 스타일 적용하기](./bookExamples/jsxTagStyling.md)
     - [JSX 태그에 class 속성 추가 및 CSS 파일 로드하기](./bookExamples/classInJsxAndLoadCss.md)
     - [JSX에서 태그 닫기](./bookExamples/closeTagInJsx.md)
+    - [JSX에서 주석 사용하기](./bookExamples/commentInJsx.md)
