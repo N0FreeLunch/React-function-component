@@ -32,3 +32,4 @@
     - [JSX에서 태그 닫기](./bookExamples/closeTagInJsx.md)
     - [JSX에서 주석 사용하기](./bookExamples/commentInJsx.md)
     - [문법 검사 도구 ESlint](./bookExamples/ESlint.md)
+    - [editorconfig를 사용한 IDE 코드 스타일 통일](./bookExamples/editorconfig.md)
