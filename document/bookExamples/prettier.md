@@ -14,7 +14,41 @@
 - 따라서 여러 IDE에서 지원되는 코드 포메터를 사용하는 것이 좋고, 자바스크립트의 경우에는 prettier가 유명한 만큼 다양한 IDE에서 지원되므로 어느 IDE를 사용하더라도 동일한 스타일의 코드 포멧을 생성할 수 있다는 장점이 있다.
 
 ### editorconfig의 설정과 충돌을 방지
-- prettier와 같은 코드 포메터는 사용자가 직접 실행하여 사용한다. 일부 코드 스타일의 경우 prettier가 제공하는 기능과 editorconfig가 제공하는 기능이 일치하는 대상이 있는데 prettier를 실행하면서 editorconfig에서 설정한 스타일을 덮어 씌우는 경우가 생긴다. 따라서 editorconfig에서 제공하는 기능이라면 prettier의 설정에서 제거하거나 editorconfig의 스타일과 prettier의 스타일을 일치시켜 주는 것이 필요하다.
+- prettier와 같은 코드 포메터는 사용자가 직접 실행하여 사용한다. 일부 코드 스타일의 경우 prettier가 제공하는 기능과 editorconfig가 제공하는 기능이 일치하는 대상이 있는데 prettier를 실행하면서 editorconfig에서 설정한 스타일을 덮어 씌우게 된다. 따라서 editorconfig에서 제공하는 기능이라면 prettier의 설정에서 제거하거나 editorconfig의 스타일과 prettier의 스타일을 일치시켜 주는 것이 필요하다.
+- prettier는 프로젝트 폴더에 `.editorconfig` 파일이 있는 경우, prettier와 중복되는 editorconfig의 설정을 주석 처리한다. [참고](https://prettier.io/docs/en/configuration.html#editorconfig)
+> If options.editorconfig is true and an .editorconfig file is in your project, Prettier will parse it and convert its properties to the corresponding Prettier configuration. This configuration will be overridden by .prettierrc, etc.
+- 따라서 `.editorconfig` 파일을 수정을 할 때 prettier가 변경하는 코드를 확인할 필요가 있다.
+
+#### prettier는 `.editorconfig`를 어떻게 변경할까?
+- 예시 코드를 보면...
+```js
+[*]
+charset = utf-8
+insert_final_newline = true
+end_of_line = lf
+indent_style = space
+indent_size = 2
+max_line_length = 80
+```
+- 위 파일을 다음과 같이 변경 시킨다.
+```js
+# Stop the editor from looking for .editorconfig files in the parent directories
+# root = true
+
+[*]
+# Non-configurable Prettier behaviors
+charset = utf-8
+insert_final_newline = true
+# Caveat: Prettier won’t trim trailing whitespace inside template strings, but your editor might.
+# trim_trailing_whitespace = true
+
+# Configurable Prettier behaviors
+# (change these if your Prettier config differs)
+end_of_line = lf
+indent_style = space
+indent_size = 2
+max_line_length = 80
+```
 
 ### prettier 설치하기
 - 비쥬얼 스튜디오 코드를 사용하고 있다면 다음 [링크](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)로 설치할 수 있다.
@@ -38,3 +72,15 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     }
 ```
+
+### 설정 파일 만들기
+- 프로젝트 폴더 최상단에 `.prettierrc`를 만든다.
+```js
+{
+  "singleQuote": true,
+  "semi" : true,
+  "useTabs" : false,
+  "tabWidth": 2
+}
+```
+- 위 설정 파일이 만들어지면, F1 버튼을 눌러서 `Format Document`를 눌렀을 때 코드 포멧이 바뀔 때 디폴트 옵션보다 위 옵션이 우선적으로 적용된다.
