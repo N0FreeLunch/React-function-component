@@ -15,3 +15,26 @@
 
 ### editorconfig의 설정과 충돌을 방지
 - prettier와 같은 코드 포메터는 사용자가 직접 실행하여 사용한다. 일부 코드 스타일의 경우 prettier가 제공하는 기능과 editorconfig가 제공하는 기능이 일치하는 대상이 있는데 prettier를 실행하면서 editorconfig에서 설정한 스타일을 덮어 씌우는 경우가 생긴다. 따라서 editorconfig에서 제공하는 기능이라면 prettier의 설정에서 제거하거나 editorconfig의 스타일과 prettier의 스타일을 일치시켜 주는 것이 필요하다.
+
+### prettier 설치하기
+- 비쥬얼 스튜디오 코드를 사용하고 있다면 다음 [링크](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)로 설치할 수 있다.
+
+### prettier 설정하기
+- 자바스크립트 파일을 열고 F1 버튼을 누르고 `Format Document`를 검색한 후 클릭한다.
+- 비쥬얼 스튜디오의 기본 포메터인 `vscode.typescript-language-features`가 사용되고 있기 때문에, 다음과 같은 메시지가 나타난다.
+> ''JavaScript JSX'' 파일에는 여러 포맷터가 있습니다. 그 중 하나는 기본 포맷터로 구성해야 합니다.
+- 일단 취소를 하고 다음을 보자.
+- 비쥬얼 스튜디오 최상단의 Code 메뉴 > 기본설정 > 프로필 > 컨텐츠 표시를 클릭한다. 프로필 항목 중에서 `setting.json` 파일을 보면
+```json
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+```
+- 위와 같이 비쥬얼 스튜디오 코드의 기본 포메터가 "vscode.typescript-language-features"으로 설정된 것을 확인할 수 있다.
+- 다시 자바스크립트 파일에서 F1 버튼을 누르고 포메터를 프리티어로 바꾼 후 사용한다.
+- `setting.json`를 보면 다음 항목이 추가되었다는 것을 알 수 있다.
+```json
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
+```
