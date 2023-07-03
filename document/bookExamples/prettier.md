@@ -55,6 +55,7 @@ max_line_length = 80
 
 ### prettier 설정하기
 - 자바스크립트 파일을 열고 F1 버튼을 누르고 `Format Document`를 검색한 후 클릭한다.
+- Shift + Opt + F 키의 조합으로 검색할 필요 없이 `Format Document`를 실행할 수 있다.
 - 비쥬얼 스튜디오의 기본 포메터인 `vscode.typescript-language-features`가 사용되고 있기 때문에, 다음과 같은 메시지가 나타난다.
 > ''JavaScript JSX'' 파일에는 여러 포맷터가 있습니다. 그 중 하나는 기본 포맷터로 구성해야 합니다.
 - 일단 취소를 하고 다음을 보자.
@@ -75,7 +76,7 @@ max_line_length = 80
 
 ### 설정 파일 만들기
 - 프로젝트 폴더 최상단에 `.prettierrc`를 만든다.
-```js
+```json
 {
   "singleQuote": true,
   "semi" : true,
@@ -83,4 +84,33 @@ max_line_length = 80
   "tabWidth": 2
 }
 ```
+- 기본적으로 prettier는 파일 포메팅 옵션을 가지고 있다. 위에 적는 것은 기존 옵션을 덮어 쓰기 위한 설정 또는 명시적으로 어떤 옵션이 적용되고 있는지 표시하기 위한 용도로 보면 된다.
+- prettier는 `.prettierrc` 파일이 위치한 폴더를 포함한 모든 하위 폴더의 파일에 적용되는 옵션이다. 따라서 자바스크립트 파일 뿐만 아니라 모든 파일에 적용이 된다.
 - 위 설정 파일이 만들어지면, F1 버튼을 눌러서 `Format Document`를 눌렀을 때 코드 포멧이 바뀔 때 디폴트 옵션보다 위 옵션이 우선적으로 적용된다.
+- 오버라이드(overrides) 기능을 사용하면 특정 파일 확장자 및 폴더에 따라 기본 포메팅이 아닌 다른 옵션이 적용된 포메팅을 할 수 있다. 다음은 overrides 키워드를 사용한 예시이므로 따라 적용하지는 말자.
+```json
+{
+  "semi": false,
+  "overrides": [
+    {
+      "files": "*.test.js",
+      "options": {
+        "semi": true
+      }
+    },
+    {
+      "files": ["*.html", "legacy/**/*.js"],
+      "options": {
+        "tabWidth": 4
+      }
+    }
+  ]
+}
+```
+
+#### 자동 저장
+- 파일을 저장할 때 마다 자동적으로 포메팅을 해 주는 기능이다.
+- 기본적으로 prettier의 구성 파일인 `.prettierrc`이 있는 폴더와 그 하위 폴더의 모든 파일을 저장할 때 포메팅이 적용되기 때문에 포메팅을 하지 않을 대상이 있다면 제외해 주는 것이 필요하다.
+- 프로젝트 폴더 최상단에 `.prettierignore`라는 파일을 만들고 `*.md`를 입력한 후 저장하도록 하자. 그러면 `.md` 확장자인 마크다운 파일은 저장할 때 포메팅이 적용되지 않는다. 그 외에도 파일을 저장할 때 자동으로 포메팅 되는 것이 마음에 들지 않는 경우에 `.prettierignore`에 파일을 추가하여 제외할 수 있다.
+- 비쥬얼 스튜디오 코드 최상단의 Code메뉴에서 기본설정 > 설정 에서 `Format On Save` 항목을 체크한다. 이렇게 하면 저장을 할 때 마다 포멧이 적용된다.
+- `settings.json` 파일을 보면 `"editor.formatOnSave": true`라는 옵션이 추가된 것을 확인할 수 있다.
