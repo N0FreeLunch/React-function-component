@@ -60,6 +60,5 @@ obj.sum();
 obj.setIntval1(8).setIntval2(3).sum();
 ```
 - `setIntval1` 메소드와 `setIntval2` 메소드는 이를 멤버로 하는 객체인 `obj`를 반환하도록 만들었다. `obj.setIntval1 = v => {obj.intval1 = v; return obj;}` 따라서 `obj.setIntval1(8)`의 결과 값은 `obj`이고, `obj.setIntval1(8).setIntval2(3)`의 결과 값도 `obj`이다. `obj`가 반환되었기 때문에 멤버 메소드를 사용할 수 있다.
+- 이렇게 메서드의 반환 값이 오브젝트라서 dot(.)으로 계속 멤버를 사용하여 이어나가는 방식을 '메소드 체이닝'이라고 한다.
 - 위의 값으로 멤버 변수 `intval1`가 8로 `intval2`가 3으로 바뀌었기 때문에 `sum` 메소드가 반환하는 값은 11이 된다.
-
-
