@@ -2,7 +2,7 @@ function TrueFalsInJsx() {
 	return (
 		<div>
 			{false}
-			<hr/>
+			<hr />
 			{true}
 		</div>
 	);

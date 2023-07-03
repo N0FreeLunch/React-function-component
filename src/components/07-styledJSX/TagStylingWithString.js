@@ -1,4 +1,4 @@
-function TagStylingWithString () {
+function TagStylingWithString() {
   const name = 'React';
   const style = `
     background-color: 'black';

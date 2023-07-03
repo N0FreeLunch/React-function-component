@@ -1,7 +1,7 @@
 import CloseTag from "./CloseTag";
 
 function Index() {
-  return <CloseTag/>;
+  return <CloseTag />;
 }
 
 export default Index;

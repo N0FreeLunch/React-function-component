@@ -1,6 +1,6 @@
 import './classInJSXStyle.css';
 
-function ClassInJSX () {
+function ClassInJSX() {
   const name = 'react';
   return (
     <div className='react'>

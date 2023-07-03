@@ -1,4 +1,4 @@
-function RenderUndefined () {
+function RenderUndefined() {
   return undefined;
 }
 

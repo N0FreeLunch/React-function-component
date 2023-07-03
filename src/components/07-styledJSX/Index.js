@@ -4,8 +4,8 @@ import WriteStyleDirectly from "./WriteStyleDirectly";
 function Index() {
 	return (
 		<>
-			<StyledJSX/>
-			<WriteStyleDirectly/>
+			<StyledJSX />
+			<WriteStyleDirectly />
 		</>
 	);
 };

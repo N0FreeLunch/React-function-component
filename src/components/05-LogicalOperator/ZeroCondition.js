@@ -4,7 +4,7 @@ function ZeroCondition() {
     <div>
       {number && <div>내용</div>}
     </div>
-    );
+  );
 };
 
 export default ZeroCondition;

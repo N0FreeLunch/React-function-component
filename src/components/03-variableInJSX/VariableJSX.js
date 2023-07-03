@@ -1,6 +1,6 @@
 import React from 'react';
 
-function VariableJSX () {
+function VariableJSX() {
   const name = 'React';
   return (
     <>

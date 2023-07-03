@@ -1,4 +1,4 @@
-function Comment () {
+function Comment() {
   const name = 'React';
   return (
     <>
@@ -8,13 +8,13 @@ function Comment () {
       }
       <div
         className="react" // comment3
-        /* comment4 */
+      /* comment4 */
       >
       // comment3
-      /*
-      comment4
-      */
-      {name}
+        /*
+        comment4
+        */
+        {name}
       </div>
     </>
   );

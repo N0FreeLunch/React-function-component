@@ -7,13 +7,13 @@ import ZeroCondition from './ZeroCondition';
 function Index() {
 	return (
 		<div>
-			<AndOperator/>
-			<hr/>
-			<TrueFalseInJsx/>
-			<hr/>
-			<OrOperator/>
-			<hr/>
-			<ZeroCondition/>
+			<AndOperator />
+			<hr />
+			<TrueFalseInJsx />
+			<hr />
+			<OrOperator />
+			<hr />
+			<ZeroCondition />
 		</div>
 	);
 };

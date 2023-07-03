@@ -7,17 +7,17 @@ function Index() {
     <div>
       <div description="fragment_component_area">
         Fragment JSX 태그를 사용한 경우
-        <FragmentWithModule/>
+        <FragmentWithModule />
       </div>
-      <hr/>
+      <hr />
       <div description="abbreviation_fragment_component_area">
         Fragment의 축약형 태그를 사용한 경우
-        <FragmentWithoutModule/>
+        <FragmentWithoutModule />
       </div>
-      <hr/>
+      <hr />
       <div description="jsx_return_component_area">
         함수의 인자로 태그를 전달하여 JSX로 출력하기
-        <JsxReturnComponent/>
+        <JsxReturnComponent />
       </div>
     </div>
   );

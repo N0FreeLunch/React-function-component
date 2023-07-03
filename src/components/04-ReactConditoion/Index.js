@@ -5,16 +5,16 @@ import ConditionFalse from './ConditionFalse';
 import UsingFunctionReplaceOfTernaryOperatator from './UsingFunctionInsteadOfTernaryOperatator';
 import DisplayDifferentTagByCondition from './DisplayDifferentTagByCondition';
 
-function Index () {
+function Index() {
   return (
     <div>
-      <ConditionTrue/>
-      <hr/>
-      <ConditionFalse/>
-      <hr/>
-      <UsingFunctionReplaceOfTernaryOperatator/>
-      <hr/>
-      <DisplayDifferentTagByCondition/>
+      <ConditionTrue />
+      <hr />
+      <ConditionFalse />
+      <hr />
+      <UsingFunctionReplaceOfTernaryOperatator />
+      <hr />
+      <DisplayDifferentTagByCondition />
     </div>
   );
 }

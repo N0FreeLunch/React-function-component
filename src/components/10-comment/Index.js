@@ -1,7 +1,7 @@
 import Comment from "./Comment";
 
 function Index() {
-  return <Comment/>;
+  return <Comment />;
 }
 
 export default Index;

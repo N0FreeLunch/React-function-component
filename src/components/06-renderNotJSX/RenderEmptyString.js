@@ -1,6 +1,5 @@
-function RenderEmptyString () {
+function RenderEmptyString() {
   return '';
 }
-  
+
 export default RenderEmptyString;
-  
