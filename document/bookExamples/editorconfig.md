@@ -5,6 +5,10 @@
 - 이렇게 프로젝트에 `.editorconfig`라는 파일을 사용하여 여러 사람의 코드 스타일을 어느 정도 통일할 수 있다.
 - editorconfig를 설정하는 것은 IDE에서 기본적으로 설정되는, 파일을 만들거나 편집을 처음하기 시작 했을 때의 설정 값을 세팅해 주는 것이므로 직접 IDE에서 다른 옵션을 파일에 부여하는 경우 바뀔 수 있다.
 
+### 비쥬얼 스튜디오 코드에서 확장 프로그램 설치
+- IDE에서 기본적으로 지원하는 경우도 있지만, 비쥬얼 스튜디오의 경우 IDE에서 디폴트로는 적용되지 않고 확장 프로그램을 설치해야 적용이 된다.
+- 다음 [링크](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)를 통해서 확장 프로그램을 설치하도록 하자.
+
 ### .editorconfig 설정하기
 - [editorconfig](https://editorconfig.org/)에 관한 사이트에서 알 수 있다.
 - 프로젝트 최상단에 `.editorconfig`라는 파일을 생성하고 다음과 같이 세팅을 해 준다.
