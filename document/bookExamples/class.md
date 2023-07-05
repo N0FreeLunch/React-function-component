@@ -139,3 +139,57 @@ constructor(intval1, intval2) {
 #### 멤버 메소드
 - 클래스를 사용하지 않고 `cosnt obj = {}`로 만든 오브젝트 예제에서 `obj.setIntval1 = v => {obj.intval1 = v; return obj;}` `obj.setIntval2 = v => {obj.intval2 = v; return obj;}`를 사용하여 멤버 메소드를 만들어 주었다.
 - 멤버 메소드란 오브젝트가 직접 사용할 수 있는 함수를 의미하며, 직접 사용한다는 말은 함수가 할당된 속성명을 dot(.)으로 연결하여 사용할 수 있다는 의미이다.
+
+### 오브젝트를 클래스로 만드는 이유 - 여러 오브젝트 생성하기
+- 자바스크립트에서는 클래스를 만들지 않고도 오브젝트를 만드는 방법을 지원한다. 그러면 왜? 클래스란 문법을 만들었을까?
+- 오브젝트는 상태라는 것을 저장한다. `setIntval1(11)` 메소드를 사용하면 `intval1`에 11이란 값이 들어가게 되고 `setIntval2(13)` 메소드를 사용하면 `intval1`에 13이란 값이 들어가게 된다. 오브젝트 안의 값을 어떻게 세팅하느냐에 따라서 멤버 변수의 값이 달라지게 되고 결과물을 얻는 오브젝트의 메소드 `.sum()`의 결과 값이 달라진다.
+- `obj.setIntval1(11).setIntval2(13)`인 오브젝트와 `obj.setIntval1(5).setIntval2(2)`인 오브젝트의 `sum()`의 값은 24, 7로 서로 다르다.
+```js
+const obj = {
+	intval1 : NaN,
+	intval2 : NaN,
+	setIntval1 : v => {obj.intval1 = v; return obj;},
+	setIntval2 : v => {obj.intval2 = v; return obj;},
+	sum : () => obj.intval1 + obj.intval2
+};
+
+const obj1 = obj.setIntval1(11).setIntval2(13);
+const obj2 = obj.setIntval1(5).setIntval2(2);
+
+console.log(obj1.sum() + obj2.sum());
+```
+- 위의 코드를 실행하면 `console.log(obj1.sum() + obj2.sum())`의 결과가 14가 나온다. 24 + 7 이 아니라 7 + 7이 된 것이다.
+- 왜 이런 결과가 나오냐면 동일한 오브젝트이기 때문이다. 오브젝트는 복사가 아닌 참조로 할당이 된다고 하였다. `obj1`를 접근하면 `obj`를 가리키고 있고, `obj2`를 접근하면 `obj`를 가리키고 있는 것이다.
+- 동일한 오브젝트의 `intval1`을 11로 바꾸고, `intval2`를 13으로 바꾸고, `intval1`를 5로 바꾸고, `intval2`를 2로 바꾸면 `obj`오브젝트의 최종 상태는 `intval1`가 5이고 `intval2`가 2가 된다. `obj1.sum()`도 멤버 변수가 5, 2이므로 7이란 값이 나오고 `obj2.sum()`도 멤버 변수가 5, 2이므로 7이란 값이 나온다.
+- 결국 같은 오브젝트를 사용한다는 문제점이 있다.
+- 동일한 오브젝트를 사용하지 말고 동일한 구성의 오브젝트 여러개를 만드는 방법을 사용하면 되는데, 이 때 클래스를 사용하여 오브젝트를 만들면 서로 다른 오브젝트를 만들 수 있다.
+```js
+class ClassName {
+  constructor(intval1, intval2) {
+    this.intval1 = intval1 ?? NaN;
+    this.intval2 = intval2 ?? NaN;
+  }
+
+  setIntval1(v) {
+		this.intval1 = v;
+		return this;
+  }
+
+  setIntval2(v) {
+    this.intval2 = v;
+		return this;
+  }
+
+	sum() {
+		return this.intval1 + this.intval2;
+	}
+}
+
+const obj1 = new ClassName();
+const obj2 = new ClassName();
+obj1.setIntval1(11).setIntval2(13);
+obj2.setIntval1(5).setIntval2(2);
+console.log(obj1.sum() + obj2.sum());
+```
+- 위의 코드는 클래스를 사용하여 오브젝트를 두 개 만들었다. `obj1`은 `new ClassName()`으로 새로 만들어진 오브젝트를 가리키고, `obj2`는 `new ClassName()`으로 새로 만들어진 오브젝트를 가리킨다. `new ClassName()`로 코드는 같지만 각각의 `new ClassName()`는 서로 다른 오브젝트를 만들다.
+- `obj1` 오브젝트는 상태를 11, 13을 가지고, `obj2`도 5, 2의 상태를 가진다. 각각의 오브젝트는 서로 다른 오브젝트이고 동일한 오브젝트를 가리키는 것이 아니기 때문에 멤버 변수 `intval1`, `intval2`의 값이 덮어 씌여지지 않는다.
