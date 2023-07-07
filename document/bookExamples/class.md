@@ -193,3 +193,54 @@ console.log(obj1.sum() + obj2.sum());
 ```
 - 위의 코드는 클래스를 사용하여 오브젝트를 두 개 만들었다. `obj1`은 `new ClassName()`으로 새로 만들어진 오브젝트를 가리키고, `obj2`는 `new ClassName()`으로 새로 만들어진 오브젝트를 가리킨다. `new ClassName()`로 코드는 같지만 각각의 `new ClassName()`는 서로 다른 오브젝트를 만들다.
 - `obj1` 오브젝트는 상태를 11, 13을 가지고, `obj2`도 5, 2의 상태를 가진다. 각각의 오브젝트는 서로 다른 오브젝트이고 동일한 오브젝트를 가리키는 것이 아니기 때문에 멤버 변수 `intval1`, `intval2`의 값이 덮어 씌여지지 않는다.
+
+### 오브젝트를 클래스로 만드는 이유 - 상속 사용하기
+- 상속이란 다른 클래스의 멤버를 그대로 사용하면서도 기존의 멤버를 변경한 클래스를 만들어 사용할 수 있게 한 것이다. 
+- 예를 들어 A라는 클래스가 가진 멤버를 B라는 클래스가 사용하고 싶을 때 A라는 클래스의 모든 멤버를 B 클래스에 일일이 다 만들어 주면 되지만, 프로그래밍은 중복되는 코드 사용을 최소화 하려는 경향이 있다. A라는 클래스에 많은 멤버가 있다면 A 클래스의 멤버와 동일한 멤버를 B 클래스에 일일이 정의하는 것은 시난 낭비를 초래하며, A라는 클래스가 변경되었을 때는 A클래스의 기능을 사용하는 B클래스도 똑같이 변경이 되어야 하기 때문에 이런 불편함을 줄이기 위해서 A 클래스의 모든 멤버를 상속하는 자식 클래스를 만들 수 있는 기능을 제공한다.
+```js
+class ParentClassName {
+  constructor(intval1, intval2) {
+    this.intval1 = intval1 ?? NaN;
+    this.intval2 = intval2 ?? NaN;
+  }
+
+  setIntval1(v) {
+		this.intval1 = v;
+		return this;
+  }
+
+  setIntval2(v) {
+    this.intval2 = v;
+		return this;
+  }
+
+  sum() {
+    return this.intval1 + this.intval2;
+  }
+}
+
+class ChildClassName extends ParentClassName {
+  constructor(intval1, intval2, intval3) {
+ 		super();
+		this.intval3 = intval3 ?? NaN;
+  }
+
+	setIntval3(v) {
+    this.intval3 = v;
+		return this;
+  }
+
+	sum() {
+		return this.intval1 + this.intval2 + this.intval3;
+	}
+}
+
+const obj = new ChildClassName();
+obj.setIntval1(11).setIntval2(13).setIntval3(7).sum();
+```
+
+#### 상속
+- 클래스 `ParentClassName`의 모든 멤버를 상속하는 `ChildClassName`를 만들어 주었다.
+- 클래스를 만들 때 다른 클래스의 상속을 받는 클래스를 만들기 위해서는 `extends 상속할_클래스_이름`의 방식으로 사용한다. 여기서 `ChildClassName`는 `extends ParentClassName`로 `ParentClassName` 클래스의 모든 멤버를 상속 받았다.
+- 다른 클래스의 상속을 받는 클래스는 상속 대상 클래스의 모든 멤버를 사용할 수 있다. 예를 들어 `ParentClassName`의 모든 멤버는 `ChildClassName` 클래스에 정의되어 있는 것이다.
+- 자주 사용하는 기능 또는 만들기 복잡하거나 어려운 기능을 미리 클래스로 만들어 놓으면, 미리 만들어진 클래스를 사용하여 오브젝트를 쉽게 만들 수 있다는 장점이 있다.
