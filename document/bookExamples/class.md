@@ -68,11 +68,11 @@ obj.setIntval1(8).setIntval2(3).sum();
 - 위에서는 이미 생성된 오브젝트에 오브젝트가 가지고 있지 않은 멤버를 추가 해 주는 방식을 사용하였으나, 이번에는 오브젝트를 생성할 때 미리 멤버를 만들어서 오브젝트가 생성될 때는 멤버를 이미 가진 형태로 만드는 것을 목표로 한다. 이미 생성된 오브젝트에 속성을 추가하는 것을 동적 멤버 추가라고 부르고, 오브젝트를 생성하기 전에 미리 속성을 추가하여 오브젝트를 생성하는 것을 정적 멤버 추가라고 한다.
 ```js
 const obj = {
-	intval1 : NaN,
-	intval2 : NaN,
-	setIntval1 : v => {obj.intval1 = v; return obj;},
-	setIntval2 : v => {obj.intval2 = v; return obj;},
-	sum : () => obj.intval1 + obj.intval2
+  intval1 : NaN,
+  intval2 : NaN,
+  setIntval1 : v => {obj.intval1 = v; return obj;},
+  setIntval2 : v => {obj.intval2 = v; return obj;},
+  sum : () => obj.intval1 + obj.intval2
 };
 
 obj.setIntval1(7).setIntval2(13).sum();
@@ -89,18 +89,18 @@ class ClassName {
   }
 
   setIntval1(v) {
-		this.intval1 = v;
-		return this;
+    this.intval1 = v;
+    return this;
   }
   
   setIntval2(v) {
     this.intval2 = v;
-		return this;
+    return this;
   }
 
-	sum() {
-		return this.intval1 + this.intval2;
-	}
+  sum() {
+    return this.intval1 + this.intval2;
+  }
 }
 
 const obj = new ClassName();
@@ -119,8 +119,8 @@ obj.setIntval1(11).setIntval2(13).sum();
 - 클래스를 이용한 문법에서는 클래스 내부에서 `this.intval1` `this.intval2`를 사용하는 방식으로 멤버 변수를 만들 수 있다. 일반적으로 멤버 변수는 `constructor` 함수에 만드는데 클래스로 오브젝트를 만드는 것과 동시에 `constructor` 함수가 실행 되면서 멤버 변수를 만들 수 있기 때문이다. 클래스는 내부의 메소드를 실행하여 로직을 동작시킬 수 있다. `constructor`를 사용하지 않는다면 다른 메소드를 실행해야 멤버 변수를 선언할 수 있다.
 ```js
 constructor(intval1, intval2) {
-	this.intval1 = intval1 ?? NaN;
-	this.intval2 = intval2 ?? NaN;
+  this.intval1 = intval1 ?? NaN;
+  this.intval2 = intval2 ?? NaN;
 }
 ```
 - 생성자의 생성과 동시에 클래스로 만든 `this` 오브젝트의 내부에 `intval1`라는 속성을 정의하고 `= intval1 ?? NaN;`으로 값을 할당해 주었다.
@@ -128,10 +128,10 @@ constructor(intval1, intval2) {
 - `intval1 ??` NaN 이란 값은
 ```js
 (() => {
-	if(typeof intval1 === 'undefined' || typeof intval1 === 'null') {
-		return NaN;
-	}
-	return intval1;
+  if(typeof intval1 === 'undefined' || typeof intval1 === 'null') {
+    return NaN;
+  }
+  return intval1;
 })
 ```
 - 위 함수 표현과 동일하다.
@@ -146,11 +146,11 @@ constructor(intval1, intval2) {
 - `obj.setIntval1(11).setIntval2(13)`인 오브젝트와 `obj.setIntval1(5).setIntval2(2)`인 오브젝트의 `sum()`의 값은 24, 7로 서로 다르다.
 ```js
 const obj = {
-	intval1 : NaN,
-	intval2 : NaN,
-	setIntval1 : v => {obj.intval1 = v; return obj;},
-	setIntval2 : v => {obj.intval2 = v; return obj;},
-	sum : () => obj.intval1 + obj.intval2
+  intval1 : NaN,
+  intval2 : NaN,
+  setIntval1 : v => {obj.intval1 = v; return obj;},
+  setIntval2 : v => {obj.intval2 = v; return obj;},
+  sum : () => obj.intval1 + obj.intval2
 };
 
 const obj1 = obj.setIntval1(11).setIntval2(13);
@@ -171,18 +171,18 @@ class ClassName {
   }
 
   setIntval1(v) {
-		this.intval1 = v;
-		return this;
+    this.intval1 = v;
+    return this;
   }
 
   setIntval2(v) {
     this.intval2 = v;
-		return this;
+    return this;
   }
 
-	sum() {
-		return this.intval1 + this.intval2;
-	}
+  sum() {
+    return this.intval1 + this.intval2;
+  }
 }
 
 const obj1 = new ClassName();
@@ -205,13 +205,13 @@ class ParentClassName {
   }
 
   setIntval1(v) {
-		this.intval1 = v;
-		return this;
+    this.intval1 = v;
+    return this;
   }
 
   setIntval2(v) {
     this.intval2 = v;
-		return this;
+    return this;
   }
 
   sum() {
@@ -221,18 +221,18 @@ class ParentClassName {
 
 class ChildClassName extends ParentClassName {
   constructor(intval1, intval2, intval3) {
- 		super(intval1, intval2);
-		this.intval3 = intval3 ?? NaN;
+     super(intval1, intval2);
+    this.intval3 = intval3 ?? NaN;
   }
 
-	setIntval3(v) {
+  setIntval3(v) {
     this.intval3 = v;
-		return this;
+    return this;
   }
 
-	sum() {
-		return this.intval1 + this.intval2 + this.intval3;
-	}
+  sum() {
+    return this.intval1 + this.intval2 + this.intval3;
+  }
 }
 
 const obj = new ChildClassName();
@@ -249,11 +249,11 @@ obj.setIntval1(11).setIntval2(13).setIntval3(7).sum();
 - 클래스 내에서 `constructor`이라고 정의한 함수가 생성자 메소드에 해당한다.
 ```js
 class ParentClassName {
-	constructor(intval1, intval2) {
-		this.intval1 = intval1 ?? NaN;
-		this.intval2 = intval2 ?? NaN;
-	}
-	// ...
+  constructor(intval1, intval2) {
+    this.intval1 = intval1 ?? NaN;
+    this.intval2 = intval2 ?? NaN;
+  }
+  // ...
 }
 ```
 - 생성자 메소드는 클래스로 오브젝트르 만들 때 실행된다.
@@ -269,16 +269,16 @@ class ParentClassName {
 부모 클래스 생성자
 ```js
 constructor(intval1, intval2) {
-	this.intval1 = intval1 ?? NaN;
-	this.intval2 = intval2 ?? NaN;
+  this.intval1 = intval1 ?? NaN;
+  this.intval2 = intval2 ?? NaN;
 }
 ```
 
 자식 클래스 생성자
 ```js
 constructor(intval1, intval2, intval3) {
-	super(intval1, intval2);
-	this.intval3 = intval3 ?? NaN;
+  super(intval1, intval2);
+  this.intval3 = intval3 ?? NaN;
 }
 ```
 - 상속 받는 클래스의 생성자에서 상속하는 클래스의 생성자를 호출할 때는 `super()`라는 함수를 사용해야 한다. `super`함수에 인자를 전달하면 호출되는 상위 클래스의 생성자에 파라메터에 인자가 전달된다.
@@ -287,9 +287,9 @@ constructor(intval1, intval2, intval3) {
 자식 클래스 생성자
 ```js
 constructor(intval1, intval2, intval3) {
-	this.intval1 = intval1 ?? NaN;
-	this.intval2 = intval2 ?? NaN;
-	this.intval3 = intval3 ?? NaN;
+  this.intval1 = intval1 ?? NaN;
+  this.intval2 = intval2 ?? NaN;
+  this.intval3 = intval3 ?? NaN;
 }
 ```
 - 물론 상속 받는 클래스의 생성자에 상속하는 상위 클래스의 생성자의 로직을 다 적어주는 방법을 생각할 수 있지만, 클래스 문법에서 `super`를 사용하는 것은 문법적인 강제 기능이 있기 때문이며 상위 생성자의 로직을 상속 받는 클래스의 생성자에 일일이 반복해서 적는 것은 상위 클래스의 생성자의 코드 변경 시 하위 클래스의 생성자 코드도 그에 따라 바꿔줘야 하기 때문에 불편한 문제를 초래한다.
@@ -302,16 +302,16 @@ constructor(intval1, intval2, intval3) {
 상위 클래스 생성자
 ```js
 constructor(intval1, intval2) {
-	this.intval1 = intval1 ?? NaN;
-	this.intval2 = intval2 ?? NaN;
+  this.intval1 = intval1 ?? NaN;
+  this.intval2 = intval2 ?? NaN;
 }
 ```
 
 하위 클래스 생성자
 ```js
 constructor(intval1, intval2, intval3) {
-	super(intval1, intval2);
-	this.intval3 = intval3 ?? NaN;
+  super(intval1, intval2);
+  this.intval3 = intval3 ?? NaN;
 }
 ```
 - 상속 받는 클래스의 생성자에 새로운 멤버 변수(`intval3`)를 초기화 하는 로직을 추가하였다.
@@ -321,25 +321,25 @@ constructor(intval1, intval2, intval3) {
 #### 메소드 오버라이딩
 상위 클래스의 멤버 메소드
 ```js
-  sum() {
-    return this.intval1 + this.intval2;
-  }
+sum() {
+  return this.intval1 + this.intval2;
+}
 ```
 
 하위 클래스의 멤버 메소드
 ```js
-	sum() {
-		return this.intval1 + this.intval2 + this.intval3;
-	}
+sum() {
+  return this.intval1 + this.intval2 + this.intval3;
+}
 ```
 - 하위 클래스의 멤버가 재정의 되었다. 하위 클래스로 오브젝트를 생성할 때 `sum()` 메소드는 기존의 2개의 멤버를 합산하는 것이 아닌, 3개의 멤버를 합산하는 로직으로 바뀐 메소드를 실행하게 된다.
 - 위의 코드는 super 키워드를 사용해서 만들 수도 있다.
 
 하위 클래스의 멤버 메소드
 ```js
-	sum() {
-		return super.sum() + this.intval3;
-	}
+sum() {
+  return super.sum() + this.intval3;
+}
 ```
 - `super` 키워드는 상위 클래스의 멤버를 사용할 수 있는 오브젝트이다. 그렇다고 해서 상위 클래스나 상위 클래스의 오브젝트를 의미하는 것은 아니며, 상위 클래스의 멤버를 사용할 수 있게 해 주는 키워드에 불과하다.
 - 위와 같이 코드를 사용하면, 상위 클래스의 `sum()` 메소드가 변경 되었을 때, 상위 클래스의 멤버 로직을 그대로 사용하기 때문에 하위 클래스의 멤버를 수정할 일이 좀 더 줄어든다.
