@@ -21,13 +21,13 @@ insert_final_newline = true
 
 [.{js, jsx}]
 charset = utf-8
-indent_style = tab
+indent_style = space
 indent_size = 2
 trim_trailing_whitespace = true
 
 [*.md]
 charset = utf-8
-indent_style = tab
+indent_style = space
 indent_size = 2
 trim_trailing_whitespace = false
 ```
