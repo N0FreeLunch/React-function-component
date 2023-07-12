@@ -88,7 +88,34 @@ obj6.self;
 ```
 - 위와 같은 코드는 불가능하다. 왜냐하면 `obj6`이 생성되기 전에 `obj6.attribute`으로 값에 접근하려고 하기 때문이다. 정의되지 않은 오브젝트에 `obj6.attribute` 와 같은 방식으로 접근할 수 없다.
 
+### 함수를 객체로 만들기
+#### function 함수의 경우
+```js
+new (function () {
+
+})();
+```
+- 위 코드는 익명함수를 `new` 라는 키워드로 객체로 만든 것이다.
+- 결과는 빈 오브젝트 `{}`가 나온다.
+```js
+new (function () {
+  this.name = 'anonymous';
+})();
+```
+- 위 코드를 실행하면 `{name: 'anonymous'}` 멤버와 속성이 할당된 오브젝트가 생성된다.
+- `function` 함수 내에 `this` 키워드를 사용하면 `new` 키워드로 함수를 객체로 만들었을 때 멤버를 만들 수 있다. 
+
+#### 화살표 함수의 경우
+```js
+new (() =>{
+  this.name = 'anonymous';
+})();
+```
+- 그런데 위의 코드는 `Uncaught TypeError: (intermediate value) is not a constructor`라는 에러가 난다.
+- `class` 문법을 다룰 때 `constructor` 메소드에 정의된 값이 클래스로 오브젝트를 만들 때 실행된다고 하였다. 클래스로 오브젝트를 만들 때 실행되는 함수를 생성자라고 부른다. 클래스 내의 `constructor` 메소드는 생성자 함수인 것이다. 위 방식은 `class` 문법은 아니지만 함수로 객체를 생성하면서 동시에 함수 내부의 값이 실행되므로 생성자의 역할을 한다. 하지만 화살표 함수의 경우 함수를 생성자로써 쓸 수 없기 때문에 우와 같은 에러가 발생한다.
+
 ### function과 arrow function의 차이
+#### function 함수와 내부의 this
 ```js
 function BlackDog() {
   this.name = '힌둥이';
@@ -104,18 +131,10 @@ const blackDog = new BlackDog();
 blackDog.bark();
 ```
 - `BlackDog`이란 함수는 반환 값 오브젝트의 `bark` 속성에 함수 `function () { console.log(this.name + ': 멍멍!'); }`를 할당하였다.
-- 위의 코드를 실행하면 `검둥이: 멍멍!`이란 결과가 나오는데 이는 객체가 생성 되었을 때 반환되는 객체의 `bark` 속성에 할당된 함수는 자바스크립트 엔진에 의해 함수 내부의 값의 해석이 된 상태이다.
-- `new BlackDog()`라는 코드를 사용했을 때 다음 오브젝트를 생성하면서 함수가 해석이 되었기 때문에 함수 안의 `this`도 가리키는 대상이 반환된 오브젝트의 `name`을 가리키게 된다.
-```js
-{
-  name: '검둥이',
-  bark: function () {
-    console.log(this.name + ': 멍멍!');
-  }
-}
-```
-- 따라서 `this.name`은 `검둥이`가 된다.
+- `function`으로 생성한 함수는 실행시점에서 `this`값을 찾는다. `new BlackDog()`에 의해서 `blackDog`이란 오브젝트가 생성되었다. 이 오브젝트 내에서 `bark` 메소드를 사용하였고 메소드 내부의 `this`를 실행하게 된다. 따라서 `this`는 `blackDog` 오브젝트를 가리키게 된다.
+- 위의 코드를 실행하면 `검둥이: 멍멍!`이란 결과가 나오는데 이는 `this`가 가리키는 대상이 `blackDog`이라는 오브젝트이고 메소드 안의 `this.name`란 코드는 `blackDog` 오브젝트의 속성 `name`을 가리키므로 `'검둥이'`란 결과값을 얻는다.
 
+#### arrow 함수와 내부의 this
 ```js
 function WhiteDog() {
   this.name = '힌둥이';
@@ -131,5 +150,6 @@ const whitekDog = new WhiteDog();
 whitekDog.bark();
 ```
 - 위의 코드가 `BlackDog`의 예제와 다른점은 반환하는 오브젝트의 `bark` 속성이 `function` 키워드로 선언된 함수인지 `=>` 키워드로 선언된 함수인지의 차이점 뿐이다.
-- 하지만 코드의 결과는 `힌둥이: 멍멍!`이 된다. `function` 키워드의 함수가 자바스크립트 엔진에 의해 내부 값의 해석이 이뤄진 반면, `=>` 키워드는 `bark` 함수를 실행하기 전까지는 `this`값을 판단하지 않는다. `whitekDog`이 `bark` 메소드를 실행하므로 `WhiteDog`의 `this.name`을 가리키게 된다.
-
+- 화살표 함수는 코드를 선언한 시점에서 함수 내부의 값을 판단한다. 따라서 함수의 반환 값으로 반환되는 오브젝트 `return { ... }`가 생성되기 이전에 `bark` 메소드에 할당된 `() => {console.log(this.name + ': 멍멍!');}` 내부의 코드를 해석하게 된다. 이 때는 `return { ... }`으로 반환되는 오브젝트 안에서 `this`가 쓰인 것이고, 반환되는 오브젝트가 생성되기 이전에 이미 화살표 함수 내부의 코드가 자바스크립트 엔진에 의해 해석이 된다. 따라서 화살표 함수 내에서의 `this`는 `WhiteDog` 함수의 반환되는 오브젝트를 가리키지 않고 `WhiteDog` 함수 내부에 정의된 `this.name = '힌둥이';`를 가리키게 된다.
+- `this`가 `WhiteDog`의 반환되는 오브젝트를 가리키지 않으므로 `this`는 그 바깥 스코프의 오브젝트를 가리키게 되는데 `WhiteDog`이란 함수가 `new`로 생성되었으므로 `whitekDog` 변수에는 오브젝트가 할당이 된다. 그리고 함수 내부에 `this.name = '힌둥이'`으로 `name` 속성을 `'힌둥이'`으로 주었으므로 `{name: '힌둥이'}`이란 객체가 `whitekDog` 변수에 할당된다.
+- 따라서 `this`가 `whitekDog`을 가리키므로 `bark` 메소드를 실행한 결과는 `힌둥이: 멍멍!`이 된다.
