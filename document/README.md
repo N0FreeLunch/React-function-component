@@ -35,4 +35,4 @@
     - [editorconfig를 사용한 IDE 코드 스타일 통일](./bookExamples/editorconfig.md)
     - [prettier를 사용한 IDE 코드 스타일 통일](./bookExamples/prettier.md)
     - [클래스란 무엇인가?](./bookExamples/class.md)
-    - [function 함수와 arrow 함수](./bookExamples/functionAndArrowFunction.md)
+    - [함수와 함수 내부의 this](./bookExamples/functionAndNestedThis.md)
