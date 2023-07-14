@@ -1,5 +1,5 @@
-const ArrowFunctionComponent = () => {
-  return <div>my new beautiful component</div>
+const Component = () => {
+  return <>JSX</>;
 }
 
-export default ArrowFunctionComponent;
+export default Component;
