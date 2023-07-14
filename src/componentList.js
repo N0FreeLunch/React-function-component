@@ -11,7 +11,7 @@ import Component08 from './components/08-classInJSX/Index';
 import Component09 from './components/09-closeTag/Index';
 import Component10 from './components/10-comment/Index';
 import Component11 from './components/11-classComponent/Index';
-import Component16 from './components/16-arrowFunctionComponent/ArrowFunctionComponent.jsx'
+import Component12 from './components/12-arrowFunctionComponent/Index'
 import Component17 from './components/17-props/ParentComponent.jsx';
 import Component18 from './components/18-defaultProps/ParentComponent.jsx';
 import Component19 from './components/19-childrenProps/ParentComponent.jsx';
@@ -84,11 +84,11 @@ const componentList = {
   9: <Component09 />,
   10: <Component10 />,
   11: <Component11 />,
-  // 12: <Component12/>,
+  12: <Component12 />,
   // 13: <Component13/>,
   // 14: <Component14/>,
   // 15: <Component15 />,
-  16: <Component16 />,
+  // 16: <Component16 />,
   17: <Component17 />,
   18: <Component18 />,
   19: <Component19 />,
