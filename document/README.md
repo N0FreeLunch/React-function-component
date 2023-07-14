@@ -36,3 +36,4 @@
     - [prettier를 사용한 IDE 코드 스타일 통일](./bookExamples/prettier.md)
     - [클래스란 무엇인가?](./bookExamples/class.md)
     - [함수와 함수 내부의 this](./bookExamples/functionAndNestedThis.md)
+    = [화살표 함수 컴포넌트](./bookExamples/arrowFunctionComponent.md)
