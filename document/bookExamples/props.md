@@ -64,6 +64,7 @@ const ParentKeywordPropComponent = () => {
 export default ParentKeywordPropComponent;
 ```
 
+src/components/13-props/ChildKeywordPropComponent.js
 ```js
 const ChildKeywordPropComponent = props => {
   return <div>hello, props test in {props.className}</div>
