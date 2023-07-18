@@ -52,7 +52,7 @@ export default Index;
 ```
 - prop를 전달한 컴포넌트에서는 `hello, props test in React`이란 문장이 출력되고, prop를 전달하지 않은 컴포넌트에서는 `hello, props test in`로 `ChildComponent`의 `<div>hello, props test in {props.name}</div>`의 `{props.name}`의 값이 `undefined`가 되어 출력되지 않는다.
 
-### prop으로 키워드를 전달할 경우
+### 컴포넌트 태그에서의 속성
 src/components/13-props/ParentKeywordPropComponent.js
 ```js
 import ChildKeywordPropComponent from './ChildKeywordPropComponent.js';
