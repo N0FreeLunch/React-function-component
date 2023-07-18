@@ -12,7 +12,7 @@ import Component09 from './components/09-closeTag/Index';
 import Component10 from './components/10-comment/Index';
 import Component11 from './components/11-classComponent/Index';
 import Component12 from './components/12-arrowFunctionComponent/Index'
-import Component17 from './components/17-props/ParentComponent.jsx';
+import Component13 from './components/13-props/Index';
 import Component18 from './components/18-defaultProps/ParentComponent.jsx';
 import Component19 from './components/19-childrenProps/ParentComponent.jsx';
 import Component20 from './components/20-AllInOne/ParentComponent.jsx';
@@ -85,11 +85,11 @@ const componentList = {
   10: <Component10 />,
   11: <Component11 />,
   12: <Component12 />,
-  // 13: <Component13/>,
+  13: <Component13 />,
   // 14: <Component14/>,
   // 15: <Component15 />,
   // 16: <Component16 />,
-  17: <Component17 />,
+  // 17: <Component17 />,
   18: <Component18 />,
   19: <Component19 />,
   20: <Component20 />,
