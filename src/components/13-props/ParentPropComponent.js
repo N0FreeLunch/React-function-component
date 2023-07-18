@@ -1,7 +1,7 @@
 import ChildComponent from './ChildComponent.js';
 
 const ParentPropComponent = () => {
-  return <ChildComponent />;
+  return <ChildComponent name="React" />;
 }
 
 export default ParentPropComponent;
