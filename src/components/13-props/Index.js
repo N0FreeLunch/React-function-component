@@ -1,5 +1,11 @@
-import ParentComponent from './ParentComponent';
+import ParentPropComponent from './ParentPropComponent';
+import ParentNoPropComponent from './ParentNoPropComponent';
 
-const Index = () => <ParentComponent />;
+const Index = () => (
+	<div>
+		<ParentPropComponent />
+		<ParentNoPropComponent />
+	</div>
+);
 
 export default Index;
