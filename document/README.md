@@ -38,4 +38,5 @@
     - [함수와 함수 내부의 this](./bookExamples/functionAndNestedThis.md)
     - [화살표 함수 컴포넌트](./bookExamples/arrowFunctionComponent.md)
     - [prop으로 자식 컴포넌트에 값 전달하기](./bookExamples/props.md)
+    - [default props 속성 추가하기](./bookExamples/defaultProps.md)
     
