@@ -15,7 +15,7 @@ import Component12 from './components/12-arrowFunctionComponent/Index'
 import Component13 from './components/13-props/Index';
 import Component14 from './components/14-defaultProps/Index';
 import Component15 from './components/15-childrenProps/Index';
-import Component16 from './components/16-AllInOne/Index';
+import Component16 from './components/16-allInOne/Index';
 import Component21 from './components/21-DestructuringAssignment/ParentComponent.jsx';
 import Component22 from './components/22-DestructuringAssignmentParam/ParentComponent.jsx';
 import Component23 from './components/23-propTypes/ParentComponent.jsx';
