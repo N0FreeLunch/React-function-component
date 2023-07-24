@@ -16,7 +16,7 @@ import Component13 from './components/13-props/Index';
 import Component14 from './components/14-defaultProps/Index';
 import Component15 from './components/15-childrenProps/Index';
 import Component16 from './components/16-allInOne/Index';
-import Component21 from './components/21-DestructuringAssignment/ParentComponent.jsx';
+import Component17 from './components/17-destructuringAssignment/Index';
 import Component22 from './components/22-DestructuringAssignmentParam/ParentComponent.jsx';
 import Component23 from './components/23-propTypes/ParentComponent.jsx';
 import Component24 from './components/24-isRequired/ParentComponent.jsx';
@@ -89,11 +89,11 @@ const componentList = {
   14: <Component14 />,
   15: <Component15 />,
   16: <Component16 />,
-  // 17: <Component17 />,
+  17: <Component17 />,
   // 18: <Component18 />,
   // 19: <Component19 />,
   // 20: <Component20 />,
-  21: <Component21 />,
+  // 21: <Component21 />,
   22: <Component22 />,
   23: <Component23 />,
   24: <Component24 />,
