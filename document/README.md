@@ -40,3 +40,4 @@
     - [prop으로 자식 컴포넌트에 값 전달하기](./bookExamples/props.md)
     - [default props 속성 추가하기](./bookExamples/defaultProps.md)
     - [컴포넌트 태그 사이에 값 넣기](./bookExamples/childrenProp.md)
+    - [구조 분해 할당 사용하기](./bookExamples/destructuringAssignment.md)
