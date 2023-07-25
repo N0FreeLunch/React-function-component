@@ -1,4 +1,4 @@
-const DestructuringAssignment = props => {
+const VariableDestructuringAssignment = props => {
   const { name, children } = props;
   return (
     <div>
@@ -9,8 +9,8 @@ const DestructuringAssignment = props => {
   )
 }
 
-DestructuringAssignment.defaultProps = {
+VariableDestructuringAssignment.defaultProps = {
   name: 'default name'
 };
 
-export default DestructuringAssignment;
+export default VariableDestructuringAssignment;

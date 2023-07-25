@@ -1,9 +1,12 @@
-import DestructuringAssignment from './DestructuringAssignment';
+import ParameterDestructuringAssignment from './ParameterDestructuringAssignment';
+import VariableDestructuringAssignment from './VariableDestructuringAssignment';
 
 const ParentComponent = () => {
   return (
     <div>
-      <DestructuringAssignment>children</DestructuringAssignment>
+      <ParameterDestructuringAssignment>children</ParameterDestructuringAssignment>
+      <hr />
+      <VariableDestructuringAssignment>children</VariableDestructuringAssignment>
     </div>
   );
 };
