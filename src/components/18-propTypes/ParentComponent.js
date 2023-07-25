@@ -1,4 +1,4 @@
-import PropTypes from './PropTypes.jsx';
+import PropTypes from './PropTypes';
 
 const ParentComponent = () => {
   return (
