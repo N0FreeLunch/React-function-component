@@ -1,13 +1,9 @@
-import PropTypes from './PropTypes';
+import PropTypes from './TypeRestrictionComponent';
 
 const ParentComponent = () => {
   return (
     <div>
       <PropTypes name='children'></PropTypes>
-      {
-        // <PropTypes name=10></PropTypes>
-        // error
-      }
     </div>
   );
 }

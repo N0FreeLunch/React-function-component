@@ -1,5 +1,11 @@
 import ParentComponent from "./ParentComponent";
+import ErrorParentComponent from "./ErrorParentComponent";
 
-const Index = () => <ParentComponent />;
+const Index = () => (
+  <>
+    <ParentComponent />
+    <ErrorParentComponent />
+  </>
+);
 
 export default Index;
