@@ -1,4 +1,4 @@
-import PropTypes from './TypeRestrictionComponent';
+import PropTypes from './TypeRestrictedComponent';
 
 const ParentComponent = () => {
   return (
