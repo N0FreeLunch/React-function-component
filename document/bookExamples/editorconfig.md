@@ -19,7 +19,7 @@ root = true
 end_of_line = lf
 insert_final_newline = true
 
-[.{js, jsx}]
+[*.{js, jsx}]
 charset = utf-8
 indent_style = space
 indent_size = 2
@@ -63,7 +63,7 @@ trim_trailing_whitespace = false
 `trim_trailing_whitespace = true`
 - 파일의 끝에 있는 공백 문자를 자동으로 제거한다.
 
-`[.{js, jsx}]`
+`[*.{js, jsx}]`
 - .js 또는 .jsx 확장자를 가진 파일에만 적용되는 규칙을 정의한다는 뜻이다.
 
 `[*.md]`
