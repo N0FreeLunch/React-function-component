@@ -41,3 +41,4 @@
     - [default props 속성 추가하기](./bookExamples/defaultProps.md)
     - [컴포넌트 태그 사이에 값 넣기](./bookExamples/childrenProp.md)
     - [구조 분해 할당 사용하기](./bookExamples/destructuringAssignment.md)
+    - [prop types 라이브러리로 prop 타입제한](./bookExamples/propTypes.md)
