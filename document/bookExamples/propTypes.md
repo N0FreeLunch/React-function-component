@@ -16,3 +16,70 @@
 - 개발 모드에서만 활성화되기 때문에 개발하는 도중의 에러를 찾는데 도움을 준다.
 - 타입스크립트가 자바스크립트를 실행하기 전에 잘못된 타입이 들어가지 않도록 체크를 하는 반면, prop types는 자바스크립트를 실행할 때 잘못된 타입이 들어가면 에러를 표시한다.
 - 자바스크립트를 실행하면서 에러를 검사하기 때문에 더 많은 시스템 리소스를 사용한다. 프로덕션 모드에서는 활성화되지 않기 때문에 프로덕션에서는 타입 검사로 리소스를 사용하지 않으며, 프로덕션 모드에서 활성화 되지 않는다는 것은 개발 환경에서 미리 타입 에러를 해결하고 나서 프로덕션 환경에 반영할 필요가 있다.
+
+### prop-types 사용하기
+- `prop-types`를 사용하기 위해서는 패키지를 설치해야 한다.
+```sh
+npm i prop-types --save
+```
+
+### 예제 코드
+src/components/18-propTypes/TypeRestrictedComponent.js
+```js
+import PropTypes from 'prop-types';
+
+const TypeRestrictedComponent = ({ name, children }) => {
+  return (
+    <div>
+      name : {name}
+    </div>
+  );
+};
+
+TypeRestrictedComponent.defaultProps = {
+  name: 'default name'
+};
+
+TypeRestrictedComponent.propTypes = {
+  name: PropTypes.string
+};
+
+export default TypeRestrictedComponent;
+```
+- 먼저 `PropTypes` 라이브러리를 가져온다.`import PropTypes from 'prop-types';`
+- `const TypeRestrictedComponent = ({ name, children })  => { /* ... */ }` props를 `{ name, children }`으로 구조 분해 할당으로 받는다.
+- 컴포넌트 함수 `TypeRestrictedComponent`에 대해, 컴포넌트 함수에 `defaultProps` 속성을 달아주면 (자바스크립트는 함수도 오브젝트이므로 속성을 부여할 수 있다.) 오브젝트의 키로 `props` 로 전달되는 대상의 속성을 오브젝트의 키에 대응하는 값으로 props의 속성이 전달되지 않았을 때의 디폴트 값을 전달하기 위한 설정을 한다.
+- 컴포넌트 함수 `TypeRestrictedComponent`에 대해, 컴포넌트 함수에 `propTypes` 속성을 달아주면 컴포넌트의 속성이 전달될 때 타입을 체크한다. 타입을 설정하는 방법은 `propTypes` 속성에 오브젝트를 할당하며 오브젝트의 키는 `props`의 속성을 할당하고, 키에 대응하는 값으로는 `prop-types` 라이브러리를 사용하여 타입을 설정한다. 키 값은 라이브러리를 할당한 변수명 여기서는 `PropTypes`에 `.타입명`을 사용하여 설정할 수 있다.
+
+src/components/18-propTypes/ParentComponent.js
+```js
+import TypeRestrictedComponent from './TypeRestrictedComponent';
+
+const ParentComponent = () => {
+  return (
+    <div>
+      <TypeRestrictedComponent name='children'></TypeRestrictedComponent>
+    </div>
+  );
+}
+
+export default ParentComponent;
+```
+- `'prop-types` 라이브러리로 전달되는 `props`의 타입제한을 걸고 있는 `TypeRestrictedComponent` 컴포넌트에 `props`의 속성으로 `name`을 문자열 `'children'`으로 전달한다. 자식 컴포넌트의 타입제한 코드 `PropTypes.string`와 일치하기 때문에 위의 코드는 정상적으로 실행된다.
+
+src/components/18-propTypes/ErrorParentComponent.js
+```js
+import TypeRestrictedComponent from './TypeRestrictedComponent';
+
+const ErrorParentComponent = () => {
+  return (
+    <div>
+      <TypeRestrictedComponent name={10}></TypeRestrictedComponent>
+    </div>
+  );
+}
+
+export default ErrorParentComponent;
+```
+- `'prop-types` 라이브러리로 전달되는 `props`의 타입제한을 걸고 있는 `TypeRestrictedComponent` 컴포넌트에 `props`의 속성으로 `name`을 수 `10`을 전달한다. 자식 컴포넌트의 타입제한 코드 `PropTypes.string`에 맞지 않기 때문에 브라우저 콘솔창에서 보면 타입에러가 있다고 알려 준다.
+> type: Invalid prop `name` of type `number` supplied to `TypeRestrictedComponent`, expected `string`. at TypeRestrictedComponent
