@@ -83,3 +83,20 @@ export default ErrorParentComponent;
 ```
 - `'prop-types` 라이브러리로 전달되는 `props`의 타입제한을 걸고 있는 `TypeRestrictedComponent` 컴포넌트에 `props`의 속성으로 `name`을 수 `10`을 전달한다. 자식 컴포넌트의 타입제한 코드 `PropTypes.string`에 맞지 않기 때문에 브라우저 콘솔창에서 보면 타입에러가 있다고 알려 준다.
 > type: Invalid prop `name` of type `number` supplied to `TypeRestrictedComponent`, expected `string`. at TypeRestrictedComponent
+
+src/components/18-propTypes/Index.js
+```js
+import ParentComponent from "./ParentComponent";
+import ErrorParentComponent from "./ErrorParentComponent";
+
+const Index = () => (
+  <>
+    <ParentComponent />
+    <ErrorParentComponent />
+  </>
+);
+
+export default Index;
+```
+- 위 컴포넌트를 로드하면 브라우저 콘솔 창에 타입 에러 메시지가 나온다. prop types로 타입체크를 할 때는 동작이 멈추지는 않고 에러 메시지만 표시한다.
+- `<ErrorParentComponent />` 컴포넌트를 주석처리한 후 컴포넌트를 다시 로드(브라우저를 새로고침하거나 컴포넌트 로드 영역의 번호를 변경)하면 에러 메시지가 나오지 않는 것을 확인할 수 있다. 
