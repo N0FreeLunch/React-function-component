@@ -1,9 +1,9 @@
-import PropTypes from './TypeRestrictedComponent';
+import TypeRestrictedComponent from './TypeRestrictedComponent';
 
 const ParentComponent = () => {
   return (
     <div>
-      <PropTypes name='children'></PropTypes>
+      <TypeRestrictedComponent name='children'></TypeRestrictedComponent>
     </div>
   );
 }

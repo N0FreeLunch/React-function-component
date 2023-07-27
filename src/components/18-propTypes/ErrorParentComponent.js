@@ -1,9 +1,9 @@
-import PropTypes from './TypeRestrictedComponent';
+import TypeRestrictedComponent from './TypeRestrictedComponent';
 
 const ErrorParentComponent = () => {
   return (
     <div>
-      <PropTypes name={10}></PropTypes>
+      <TypeRestrictedComponent name={10}></TypeRestrictedComponent>
     </div>
   );
 }
