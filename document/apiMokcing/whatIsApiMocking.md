@@ -10,15 +10,15 @@
 리퀘스트
 ```json
 {
-  user_id: hello@world.email,
-  password: hello&World
+  "user_id": "hello@world.email",
+  "password": "hello&World"
 }
 ```
 
 리스폰스
 ```json
 {
-  access_token: 123456789
+  "access_token": "123456789"
 }
 ```
 - 위의 예시는 리퀘스트와 리스폰스의 프로토콜의 예시이고 백앤드와 프론트앤드는 이런 통신 프로토콜을 미리 정하여 백앤드에서 아직 기능을 제공하지 않은 상황에서도 프론트앤드가 위 프로토콜에 맞게 코드를 만들 수 있다.
