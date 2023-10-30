@@ -45,4 +45,5 @@
 
 5. API Mocking Server
     - [모의 API 서버란](./apiMokcing/whatIsApiMocking.md)
+    - [json-server 사용하기](./apiMokcing/jsonServer.md)
   
