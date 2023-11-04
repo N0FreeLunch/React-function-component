@@ -60,6 +60,12 @@ http://localhost:3000
 - json 파일의 첫 번째 키에 매핑되는 값이 리스폰스 데이터가 된 것을 확인할 수 있다.
 - CLI에 `curl http://localhost:3000/comments`, `curl http://localhost:3000/profile` 등도 입력해 보자.
 
+### http method
+- http method란 http 통신에서 데이터를 전송하는 규약에 관한 것이다. 가장 대표적인 것으로 GET, POST가 있으며 GET은 html, css, js 등 웹 서버에 있는 파일을 가져오는 용도이며, POST는 form에 입력한 데이터를 전송하는 역할을 한다.
+
+ PUT, DELETE
+- `curl -X POST http://localhost:3000/comments`
+
 ### 복잡한 라우터 정의하기
 - json-server에서 디폴트로 제공하는 라우팅 경로는 데이터 파일(db.json)의 첫 번째 깊이의 키에 할당된 값이다.
 ```
@@ -139,3 +145,26 @@ Other routes
 - 와일드 카드의 문법에 대해 좀 더 살펴 보면 `"/api/*/edit/*"`와 같은 방식으로 와일드카드를 2개 쓰게 되면 첫 번째 와일드 카드에 해당하는 대상은 `$1`의 값으로 받을 수 있고, 두 번째 와일드 카드에 해당하는 대상은 `$2`의 값으로 받을 수 있다. 그래서 `"/api/*"`에서 *에 해당하는 문자열은 `/$1`에서 `$1`에서 받는다.
 - `:파라메터`에 해당하는 문법은 키에서 지정한 `:파라메터` 부분이 값의 `:파라메터` 부분으로 전달된다. `*`가 `/posts`, `/comments`, `/profile`, `user/1`, `post/1`와 같이 Resources 라우터에서 허용한 여러 depth를 전달할 수 있는 것과 달리 `:파라메터`는 하나의 path segment만 전달한다.
 - `/:resource/:id/show -> /:resource/:id`의 예제를 살펴보면 `/posts/1/show`으로 접근을 했을 때, Resources 라우터인 `/posts/1`으로 보내버린다는 의미를 가진다.
+
+## 옵션들
+### PORT
+- 기본적으로 json 서버의 port는 3000이다. 많은 로컬 서버들이 3000 포트를 사용하는 경우가 많기 때문에 3000 포트는 이미 react 등의 개발에서 사용하고 있어서 다른 port를 사용하고 싶을 때 ` --port=포트번호 ` 옵션 또는 ` -p 포트번호 ` 옵션을 넣어 주도록 하자.
+```sh
+npx json-server apiMockServer/db.json --routes apiMockServer/routes.json --port=3010
+```
+```sh
+npx json-server apiMockServer/db.json --routes apiMockServer/routes.json -p 3010
+```
+
+### CORS
+- 최근의 vue, react, svelte 등의 애플리케이션은 개발 서버 환경에서 작업이 이뤄진다. 프론트앤드에서 html, css, js를 제공하는 서버와 API 서버의 도메인이 다르게 구성되는 경우가 대부분이다. 도메인은 `https://github.com/typicode/json-server`에서 `github.com` 부분과 같이 port 번호가 없는 경우일 수도 있지만, `localhost:3000`과 같이 port 번호가 다른 경우에도 서로 다른 도메인으로 판단한다. 예를 들어 react를 개발하는 로컬 서버는 `http://localhost:3000`인데 API 서버도 `http://localhost:3456`이라면, 서로 다른 도메인으로 판단한다.
+- 기본적으로 브라우저는 서로 같은 도메인이 아니라면 CORS 에러를 발생시킨다. 이는 브라우저에서만 일어나므로 브라우저에서 통신을 하지 않는 `curl http://localhost:3000/posts`와 같은 터미널의 통신 명령은 CORS에러가 발생하지 않는다. CORS 에러를 발생시키는 것은 다른 도메인으로 통신하는 것이 보안상 취약점으로 사용될 수 있기 때문에 허가하지 않는다는 정도로만 알아 두자.
+ - API 서버는 별개의 프로그램이므로 보통은 html, css, js를 배포하는 서버와 별도의 도메인에서 동작하도록 만드는 경우가 많다. 또한 로컬 개발에서도 서로 포트가 다르게 실행된다. 따라서 API 서버에서는 도메인이 다른 곳에서 요청된 전송이더라도 허가한다는 CORS 설정을 해 준다.
+ - 서버에서 특정 도메인에 대한 CORS 설정을 하면 해당 도메인과의 통신이 허가되는데, 서버는 http 통신의 response에 `Access-Control-Allow-Origin`라는 키와 값으로 도메인을 갖는 헤더를 돌려 준다. 그러면 브라우저는 서버에서 허용한 통신이므로 도메인이 다르더라도 통신을 허락한다. 하지만 서버에서 `Access-Control-Allow-Origin`의 값이 리스폰스의 헤더에 없거나 허가된 도메인이 아닌 경우에는 브라우저는 통신을 막는다.
+ - 기본적으로 json-server도 CORS가 허가되어 있지 않기 때문에 허가 해 주어야 한다. 간단한 옵션으로 모든 도메인에서 접근할 수 있도록 허가할 수 있는데, json-server를 실행하는 명령에 ` --no-cors ` 또는 ` --nc `라는 옵션을 주면 된다.
+```sh
+npx json-server apiMockServer/db.json --routes apiMockServer/routes.json --port=3010 --no-cors
+```
+```sh
+npx json-server apiMockServer/db.json --routes apiMockServer/routes.json --port=3010 --nc
+```
