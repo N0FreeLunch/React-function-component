@@ -42,6 +42,7 @@
     - [컴포넌트 태그 사이에 값 넣기](./bookExamples/childrenProp.md)
     - [구조 분해 할당 사용하기](./bookExamples/destructuringAssignment.md)
     - [prop types 라이브러리로 prop 타입제한](./bookExamples/propTypes.md)
+    - [prop types 라이브러리로 prop 필수/옵션 설정](./bookExamples/checkRequiredProp.md)
 
 5. API Mocking Server
     - [모의 API 서버란](./apiMokcing/whatIsApiMocking.md)
