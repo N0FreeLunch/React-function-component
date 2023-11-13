@@ -6,10 +6,10 @@ class ChildComponent extends Component {
     const { name, favoriteNumber, children } = this.props;
     return (
       <div>
-        Hi, my name is {name}. <br />
-        children value is {children}
+        Hi, my name is "{name}". <br />
+        children value is "{children}"
         <br />
-        my favorite number is {favoriteNumber}
+        my favorite number is "{favoriteNumber}"
       </div>
     );
   }
