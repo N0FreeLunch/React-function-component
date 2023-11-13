@@ -1,6 +1,6 @@
-const ParentComponent = require('./ChildComponent');
+import ParentComponent from './ParentComponent';
 
-const Index = (props) => {
+const Index = () => {
   return (
     <ParentComponent />
   );

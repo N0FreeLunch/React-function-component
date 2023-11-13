@@ -20,7 +20,7 @@ ChildComponent.defaultProps = {
 };
 
 ChildComponent.propTypes = {
-  name: PropTypes.string,
+  children: PropTypes.string,
   favoriteNumber: PropTypes.number.isRequired,
 };
 

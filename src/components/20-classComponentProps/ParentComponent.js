@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import ChildComponent from './ChildComponent.js';
+import ChildComponent from './ChildComponent';
 
 class ParentComponent extends Component {
   render() {
