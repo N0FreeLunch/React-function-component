@@ -18,8 +18,8 @@ import Component15 from './components/15-childrenProps/Index';
 import Component16 from './components/16-allInOne/Index';
 import Component17 from './components/17-destructuringAssignment/Index';
 import Component18 from './components/18-propTypes/Index';
-import Component24 from './components/24-isRequired/ParentComponent.jsx';
-import Component25 from './components/25-classComponentProps/ParentComponent.jsx';
+import Component19 from './components/19-isRequired/Index';
+import Component20 from './components/20-classComponentProps/Index';
 import Component26 from './components/26-nestedPropsMiddleware/ParentComponent.jsx';
 import Component27 from './components/27-classComponentState/Counter.jsx';
 import Component28 from './components/28-multiPropertyState/Counter.jsx';
@@ -90,13 +90,13 @@ const componentList = {
   16: <Component16 />,
   17: <Component17 />,
   18: <Component18 />,
-  // 19: <Component19 />,
-  // 20: <Component20 />,
+  19: <Component19 />,
+  20: <Component20 />,
   // 21: <Component21 />,
   // 22: <Component22 />,
   // 23: <Component23 />,
-  24: <Component24 />,
-  25: <Component25 />,
+  // 24: <Component24 />,
+  // 25: <Component25 />,
   26: <Component26 />,
   27: <Component27 />,
   28: <Component28 />,
