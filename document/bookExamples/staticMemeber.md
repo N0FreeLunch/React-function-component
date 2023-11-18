@@ -96,3 +96,21 @@ console.log(functionClass.propety);
 - 그런데 `function` 키워드로 만든 함수의 정적 멤버는 `function_키워드로_만든_함수.정적_멤버명`으로 접근하는데, 인스턴스화 된 객체의 `constructor`가 `function_키워드로_만든_함수`라면 정적 멤버는 `constructor.정적_멤버명`으로 접근을 할 수 있다.
 - 따라서 클래스 문법에서 인스턴스화 된 객체에서 정적 멤버를 접근할 때 `인스턴스화된_객체.constructor.정적_멤버명`으로 접근하는 것은 자바스크립트의 클래스 문법이 `function` 키워드로 만든 함수로 만들어졌기 때문인 것으로 이해할 수 있다.
 
+### class 멤버 다시 이해하기
+- JS에서 클래스 문법에서는 일반 멤버와 정적 멤버를 정의할 수 있다.
+```js
+class Class {
+  static staticMember = 1;
+  constructor() {
+    this.normalMember = 1;
+  }
+  static staticMethod() {
+    console.log("run static method");
+  }
+  normalMethod() {
+    console.log("run normal method");
+  }
+}
+```
+- `static` 멤버는 클래스에서 사용할 수 있는 프로퍼티를 정의한 것이다. 따라서 `Class.staticMember`, `Class.staticMethod()`의 방식으로 사용할 수 있다.
+- 일반 멤버는 클래스를 주형으로 만든 객체에서 사용할 수 있는 프로퍼티를 정의한 것이다. 따라서 `(new Class).normalMember`, `(new Class).normalMethod()`의 방식으로 사용할 수 있다.
