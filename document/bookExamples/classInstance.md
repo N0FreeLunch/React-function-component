@@ -137,23 +137,18 @@ console.log(obj2.member);
 - 위의 예제에서 동일한 클래스를 인스턴스화한 두 개의 오브젝트 `obj1`, `obj2`에 대해 `obj1`는 `addOne()`을 두 번 `obj2`는 3번을 사용하였다. `addOne()`의 순서를 달리하였지만, 정확히 각각의 객체에서 사용한 멤버 만큼 값이 더해진 것을 확인할 수 있다.
 - 인스턴스화 된 객체 끼리는 서로 멤버를 공유하지 않는 독립된 대상임을 알 수 있다.
 
-### 멤버 변수는 `this`로 접근해야 하는 이유?
+### 클래스와 function 함수의 관계성
 ```js
 class Class {
-  constructor() {
-    this.member = 0 ;
-  }
-
-  addOne() {
-    this.member = this.member + 1;
+  constructor(arg1, arg2) {
+    this.member1 = arg1;
+    this.member2 = arg2;
   }
 }
 
-const obj = (new Class);
-obj.addOne();
-obj.addOne();
-obj.addOne();
-console.log(obj.member);
+const obj = new Class(100, 200);
+console.log(obj.member1);
+console.log(obj.member2);
 ```
 - `constructor` 메소드는 클래스가 인스턴스화 될 때 디폴트로 실행되는 객체이다. `new Class`를 사용하면 클래스가 인스턴스화 되면서 특별히 메소드를 실행을 하지 않더라도 `constructor` 메소드가 실행된다. 이 때 `new Class(인자1, 인자2 /* ... */)`로 클래스명 바로 뒤에 괄호에 인자를 넣어주면 `constructor` 메소드로 인자가 전달되어 `constructor(인자1, 인자2 /* ... */)`가 실행된다.
 - 자바스크립트에서 클래스 문법이 도입되기 전에 자바스크립트의 클래스와 비슷한 사용을 위해서 `function` 함수를 클래스로 하여 인스턴스를 만드는 방법이 있었다.
@@ -168,3 +163,28 @@ console.log(obj.member1);
 console.log(obj.member2);
 ```
 - 위의 코드를 보면, `new` 키워드로 `function` 함수를 실행해서 인스턴스를 만드는 것은 `function` 함수를 실행하면서 `function` 함수 안에 있는 코드를 실행하면서 `this.멤버` 코드를 실행하여 인스턴스가 갖는 새로운 멤버를 만드는 것이다. 이것은 자바스크립트 클래스 문법에 `new Class`의 코드를 사용할 때 `constructor` 함수를 실행하는 것과 똑같은 것을 알 수 있다. 곧, 자바스크립트에서 클래스 문법은 클래스 내의 `constructor`라는 함수를 `new` 키워드로 실행하는 것과 동일한 것이다.
+
+### 멤버를 `this`로 접근해야 하는 이유?
+```js
+class Class {
+  constructor() {
+    this.member = 0;
+  }
+
+  addOne() {
+    this.member = this.member + 1;
+  }
+}
+
+const obj = (new Class);
+obj.addOne();
+obj.addOne();
+obj.addOne();
+console.log(obj.member);
+```
+- `this`는 코드를 실행하고 있는 객체를 의미한다. (`this`는 `this` 코드를 실행하고 있는 객체를 찾으며 객체를 찾았다면 해당 객체를 `this`가 가리키는 대상으로 한다. 다른 프로그래밍 언어에서 this가 가리키는 객체가 고정되어 있는 반면 자바스크립트의 `this`는 코드를 실행하고 있는 객체를 탐색하기 때문에 코드가 어떤 객체 내에서 실행되고 있느냐에 따라 가리키는 객체가 달라지는 경우가 생길 수 있다.)
+- `new` 키워드로 인스턴스를 만들 때, 생성자 함수가 실행된다고 하였다. 그러면 생성자 함수 내의 `this.멤버` 코드에서 `this`는 새롭게 생성된 인스턴스를 가리키게 되고, 새롭게 생성된 인스턴스에서 `.멤버`로 접근할 수 있는 객체의 속성을 추가한다.
+- 클래스의 메소드는 생성자 함수에서 `this.method = () => { /* ... */}`를 실행하는 것을 다르게 표현한 문법이다. 위의 예제 코드에서는 `addOne`이라는 메소드는 인스턴스로 실행될 때 생성자 함수에서 `this.addOne = () => { this.member = this.member + 1; }`의 코드를 실행한 것과 같다. 인스턴스를 가라키는 `this`에 `addOne`라는 객체의 속성을 추가하였고 해당 속성의 값으로 함수를 할당하였다.
+- `obj.addOne()`는 인스턴스가 가지고 있는 `addOne` 속성에 든 함수를 실행한다. 그 내부의 코드가 `this.member = this.member + 1`이다. 현재 인스턴스 `this`가 가지고 있는 속성 `member`의 값에 1을 더하는 코드이다. 그리고 더한 결과를 다시 인스턴스의 `member` 속성에 할당하였다. 이러한 원리로 `addOne()` 메소드가 실행될 때마다 `member`의 값이 1씩 증가하게 된다.
+- 멤버를 `this`로 접근하는 이유는 객체를 생성할 때 `this`가 실행이 되고 생성된 객체 내에서 실행된 `this`이므로 `this`가 가리키는 대상이 새로 생성된 인스턴스를 가리키는 원리를 사용하려고 하기 때문이다.
+
