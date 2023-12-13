@@ -96,6 +96,20 @@ class Class {
 }
 ```
 - 위 두 코드는 동일하게 클래스를 인스턴스로 만들 때 `member` 멤버를 생성하고 생성된 멤버를 10으로 초기화한다.
+- 생성자 함수인 `constructor` 메소드가 아닌 다른 이름의 메소드에 `this.멤버명`을 정의하면 인스턴스 생성과 동시에 멤버가 생성되지 않고, 해당 메소드를 실행해야 멤버가 추가로 생성된다.
+```js
+class Class {
+  method() {
+    this.member = 10;
+  }
+}
+const obj = (new Class);
+console.log(obj.member);
+obj.method();
+console.log(obj.member);
+```
+- 첫 번째 `obj.member`에서는 `undefined`가 나온다.
+- 두 번째 `obj.member`는 멤버를 생성하는 메소드가 실행된 이후이므로 멤버 초기화 코드가 실행되어 `10`이 된다.
 
 ### 인스턴스간의 독립성
 - new 키워드는 특별한 특징을 갖는데, 인스턴스화 된 객체는 서로 다른 대상이 된다는 것이다. 서로 다른 대상이란 말은 서로 독립적이란 것이고, 엄밀히는 객체 내부의 멤버를 공유하지 않는다는 의미이다.
@@ -141,4 +155,16 @@ obj.addOne();
 obj.addOne();
 console.log(obj.member);
 ```
-- `constructor` 메소드는 클래스가 인스턴스화 될 때 디폴트로 실행되는 객체이다. `new Class`를 사용하면 클래스가 인스턴스화 되면서 특별히 실행을 하지 않더라도 `constructor` 메소드가 실행된다. 이 때 `new Class(인자1, 인자2 /* ... */)`로 클래스명 바로 뒤에 괄호에 인자를 넣어주면 `constructor` 메소드로 인자가 전달된다.
+- `constructor` 메소드는 클래스가 인스턴스화 될 때 디폴트로 실행되는 객체이다. `new Class`를 사용하면 클래스가 인스턴스화 되면서 특별히 메소드를 실행을 하지 않더라도 `constructor` 메소드가 실행된다. 이 때 `new Class(인자1, 인자2 /* ... */)`로 클래스명 바로 뒤에 괄호에 인자를 넣어주면 `constructor` 메소드로 인자가 전달되어 `constructor(인자1, 인자2 /* ... */)`가 실행된다.
+- 자바스크립트에서 클래스 문법이 도입되기 전에 자바스크립트의 클래스와 비슷한 사용을 위해서 `function` 함수를 클래스로 하여 인스턴스를 만드는 방법이 있었다.
+```js
+const classFunction = function (arg1, arg2) {
+  this.member1 = arg1;
+  this.member2 = arg2;
+};
+
+const obj = (new classFunction(100, 200));
+console.log(obj.member1);
+console.log(obj.member2);
+```
+- 위의 코드를 보면, `new` 키워드로 `function` 함수를 실행해서 인스턴스를 만드는 것은 `function` 함수를 실행하면서 `function` 함수 안에 있는 코드를 실행하면서 `this.멤버` 코드를 실행하여 인스턴스가 갖는 새로운 멤버를 만드는 것이다. 이것은 자바스크립트 클래스 문법에 `new Class`의 코드를 사용할 때 `constructor` 함수를 실행하는 것과 똑같은 것을 알 수 있다. 곧, 자바스크립트에서 클래스 문법은 클래스 내의 `constructor`라는 함수를 `new` 키워드로 실행하는 것과 동일한 것이다.
