@@ -31,3 +31,5 @@ class ChildComponent extends Component {
   }
 }
 ```
+
+- `컴포넌트_클래스명.defaultProps`과 `컴포넌트_클래스명.propTypes`, 컴포넌트 클래스 안의 `static defaultProps`와 `static propTypes`는 동일하며, 모두 오브젝트에 속성을 붙여주는 것이다. 또한 컴포넌트 클래스 뿐만 아니라 함수 컴포넌트에서도 `컴포넌트_함수명.defaultProps` , `컴포넌트_함수명.propTypes`으로 사용하는 유사성을 갖는다.
