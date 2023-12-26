@@ -46,6 +46,7 @@
     - [class 인스턴스](./bookExamples/classInstance.md)
     - [class component의 prop](./bookExamples/classComponentProps.md)
     - [클래스 내부의 props 미들웨어](./bookExamples/nestedPropsMiddleware.md)
+    - [클래스 컴포넌트 스테이트](./bookExamples/classComponentState.md)
 
 5. API Mocking Server
     - [모의 API 서버란](./apiMokcing/whatIsApiMocking.md)
