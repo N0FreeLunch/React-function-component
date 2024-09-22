@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import Component01 from './components/01-JSX/HelloReact';
 import Component02 from './components/02-Fragment/Index.js';
@@ -22,7 +22,7 @@ import Component19 from './components/19-isRequired/Index';
 import Component20 from './components/20-classComponentProps/Index';
 import Component21 from './components/21-nestedPropsMiddleware/Index';
 import Component22 from './components/22-classComponentState/Index';
-import Component28 from './components/28-multiPropertyState/Counter.jsx';
+import Component23 from './components/23-multiPropertyState/Counter.jsx';
 import Component29 from './components/29-multiSetStateArgumentUpdateOnce/Counter.jsx';
 import Component30 from './components/30-setStateFunctionArgument/Counter.jsx';
 import Component31 from './components/31-doAfterSetState/Counter.jsx';
@@ -94,12 +94,12 @@ const componentList = {
   20: <Component20 />,
   21: <Component21 />,
   22: <Component22 />,
-  // 23: <Component23 />,
+  23: <Component23 />,
   // 24: <Component24 />,
   // 25: <Component25 />,
   // 26: <Component26 />,
   // 27: <Component27 />,
-  28: <Component28 />,
+  // 28: <Component28 />,
   29: <Component29 />,
   30: <Component30 />,
   31: <Component31 />,
